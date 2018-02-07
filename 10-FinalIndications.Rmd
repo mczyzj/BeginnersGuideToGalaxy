@@ -9,3 +9,5 @@ To make your work more reproductible, and also to make nice looking output (in h
 ## Use .rds files
 
 Usually we work with plain text files like csv or tsv in **R**. Howevere, there is also a highly valuable format of files caled rds, that makes work even more pleasant. It not only preserves all classes of variables, but also takes less space than plain text file, due to compression algorithms. Also when using `saveRDS()` you don't need to define hundrets of parameters, just name of object you want to save and its file name. The downside is that it is format to use directly with R.
+
+##Other stuff
