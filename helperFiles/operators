@@ -1,0 +1,20 @@
++	maths	addition
+-	maths	substraction
+*	maths	multiplication
+/	maths	division
+%%	maths	modulo
+^	maths	power
+>	relations	left greater
+>=	relations	left greater of equal
+<	relations	right greater
+<=	relations	right greater or equal
+==	relations	left equal right
+!=	relations	left uneqal right
+!	logics	not
+&	logics	and
+|	logics	or
+~	model	left relates to right
+<- or ->	assignment	assignes value to variable
+$	address	extracts values with 'element name' from variable
+:	sequence	creates sequence of numbers from 'left value' to 'right value'
+%>% or %<>%	piping	pipes results(from left) as arguments to functionon right

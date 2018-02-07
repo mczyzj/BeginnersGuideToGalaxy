@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A Beginners Guide to R’s Galaxy</title>
+  <meta name="description" content="Quick introduction to astonishing R’s Galaxy">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A Beginners Guide to R’s Galaxy" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Beginners Guide to R’s Galaxy" />
+  
+  <meta name="twitter:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+<meta name="author" content="Michal J. Czyz">
+
+
+<meta name="date" content="2018-02-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="basics.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> In the beginning there was only darknes…</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>2.1</b> RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#few-tips-to-make-life-easier"><i class="fa fa-check"></i><b>2.2</b> Few tips to make life easier</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#installing-packages"><i class="fa fa-check"></i><b>2.3</b> Installing packages</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#conventions"><i class="fa fa-check"></i><b>2.4</b> Conventions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="basics.html"><a href="basics.html#help"><i class="fa fa-check"></i><b>3.1.1</b> Help</a></li>
+<li class="chapter" data-level="3.1.2" data-path="basics.html"><a href="basics.html#internet-is-a-great-source-of-information"><i class="fa fa-check"></i><b>3.1.2</b> Internet is a great source of information</a></li>
+<li class="chapter" data-level="3.1.3" data-path="basics.html"><a href="basics.html#more-on-internet-sources"><i class="fa fa-check"></i><b>3.1.3</b> More on internet sources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#syntax"><i class="fa fa-check"></i><b>3.2</b> Syntax</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#common-operators"><i class="fa fa-check"></i><b>3.2.1</b> Common operators</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics.html"><a href="basics.html#variables"><i class="fa fa-check"></i><b>3.2.2</b> Variables</a></li>
+<li class="chapter" data-level="3.2.3" data-path="basics.html"><a href="basics.html#naming-variables"><i class="fa fa-check"></i><b>3.2.3</b> Naming Variables</a></li>
+<li class="chapter" data-level="3.2.4" data-path="basics.html"><a href="basics.html#math-operations"><i class="fa fa-check"></i><b>3.2.4</b> Math operations</a></li>
+<li class="chapter" data-level="3.2.5" data-path="basics.html"><a href="basics.html#logics"><i class="fa fa-check"></i><b>3.2.5</b> Logics</a></li>
+<li class="chapter" data-level="3.2.6" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>3.2.6</b> Functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html"><i class="fa fa-check"></i><b>4</b> Somwehere between basic and useful</a><ul>
+<li class="chapter" data-level="4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#addressing"><i class="fa fa-check"></i><b>4.1</b> Addressing</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#vectors"><i class="fa fa-check"></i><b>4.1.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.1.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#data-frames-and-matrices"><i class="fa fa-check"></i><b>4.1.2</b> Data frames (and matrices)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#lists"><i class="fa fa-check"></i><b>4.1.3</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#operation-on-vectors"><i class="fa fa-check"></i><b>4.2</b> Operation on Vectors</a></li>
+<li class="chapter" data-level="4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#randomization-and-distribution"><i class="fa fa-check"></i><b>4.3</b> Randomization and distribution</a></li>
+<li class="chapter" data-level="4.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#tidyverse-idea-and-dplyr-library"><i class="fa fa-check"></i><b>4.4</b> <code>tidyverse</code> idea and <code>dplyr</code> library</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#wide-vs.long-tables"><i class="fa fa-check"></i><b>4.4.1</b> Wide vs. long tables</a></li>
+<li class="chapter" data-level="4.4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#world-of-dplyr"><i class="fa fa-check"></i><b>4.4.2</b> World of <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.4.3</b> <code>mutate</code> and <code>transmute</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html"><i class="fa fa-check"></i><b>5</b> Lets do some math!</a><ul>
+<li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-statistical-model"><i class="fa fa-check"></i><b>5.1</b> Simple statistical model</a></li>
+<li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#other-models"><i class="fa fa-check"></i><b>5.2</b> Other models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#libraries"><i class="fa fa-check"></i><b>5.2.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-asymptotic-model-and-noise"><i class="fa fa-check"></i><b>5.2.2</b> Simple asymptotic model and noise</a></li>
+<li class="chapter" data-level="5.2.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#mechanistic-model-in-r"><i class="fa fa-check"></i><b>5.2.3</b> Mechanistic model in <strong>R</strong></a></li>
+<li class="chapter" data-level="5.2.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.2.4</b> Solving differential equations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions-1.html"><a href="functions-1.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="functions-1.html"><a href="functions-1.html#simple-math-functions."><i class="fa fa-check"></i><b>6.1</b> Simple math functions.</a></li>
+<li class="chapter" data-level="6.2" data-path="functions-1.html"><a href="functions-1.html#building-your-own-calculator"><i class="fa fa-check"></i><b>6.2</b> Building your own calculator</a></li>
+<li class="chapter" data-level="6.3" data-path="functions-1.html"><a href="functions-1.html#it-is-not-over-yet-calculator-shouldnt-divide-be-0"><i class="fa fa-check"></i><b>6.3</b> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="8" data-path="final-indications.html"><a href="final-indications.html"><i class="fa fa-check"></i><b>8</b> Final indications</a><ul>
+<li class="chapter" data-level="8.1" data-path="final-indications.html"><a href="final-indications.html#use-projects"><i class="fa fa-check"></i><b>8.1</b> Use Projects</a></li>
+<li class="chapter" data-level="8.2" data-path="final-indications.html"><a href="final-indications.html#use-rmarkodow"><i class="fa fa-check"></i><b>8.2</b> Use RMarkodow</a></li>
+<li class="chapter" data-level="8.3" data-path="final-indications.html"><a href="final-indications.html#use-.rds-files"><i class="fa fa-check"></i><b>8.3</b> Use .rds files</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Beginners Guide to R’s Galaxy</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
+<div id="rstudio" class="section level2">
+<h2><span class="header-section-number">2.1</span> RStudio</h2>
+<p>Before we jump into coding, you should first get familliar with <strong>RStudio</strong> <span class="citation">(RStudio Team <a href="#ref-rstudio2017">2016</a>)</span>. It is so called <em>Integrated Development Environment</em> (IDE), which has built-in fuctionalities to make work easier. This IDE is typically used with 4 different windows:</p>
+<ul>
+<li><em>Source</em> - where you can write scripts;</li>
+<li><em>Console</em> - where scripts are executed;</li>
+<li><em>‘Environmental’</em> - it’s adjustable window, usually containing <em>Environemnt</em>, <em>History</em> and Verison Control panes;</li>
+<li><em>‘Files’</em> - also adjustable, usually you will find here <em>File</em>, <em>Packages</em>, <em>Help</em> and <em>Plots</em> panes.</li>
+</ul>
+</div>
+<div id="few-tips-to-make-life-easier" class="section level2">
+<h2><span class="header-section-number">2.2</span> Few tips to make life easier</h2>
+From menu choose <em>Tools &gt; Global options</em>. Now choose <em>Code</em> and <em>Editing</em> pane, tick box <em>Insert spaces for Tab</em> and assure that Tab width is set to 2. Next, in <em>Display</em> pane, check following tickboxes:
+<div class="figure" style="text-align: center"><span id="fig:option-settings"></span>
+<img src="options.png" alt="Code display options" width="50%" />
+<p class="caption">
+Figure 2.1: Code display options
+</p>
+</div>
+<ul>
+<li><em>Highlight selected word</em></li>
+<li><em>Show line number</em></li>
+<li><em>Show margin</em> (and set margin column to 80)</li>
+<li><em>Show whitespace characters</em></li>
+<li><em>Highlite R function calls</em></li>
+</ul>
+<p>Generally speaking those options, do not influence how your code is performed, but will allow you to write cleaner and read easier. You can also change colors of your environment in <em>Appearance</em>.</p>
+</div>
+<div id="installing-packages" class="section level2">
+<h2><span class="header-section-number">2.3</span> Installing packages</h2>
+In your <em>‘Files’</em> winodow, you will find <em>Packages</em> pane, which contains <em>Install</em> button. You can use it now, to install packages needed to perform excercies from this book. The packages are:
+<div class="figure" style="text-align: center"><span id="fig:install-packs"></span>
+<img src="instalPacks.png" alt="Installation window" width="50%" />
+<p class="caption">
+Figure 2.2: Installation window
+</p>
+</div>
+<ul>
+<li><strong>devtools</strong> <span class="citation">(Wickham and Chang <a href="#ref-R-devtools">2017</a>)</span></li>
+<li><strong>tidyverse</strong> <span class="citation">(Wickham et al. <a href="#ref-R-dplyr">2017</a><a href="#ref-R-dplyr">a</a>)</span></li>
+<li><strong>fitdistrplus</strong> <span class="citation">(Delignette-Muller, Dutang, and Siberchicot <a href="#ref-R-fitdistrplus">2017</a>)</span></li>
+<li><strong>e1071</strong> <span class="citation">(Meyer et al. <a href="#ref-R-e1071">2017</a>)</span></li>
+<li><strong>truncdist</strong> <span class="citation">(Novomestky and Nadarajah <a href="#ref-R-truncdist">2016</a>)</span></li>
+</ul>
+<p>Now everytime you need finctions from specyfic library you can just tick box next to package name, and RStudio will load it for you.</p>
+</div>
+<div id="conventions" class="section level2">
+<h2><span class="header-section-number">2.4</span> Conventions</h2>
+<p>In this book, we will use following conventions:</p>
+<ul>
+<li>Names of programs and packages are in <strong>Bold</strong>.</li>
+<li>All other names e.g. names of panes menu items as well as things that needs to be stressed are in <em>italics</em>.</li>
+<li>Function names and variables are always writen in inline code e.g. <code>t.test()</code> or <code>x</code>.</li>
+<li>File names are wirten in inline code e.g. <code>foo.txt</code>.</li>
+<li>Citations are in APA style, and ‘clickable’ e.g.click on the name and year of <strong>knitr</strong> package citation <span class="citation">(Xie <a href="#ref-xie2015">2015</a>)</span>.</li>
+<li>Code chunks are in blocks and result lines start with ##</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</code></pre></div>
+<pre><code>##  [1] 1.0507423 0.9347192 0.6157582 0.8381622 0.8758152 1.2622475 0.5249278
+##  [8] 0.3985812 1.1421893 1.1204052</code></pre>
+<ul>
+<li>There are no <code>&gt;</code> (<em>prompt</em>) signs in code chunks.</li>
+<li>Figures are floating - meaning, that they are not always imediately after they are mentioned in text.</li>
+<li>Tables are in <em>longtable</em> format (meaning they are not floating and might be multipage) e.g.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">kable</span>(
+  <span class="kw">head</span>(iris, <span class="dv">25</span>), <span class="dt">caption =</span> <span class="st">&#39;Example table&#39;</span>,
+  <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">longtable =</span> <span class="ot">TRUE</span>
+)</code></pre></div>
+<table>
+<caption><span id="tab:nice-tab">Table 2.1: </span>Example table</caption>
+<thead>
+<tr class="header">
+<th align="right">Sepal.Length</th>
+<th align="right">Sepal.Width</th>
+<th align="right">Petal.Length</th>
+<th align="right">Petal.Width</th>
+<th align="left">Species</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.7</td>
+<td align="right">3.2</td>
+<td align="right">1.3</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.6</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.0</td>
+<td align="right">3.6</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.7</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.6</td>
+<td align="right">3.4</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.0</td>
+<td align="right">3.4</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.4</td>
+<td align="right">2.9</td>
+<td align="right">1.4</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.9</td>
+<td align="right">3.1</td>
+<td align="right">1.5</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.7</td>
+<td align="right">1.5</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.6</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.8</td>
+<td align="right">3.0</td>
+<td align="right">1.4</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">4.3</td>
+<td align="right">3.0</td>
+<td align="right">1.1</td>
+<td align="right">0.1</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.8</td>
+<td align="right">4.0</td>
+<td align="right">1.2</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.7</td>
+<td align="right">4.4</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.9</td>
+<td align="right">1.3</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.5</td>
+<td align="right">1.4</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.7</td>
+<td align="right">3.8</td>
+<td align="right">1.7</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.8</td>
+<td align="right">1.5</td>
+<td align="right">0.3</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">5.4</td>
+<td align="right">3.4</td>
+<td align="right">1.7</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.7</td>
+<td align="right">1.5</td>
+<td align="right">0.4</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.6</td>
+<td align="right">3.6</td>
+<td align="right">1.0</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">5.1</td>
+<td align="right">3.3</td>
+<td align="right">1.7</td>
+<td align="right">0.5</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="odd">
+<td align="right">4.8</td>
+<td align="right">3.4</td>
+<td align="right">1.9</td>
+<td align="right">0.2</td>
+<td align="left">setosa</td>
+</tr>
+<tr class="even">
+<td align="right">* Tabels and fi</td>
+<td align="right">gures are refe</td>
+<td align="right">rences are clic</td>
+<td align="right">kable e.g. see</td>
+<td align="left">Table <a href="intro.html#tab:nice-tab">2.1</a> or see Figure <a href="intro.html#fig:option-settings">2.1</a>.</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-rstudio2017">
+<p>RStudio Team. 2016. <em>RStudio: Integrated Development Environment for R</em>. Boston, MA: RStudio, Inc. <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+</div>
+<div id="ref-R-devtools">
+<p>Wickham, Hadley, and Winston Chang. 2017. <em>Devtools: Tools to Make Developing R Packages Easier</em>. <a href="https://CRAN.R-project.org/package=devtools" class="uri">https://CRAN.R-project.org/package=devtools</a>.</p>
+</div>
+<div id="ref-R-dplyr">
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017a. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div id="ref-R-fitdistrplus">
+<p>Delignette-Muller, Marie-Laure, Christophe Dutang, and Aurélie Siberchicot. 2017. <em>Fitdistrplus: Help to Fit of a Parametric Distribution to Non-Censored or Censored Data</em>. <a href="https://CRAN.R-project.org/package=fitdistrplus" class="uri">https://CRAN.R-project.org/package=fitdistrplus</a>.</p>
+</div>
+<div id="ref-R-e1071">
+<p>Meyer, David, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel, and Friedrich Leisch. 2017. <em>E1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), Tu Wien</em>. <a href="https://CRAN.R-project.org/package=e1071" class="uri">https://CRAN.R-project.org/package=e1071</a>.</p>
+</div>
+<div id="ref-R-truncdist">
+<p>Novomestky, Frederick, and Saralees Nadarajah. 2016. <em>Truncdist: Truncated Random Variables</em>. <a href="https://CRAN.R-project.org/package=truncdist" class="uri">https://CRAN.R-project.org/package=truncdist</a>.</p>
+</div>
+<div id="ref-xie2015">
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["BeginnersGuideToGalaxy.pdf", "BeginnersGuideToGalaxy.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

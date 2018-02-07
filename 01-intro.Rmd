@@ -1,0 +1,61 @@
+# Introduction {#intro}
+
+## RStudio
+Before we jump into coding, you should first get familliar with **RStudio** [@rstudio2017]. It is so called *Integrated Development Environment* (IDE), which has built-in fuctionalities to make work easier. This IDE is typically used with 4 different windows:
+
+* *Source* - where you can write scripts;
+* *Console* - where scripts are executed;
+* *'Environmental'* - it's adjustable window, usually containing *Environemnt*, *History* and Verison Control panes;
+* *'Files'* - also adjustable, usually you will find here *File*, *Packages*, *Help* and *Plots* panes.
+
+## Few tips to make life easier
+From menu choose *Tools > Global options*. Now choose *Code* and *Editing* pane, tick box *Insert spaces for Tab* and assure that Tab width is set to 2. Next, in *Display* pane, check following tickboxes:
+```{r option-settings, echo = FALSE, out.width = '50%', fig.align = 'center', fig.cap = 'Code display options'}
+knitr::include_graphics('options.png')
+```
+
+* *Highlight selected word*
+* *Show line number*
+* *Show margin* (and set margin column to 80)
+* *Show whitespace characters*
+* *Highlite R function calls*
+
+Generally speaking those options, do not influence how your code is performed, but will allow you to write cleaner and read easier. You can also change colors of your environment in *Appearance*.
+
+## Installing packages
+In your *'Files'* winodow, you will find *Packages* pane, which contains *Install* button. You can use it now, to install packages needed to perform excercies from this book. The packages are:
+```{r install-packs, echo = FALSE, out.width = '50%', fig.align = 'center', fig.cap = 'Installation window'}
+knitr::include_graphics('instalPacks.png')
+```
+
+* **devtools** [@R-devtools]
+* **tidyverse** [@R-dplyr]
+* **fitdistrplus** [@R-fitdistrplus]
+* **e1071** [@R-e1071]
+* **truncdist** [@R-truncdist]
+
+Now everytime you need finctions from specyfic library you can just tick box next to package name, and RStudio will load it for you.
+
+## Conventions
+
+In this book, we will use following conventions:
+
+* Names of programs and packages are in **Bold**.
+* All other names e.g. names of panes menu items as well as things that needs to be stressed are in *italics*.
+* Function names and variables are always writen in inline code e.g. `t.test()` or `x`.
+* File names are wirten in inline code e.g. `foo.txt`.
+* Citations are in APA style, and 'clickable' e.g.click on the name and year of **knitr**  package citation [@xie2015].
+* Code chunks are in blocks and result lines start with ##
+```{r test-chunk, echo = TRUE}
+rnorm(10, 1, 0.5)
+```
+* There are no `>` (*prompt*) signs in code chunks.
+* Figures are floating - meaning, that they are not always imediately after they are mentioned in text.
+* Tables are in *longtable* format (meaning they are not floating and might be multipage) e.g.
+```{r nice-tab, tidy = FALSE}
+knitr::kable(
+  head(iris, 25), caption = 'Example table',
+  booktabs = TRUE, longtable = TRUE
+)
+```
+* Tabels and figures are references are clickable e.g. see Table \@ref(tab:nice-tab) or see Figure \@ref(fig:option-settings).

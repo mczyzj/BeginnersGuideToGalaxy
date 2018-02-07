@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A Beginners Guide to R’s Galaxy</title>
+  <meta name="description" content="Quick introduction to astonishing R’s Galaxy">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A Beginners Guide to R’s Galaxy" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Beginners Guide to R’s Galaxy" />
+  
+  <meta name="twitter:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+<meta name="author" content="Michal J. Czyz">
+
+
+<meta name="date" content="2018-02-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="intro.html">
+<link rel="next" href="somwehere-between-basic-and-useful.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> In the beginning there was only darknes…</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>2.1</b> RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#few-tips-to-make-life-easier"><i class="fa fa-check"></i><b>2.2</b> Few tips to make life easier</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#installing-packages"><i class="fa fa-check"></i><b>2.3</b> Installing packages</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#conventions"><i class="fa fa-check"></i><b>2.4</b> Conventions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="basics.html"><a href="basics.html#help"><i class="fa fa-check"></i><b>3.1.1</b> Help</a></li>
+<li class="chapter" data-level="3.1.2" data-path="basics.html"><a href="basics.html#internet-is-a-great-source-of-information"><i class="fa fa-check"></i><b>3.1.2</b> Internet is a great source of information</a></li>
+<li class="chapter" data-level="3.1.3" data-path="basics.html"><a href="basics.html#more-on-internet-sources"><i class="fa fa-check"></i><b>3.1.3</b> More on internet sources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#syntax"><i class="fa fa-check"></i><b>3.2</b> Syntax</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#common-operators"><i class="fa fa-check"></i><b>3.2.1</b> Common operators</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics.html"><a href="basics.html#variables"><i class="fa fa-check"></i><b>3.2.2</b> Variables</a></li>
+<li class="chapter" data-level="3.2.3" data-path="basics.html"><a href="basics.html#naming-variables"><i class="fa fa-check"></i><b>3.2.3</b> Naming Variables</a></li>
+<li class="chapter" data-level="3.2.4" data-path="basics.html"><a href="basics.html#math-operations"><i class="fa fa-check"></i><b>3.2.4</b> Math operations</a></li>
+<li class="chapter" data-level="3.2.5" data-path="basics.html"><a href="basics.html#logics"><i class="fa fa-check"></i><b>3.2.5</b> Logics</a></li>
+<li class="chapter" data-level="3.2.6" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>3.2.6</b> Functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html"><i class="fa fa-check"></i><b>4</b> Somwehere between basic and useful</a><ul>
+<li class="chapter" data-level="4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#addressing"><i class="fa fa-check"></i><b>4.1</b> Addressing</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#vectors"><i class="fa fa-check"></i><b>4.1.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.1.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#data-frames-and-matrices"><i class="fa fa-check"></i><b>4.1.2</b> Data frames (and matrices)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#lists"><i class="fa fa-check"></i><b>4.1.3</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#operation-on-vectors"><i class="fa fa-check"></i><b>4.2</b> Operation on Vectors</a></li>
+<li class="chapter" data-level="4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#randomization-and-distribution"><i class="fa fa-check"></i><b>4.3</b> Randomization and distribution</a></li>
+<li class="chapter" data-level="4.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#tidyverse-idea-and-dplyr-library"><i class="fa fa-check"></i><b>4.4</b> <code>tidyverse</code> idea and <code>dplyr</code> library</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#wide-vs.long-tables"><i class="fa fa-check"></i><b>4.4.1</b> Wide vs. long tables</a></li>
+<li class="chapter" data-level="4.4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#world-of-dplyr"><i class="fa fa-check"></i><b>4.4.2</b> World of <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.4.3</b> <code>mutate</code> and <code>transmute</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html"><i class="fa fa-check"></i><b>5</b> Lets do some math!</a><ul>
+<li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-statistical-model"><i class="fa fa-check"></i><b>5.1</b> Simple statistical model</a></li>
+<li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#other-models"><i class="fa fa-check"></i><b>5.2</b> Other models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#libraries"><i class="fa fa-check"></i><b>5.2.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-asymptotic-model-and-noise"><i class="fa fa-check"></i><b>5.2.2</b> Simple asymptotic model and noise</a></li>
+<li class="chapter" data-level="5.2.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#mechanistic-model-in-r"><i class="fa fa-check"></i><b>5.2.3</b> Mechanistic model in <strong>R</strong></a></li>
+<li class="chapter" data-level="5.2.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.2.4</b> Solving differential equations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions-1.html"><a href="functions-1.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="functions-1.html"><a href="functions-1.html#simple-math-functions."><i class="fa fa-check"></i><b>6.1</b> Simple math functions.</a></li>
+<li class="chapter" data-level="6.2" data-path="functions-1.html"><a href="functions-1.html#building-your-own-calculator"><i class="fa fa-check"></i><b>6.2</b> Building your own calculator</a></li>
+<li class="chapter" data-level="6.3" data-path="functions-1.html"><a href="functions-1.html#it-is-not-over-yet-calculator-shouldnt-divide-be-0"><i class="fa fa-check"></i><b>6.3</b> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="8" data-path="final-indications.html"><a href="final-indications.html"><i class="fa fa-check"></i><b>8</b> Final indications</a><ul>
+<li class="chapter" data-level="8.1" data-path="final-indications.html"><a href="final-indications.html#use-projects"><i class="fa fa-check"></i><b>8.1</b> Use Projects</a></li>
+<li class="chapter" data-level="8.2" data-path="final-indications.html"><a href="final-indications.html#use-rmarkodow"><i class="fa fa-check"></i><b>8.2</b> Use RMarkodow</a></li>
+<li class="chapter" data-level="8.3" data-path="final-indications.html"><a href="final-indications.html#use-.rds-files"><i class="fa fa-check"></i><b>8.3</b> Use .rds files</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Beginners Guide to R’s Galaxy</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="basics" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Basics</h1>
+<div id="getting-started" class="section level2">
+<h2><span class="header-section-number">3.1</span> Getting started</h2>
+<div id="help" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Help</h3>
+<p>There are just few things you really need to remamber and follow when you want to start using <strong>R</strong>. First, there is very good <em>help</em> build in. To access it, you use <code>?</code> sign with name of function: eg: <code>?t.test</code>. After executing command, in your window with <em>Help</em> pane, a page dedicated to this function will pop up. You will get information on syntax, options to use with this function and in most caseses some code examples. However, with single question mark you are telling <strong>R</strong> to only look into functions from packages that are <em>currently loaded</em> and have this <em>precise name</em>. If you want to tell <strong>R</strong> to look for proper function in <em>all packages</em> or you are not sure what the exact name is you can use double question mark e.g. <code>??mutate</code>. In effect, in the same pane and window as previously you will get a list of results that match your query. Finally, using <em>Packages</em> pane, you can click on one of the packages names, to display all of the functions within it. Than by clicking on the name of functions you are interested in, you will be taken to proper page with description.</p>
+</div>
+<div id="internet-is-a-great-source-of-information" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Internet is a great source of information</h3>
+<p>Anytime you feel lost or need help that is beyond the scope of manuals, just ask Google. For instance you can use this query: <em>how to make density plot in R</em>. Thanks to huge community you will find a lot of answers. The most reliable ones can be found on <em>StackOverflow</em>, <em>StatsExchange</em> and <em>RBloggers</em>. If you don’t know if there is a library to perform particular task also ask uncle Google. For instace, if you want to use random numbers from Dirichlet distribution, you can use this query: <em>dirichlet distribution r</em>.</p>
+</div>
+<div id="more-on-internet-sources" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> More on internet sources</h3>
+<p>A good practice, when you want to learn programming language is to read what other people do and how the code. In the begginig it might be a bit overwhealming or confusing to read all the stuff. However, reading others work will get you used to syntax and workflow, and will qive you great basics to invent your own code. Hopefuly, you don’t need to spend hours for searching some interesting blogs. There is great blog agregator <a href="https://rweekly.org">R weekly</a> that gathers in one place best posts, podcasts, etc. on <strong>R</strong>, every week.</p>
+</div>
+</div>
+<div id="syntax" class="section level2">
+<h2><span class="header-section-number">3.2</span> Syntax</h2>
+<div id="common-operators" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Common operators</h3>
+<p>There are three main <em>signs</em> used in <strong>R’s</strong> syntax. First two are assigment symbols: <code>&lt;-</code> and to <code>=</code>; for convention we use them in different cases. Third one is <code>#</code>. It is a symbol used for comments. Everything following this symbol to the end of code line will not be executed. There are also other signs (or symbols) which are building blocks of language, however their use is very precisely defined and reserved for certain events. Below you find a table with reference for most common operators used. You will faster grasp it while you write your own code, than by reading about it. Thus, I suggest we go deeper into variable types in <strong>R</strong> language.</p>
+<table>
+<caption><span id="tab:tab-operators">Table 3.1: </span>Common operators in R</caption>
+<thead>
+<tr class="header">
+<th align="left">sign</th>
+<th align="left">type</th>
+<th align="left">action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">+</td>
+<td align="left">maths</td>
+<td align="left">addition</td>
+</tr>
+<tr class="even">
+<td align="left">-</td>
+<td align="left">maths</td>
+<td align="left">substraction</td>
+</tr>
+<tr class="odd">
+<td align="left">*</td>
+<td align="left">maths</td>
+<td align="left">multiplication</td>
+</tr>
+<tr class="even">
+<td align="left">/</td>
+<td align="left">maths</td>
+<td align="left">division</td>
+</tr>
+<tr class="odd">
+<td align="left">%%</td>
+<td align="left">maths</td>
+<td align="left">modulo</td>
+</tr>
+<tr class="even">
+<td align="left">^</td>
+<td align="left">maths</td>
+<td align="left">power</td>
+</tr>
+<tr class="odd">
+<td align="left">&gt;</td>
+<td align="left">relations</td>
+<td align="left">left greater</td>
+</tr>
+<tr class="even">
+<td align="left">&gt;=</td>
+<td align="left">relations</td>
+<td align="left">left greater of equal</td>
+</tr>
+<tr class="odd">
+<td align="left">&lt;</td>
+<td align="left">relations</td>
+<td align="left">right greater</td>
+</tr>
+<tr class="even">
+<td align="left">&lt;=</td>
+<td align="left">relations</td>
+<td align="left">right greater or equal</td>
+</tr>
+<tr class="odd">
+<td align="left">==</td>
+<td align="left">relations</td>
+<td align="left">left equal right</td>
+</tr>
+<tr class="even">
+<td align="left">!=</td>
+<td align="left">relations</td>
+<td align="left">left uneqal right</td>
+</tr>
+<tr class="odd">
+<td align="left">!</td>
+<td align="left">logics</td>
+<td align="left">not</td>
+</tr>
+<tr class="even">
+<td align="left">&amp;</td>
+<td align="left">logics</td>
+<td align="left">and</td>
+</tr>
+<tr class="odd">
+<td align="left">|</td>
+<td align="left">logics</td>
+<td align="left">or</td>
+</tr>
+<tr class="even">
+<td align="left">~</td>
+<td align="left">model</td>
+<td align="left">left relates to right</td>
+</tr>
+<tr class="odd">
+<td align="left">&lt;- or -&gt;</td>
+<td align="left">assignment</td>
+<td align="left">assignes value to variable</td>
+</tr>
+<tr class="even">
+<td align="left">$</td>
+<td align="left">address</td>
+<td align="left">extracts values with ‘element name’ from variable</td>
+</tr>
+<tr class="odd">
+<td align="left">:</td>
+<td align="left">sequence</td>
+<td align="left">creates sequence of numbers from ‘left value’ to ‘right value’</td>
+</tr>
+<tr class="even">
+<td align="left">%&gt;% or %&lt;&gt;%</td>
+<td align="left">piping</td>
+<td align="left">pipes results(from left) as arguments to functionon right</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="variables" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Variables</h3>
+<p>Concept of variable is crucial for programming. In <strong>R</strong> variables can contain many things: vectors, data frames, results of statistical analyses etc. Each of variables have some characteristic properties. They are defined by <em>class</em> of the variable. Thanks to <em>class</em> atribute, <strong>R</strong> knows, how to deal with variable – what is the internal structure and what operations can be performed over variable. Data can be stored in variables in different manners. To assign something to variable we use <code>&lt;-</code> operator, which tells <strong>R</strong> to store right side of arrow under name on the left side of arrow. The simplest variable is <em>vector</em>, which can be of <em>class</em>: <em>character</em>, <em>integer</em>, <em>numeric</em> or <em>logical</em>. For instance:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">characterVector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>)
+<span class="kw">class</span>(characterVector)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">integerVector &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 2L, 3L)
+<span class="kw">class</span>(integerVector)</code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">numericVector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">2.5</span>, <span class="fl">3.5</span>, <span class="fl">4.5</span>)
+<span class="kw">class</span>(numericVector)</code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">logicalVector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
+<span class="kw">class</span>(logicalVector)</code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<p>For more complex data, we have three basic classes: <em>lists</em>, <em>data frames</em> and <em>matrices</em>. <em>Matrix</em> is simillar to <em>data frame</em>. The most obvious difference is that <em>matrix</em> contains only one <em>class</em> of variables (usually <em>numeric</em> or <em>integer</em>), while <em>data frame</em> can store <em>numeric</em>, as well as <em>characters</em> and <em>factors</em> (for now, you can assume that <em>factor</em> class is used to store catagorical variables) in seprate columns. Also <em>matrices</em> are used when programmers want to achive great speed in mathematical computation. <em>Data frames</em> are resembling tables from popular spreadsheet software. Lets look:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrixVariable &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)
+matrixVariable</code></pre></div>
+<pre><code>##      [,1] [,2] [,3] [,4] [,5]
+## [1,]    1    3    5    7    9
+## [2,]    2    4    6    8   10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(matrixVariable)</code></pre></div>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dfVariable &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x1 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">x2 =</span> <span class="dv">6</span><span class="op">:</span><span class="dv">10</span>)
+dfVariable</code></pre></div>
+<pre><code>##   x1 x2
+## 1  1  6
+## 2  2  7
+## 3  3  8
+## 4  4  9
+## 5  5 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(dfVariable)</code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<p><em>Lists</em> are… lists of variables. Each <em>list</em> element can be of different <em>class</em> and length. To grasp the idea of <em>lists</em> it will be best to present it with example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">listVariable &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">x1 =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="dt">x2 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">x3 =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">2</span>))
+listVariable</code></pre></div>
+<pre><code>## $x1
+## [1] &quot;a&quot; &quot;b&quot;
+## 
+## $x2
+## [1] 1 2 3 4
+## 
+## $x3
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(listVariable)</code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(listVariable<span class="op">$</span>x1)</code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(listVariable<span class="op">$</span>x2)</code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(listVariable<span class="op">$</span>x3)</code></pre></div>
+<pre><code>## [1] &quot;matrix&quot;</code></pre>
+<p>There are plenty of other <em>classes</em>, e.g. for <em>time variables</em>, however mentioned above are the basic ones you will deal mostly. Also because they are so often used, you should learn how to recognize their structure at a glance. Later on, I will present you how (and when) each of this variables types can be used in work.</p>
+</div>
+<div id="naming-variables" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Naming Variables</h3>
+<p>First of all all names are <em>case-sensitive</em>, which means that <strong>R</strong> recognize variables named <code>RVariable</code>, <code>rVariable</code> and <code>Rvariable</code> as three different objects. Second thing to remamber is that variable name <em>have to</em> start with a letter and may contain only letters, numbers and symbols: . (dot) and _ (underscore). There are also some <em>good practices</em> in naming variables (after <a href="http://adv-r.had.com.nz/Style.html">Hadley Wickham Style guide</a>):</p>
+<ul>
+<li>use lowercase to names variables (and functions)</li>
+<li>use nouns to name variables (and verbs for functions)</li>
+<li>try to be precise when naming</li>
+<li>try to be concise when naming</li>
+<li>use underscore _ to separate words (snake_case) e.g. <code>first_variable</code></li>
+<li><em>some other guidelines suggest using camel cases e.g.</em> <code>firstVariable</code></li>
+</ul>
+<p>And the golden rule should be - whatever guideline you follow – be consequent!</p>
+</div>
+<div id="math-operations" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Math operations</h3>
+<p>In <strong>R</strong> we use standard math oprators <code>+ - * /</code> to perform addition, substraction, multiplication and division. Symbol <code>^</code> indicates that we want to use power, and sqrt to make square root. Ok, so whats the name of a function to get n<sup>th</sup> root? Probably you remamber from math lessons that <span class="math inline">\(\sqrt [n] {x} = x^\frac{1}{n}\)</span>, thus you can just write <code>x^(1/n)</code>. To change order of operation (which are following mathematics rules) use brackets <code>()</code>. Other important mathematical functions are <code>%%</code> for modulo, and %/% for integer division.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">11</span> <span class="op">-</span><span class="st"> </span><span class="dv">3</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(<span class="dv">4</span><span class="op">+</span><span class="dv">7</span>)<span class="op">/</span><span class="dv">9</span><span class="op">*</span><span class="dv">2</span></code></pre></div>
+<pre><code>## [1] 2.444444</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">14</span> <span class="op">%/%</span><span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">8</span><span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="dv">10</span><span class="op">%%</span><span class="dv">6</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<p>To calculate logarithms there is <em>build in</em> function <code>log()</code>. It uses as a base Eulers number by default, however you can override it i.e. <code>log(10, base = 10)</code>. You can calculate exponential function using <code>exp()</code> function. There are also trigonometric functions in <strong>R</strong>: <code>sin()</code>, <code>cos()</code>, <code>tan()</code>, <code>asin()</code>, <code>acos()</code>, <code>atan()</code>. Angles are used/expressed in radians. To transform values from degrees to radians multiply by <code>pi</code> and divide by 180. To transform values from radians to degrees multiply by 180 and divide by <code>pi</code>. By the way, <code>pi</code> is a constant in <strong>R</strong>, meaning that its value is build in the language (simmliar as Euler number is <code>exp(1)</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">someArc &lt;-<span class="st"> </span><span class="dv">90</span><span class="op">*</span>pi<span class="op">/</span><span class="dv">180</span>
+<span class="kw">sin</span>(someArc)</code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">atanValue &lt;-<span class="st"> </span><span class="kw">atan</span>(<span class="fl">0.89</span>)
+atanValue<span class="op">*</span><span class="dv">180</span><span class="op">/</span>pi</code></pre></div>
+<pre><code>## [1] 41.66908</code></pre>
+</div>
+<div id="logics" class="section level3">
+<h3><span class="header-section-number">3.2.5</span> Logics</h3>
+<p>Logical expression are often used in programming. They compare left side with right side arguments of statement. The result of those comparrision might be <code>TRUE</code> or <code>FALSE</code> (in many other languages those are called <em>Boolean</em> values) which belong to <em>class Logical</em>. In Table <a href="basics.html#tab:tab-operators">3.1</a> you will find list of most common logical operarators used to build statements. Here is a small <em>cheatsheet tables</em>:</p>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">NA</th>
+<th align="left">FALSE</th>
+<th align="left">TRUE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NA</td>
+<td align="left">NA</td>
+<td align="left">FALSE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td>FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+<td align="left">FALSE</td>
+</tr>
+<tr class="odd">
+<td>TRUE</td>
+<td align="left">NA</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="left">NA</th>
+<th align="left">FALSE</th>
+<th align="left">TRUE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="even">
+<td>FALSE</td>
+<td align="left">NA</td>
+<td align="left">FALSE</td>
+<td align="left">TRUE</td>
+</tr>
+<tr class="odd">
+<td>TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Below you can see them in action:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">5</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">1</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">10</span><span class="op">%%</span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">!</span><span class="ot">FALSE</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">5L <span class="op">|</span><span class="st"> </span><span class="fl">11.1</span> <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="functions" class="section level3">
+<h3><span class="header-section-number">3.2.6</span> Functions</h3>
+<p>When writing code we generally want to perform some actions on our variables. There is a lot of <em>build in functions</em> in base <strong>R</strong> distribution, and a whole Galaxy of <em>functions</em> provided by community. Function can be literally any action performed on variables. For instance, there are some build in statistical functions like <code>t.test()</code> or <code>chisq.test()</code>. Other function can be use to draw some charts and plots, e.g. <code>plot()</code>. It’s easy to recognize function, since its structere is <em>name</em> follwoed by parentheses <em>()</em>. Inside parentheses user provides arguments and options to function. Lests see how it works with one of <em>build in</em> functions:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tTestResult &lt;-<span class="st"> </span><span class="kw">t.test</span>(numericVector, integerVector)
+<span class="kw">print</span>(tTestResult)</code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  numericVector and integerVector
+## t = 1.8371, df = 4, p-value = 0.1401
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.7669579  3.7669579
+## sample estimates:
+## mean of x mean of y 
+##       3.5       2.0</code></pre>
+<p>We used <code>t.test()</code> function, with two arguments: <code>numericVector</code> and <code>integerVector</code>. In second function call, we <em>ordered</em> <strong>R</strong> to print out the results of statistical test stored in variable <code>tTestResult</code> – which is the argument of this function.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="somwehere-between-basic-and-useful.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["BeginnersGuideToGalaxy.pdf", "BeginnersGuideToGalaxy.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

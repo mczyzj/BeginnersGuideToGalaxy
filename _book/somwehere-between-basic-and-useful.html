@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A Beginners Guide to R’s Galaxy</title>
+  <meta name="description" content="Quick introduction to astonishing R’s Galaxy">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A Beginners Guide to R’s Galaxy" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Beginners Guide to R’s Galaxy" />
+  
+  <meta name="twitter:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+<meta name="author" content="Michal J. Czyz">
+
+
+<meta name="date" content="2018-02-07">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="basics.html">
+<link rel="next" href="lets-do-some-math.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> In the beginning there was only darknes…</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>2.1</b> RStudio</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#few-tips-to-make-life-easier"><i class="fa fa-check"></i><b>2.2</b> Few tips to make life easier</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#installing-packages"><i class="fa fa-check"></i><b>2.3</b> Installing packages</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#conventions"><i class="fa fa-check"></i><b>2.4</b> Conventions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="basics.html"><a href="basics.html#help"><i class="fa fa-check"></i><b>3.1.1</b> Help</a></li>
+<li class="chapter" data-level="3.1.2" data-path="basics.html"><a href="basics.html#internet-is-a-great-source-of-information"><i class="fa fa-check"></i><b>3.1.2</b> Internet is a great source of information</a></li>
+<li class="chapter" data-level="3.1.3" data-path="basics.html"><a href="basics.html#more-on-internet-sources"><i class="fa fa-check"></i><b>3.1.3</b> More on internet sources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#syntax"><i class="fa fa-check"></i><b>3.2</b> Syntax</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#common-operators"><i class="fa fa-check"></i><b>3.2.1</b> Common operators</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics.html"><a href="basics.html#variables"><i class="fa fa-check"></i><b>3.2.2</b> Variables</a></li>
+<li class="chapter" data-level="3.2.3" data-path="basics.html"><a href="basics.html#naming-variables"><i class="fa fa-check"></i><b>3.2.3</b> Naming Variables</a></li>
+<li class="chapter" data-level="3.2.4" data-path="basics.html"><a href="basics.html#math-operations"><i class="fa fa-check"></i><b>3.2.4</b> Math operations</a></li>
+<li class="chapter" data-level="3.2.5" data-path="basics.html"><a href="basics.html#logics"><i class="fa fa-check"></i><b>3.2.5</b> Logics</a></li>
+<li class="chapter" data-level="3.2.6" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>3.2.6</b> Functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html"><i class="fa fa-check"></i><b>4</b> Somwehere between basic and useful</a><ul>
+<li class="chapter" data-level="4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#addressing"><i class="fa fa-check"></i><b>4.1</b> Addressing</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#vectors"><i class="fa fa-check"></i><b>4.1.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.1.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#data-frames-and-matrices"><i class="fa fa-check"></i><b>4.1.2</b> Data frames (and matrices)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#lists"><i class="fa fa-check"></i><b>4.1.3</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#operation-on-vectors"><i class="fa fa-check"></i><b>4.2</b> Operation on Vectors</a></li>
+<li class="chapter" data-level="4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#randomization-and-distribution"><i class="fa fa-check"></i><b>4.3</b> Randomization and distribution</a></li>
+<li class="chapter" data-level="4.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#tidyverse-idea-and-dplyr-library"><i class="fa fa-check"></i><b>4.4</b> <code>tidyverse</code> idea and <code>dplyr</code> library</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#wide-vs.long-tables"><i class="fa fa-check"></i><b>4.4.1</b> Wide vs. long tables</a></li>
+<li class="chapter" data-level="4.4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#world-of-dplyr"><i class="fa fa-check"></i><b>4.4.2</b> World of <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.4.3</b> <code>mutate</code> and <code>transmute</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html"><i class="fa fa-check"></i><b>5</b> Lets do some math!</a><ul>
+<li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-statistical-model"><i class="fa fa-check"></i><b>5.1</b> Simple statistical model</a></li>
+<li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#other-models"><i class="fa fa-check"></i><b>5.2</b> Other models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#libraries"><i class="fa fa-check"></i><b>5.2.1</b> Libraries</a></li>
+<li class="chapter" data-level="5.2.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-asymptotic-model-and-noise"><i class="fa fa-check"></i><b>5.2.2</b> Simple asymptotic model and noise</a></li>
+<li class="chapter" data-level="5.2.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#mechanistic-model-in-r"><i class="fa fa-check"></i><b>5.2.3</b> Mechanistic model in <strong>R</strong></a></li>
+<li class="chapter" data-level="5.2.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.2.4</b> Solving differential equations</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="functions-1.html"><a href="functions-1.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="functions-1.html"><a href="functions-1.html#simple-math-functions."><i class="fa fa-check"></i><b>6.1</b> Simple math functions.</a></li>
+<li class="chapter" data-level="6.2" data-path="functions-1.html"><a href="functions-1.html#building-your-own-calculator"><i class="fa fa-check"></i><b>6.2</b> Building your own calculator</a></li>
+<li class="chapter" data-level="6.3" data-path="functions-1.html"><a href="functions-1.html#it-is-not-over-yet-calculator-shouldnt-divide-be-0"><i class="fa fa-check"></i><b>6.3</b> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="8" data-path="final-indications.html"><a href="final-indications.html"><i class="fa fa-check"></i><b>8</b> Final indications</a><ul>
+<li class="chapter" data-level="8.1" data-path="final-indications.html"><a href="final-indications.html#use-projects"><i class="fa fa-check"></i><b>8.1</b> Use Projects</a></li>
+<li class="chapter" data-level="8.2" data-path="final-indications.html"><a href="final-indications.html#use-rmarkodow"><i class="fa fa-check"></i><b>8.2</b> Use RMarkodow</a></li>
+<li class="chapter" data-level="8.3" data-path="final-indications.html"><a href="final-indications.html#use-.rds-files"><i class="fa fa-check"></i><b>8.3</b> Use .rds files</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Beginners Guide to R’s Galaxy</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="somwehere-between-basic-and-useful" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Somwehere between basic and useful</h1>
+<div id="addressing" class="section level2">
+<h2><span class="header-section-number">4.1</span> Addressing</h2>
+<div id="vectors" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Vectors</h3>
+<p>When you deal with variables you often will want to use only a part of it in your work. Other times you will want to get rid of some values which follow certain criteria. In order to do it you need to know an ‘addrress’ of particular value in a <em>vector</em>, <em>data frame</em>, <em>list</em> etc. From now on, I will use some functions while describing it <em>at hoc</em>, since I believe the best way to learn them, is to use them. Lets creat a <em>vector</em> and see what we can do with it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">20</span>, <span class="dt">by =</span> <span class="dv">2</span>)
+addressVec</code></pre></div>
+<pre><code>##  [1]  1  3  5  7  9 11 13 15 17 19</code></pre>
+<p>Instead of typing all the numbers by hand, we can use <code>seq()</code> function, to generate it automatically. This function takes two arguments <code>from</code> and <code>to</code>, however additionaly we can use option <code>by</code> which defines increment of the sequence. As your knowledge is growing I can tell you a secret. Often there is no need to name all the arguments and options in functions body. In the beginning you should use the names, but the more experienced you get you will notice that you omit them often. Actually we nearly always omit so called <em>default</em> options of a function. Use <code>?seq</code> to check the help page for this function. You will see that it can take more options than <code>from</code>, <code>to</code> and <code>by</code>, but since they are predifned we don’t neet to bother and type them as long as we are OK with <em>default</em> settings. So, lets retype our <em>variable</em> definition:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>, <span class="dv">20</span>, <span class="dv">2</span>)
+addressVec</code></pre></div>
+<pre><code>##  [1]  1  3  5  7  9 11 13 15 17 19</code></pre>
+<p>The results are identical. Lets get back to addressing issues. Suppose you want to check the fifth element of a our <code>addressVec</code> variable. To do it we use variable name followed by element number in brackets (or square brakcets, if you will).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec[<span class="dv">5</span>]</code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<p>If you want to get rid of fifth element just preced it with -.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec[<span class="op">-</span><span class="dv">5</span>]</code></pre></div>
+<pre><code>## [1]  1  3  5  7 11 13 15 17 19</code></pre>
+<p>Easy. The thing that is worth to mention right now is that <strong>R Core Team</strong> have reason and dignity of human beings so they start numeration of elements with value 1. In some other languages, because of no sensible reasons numeration starts with 0 – which is horribly annoing. What to do if we want to extract values of more than one element?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec[<span class="dv">1</span>,<span class="dv">5</span>]</code></pre></div>
+<pre><code>## Error in addressVec[1, 5]: incorrect number of dimensions</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec[<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">5</span>,<span class="op">-</span><span class="dv">6</span>]</code></pre></div>
+<pre><code>## Error in addressVec[-1, -5, -6]: incorrect number of dimensions</code></pre>
+<p>Error occurs with warning that there is incorrect number of dimensions. That’s because <em>vectors</em> have only one dimension – length. Within square brackets comma separates dimensions. So when we used command <code>[1,5]</code> we told R to look for value that address is number 1 in first dimension and number 5 in second dimension. To correct the mistake, we need to provide a vector of numbers from first dimension. We can use <code>c()</code> function to create <em>ad hoc</em> <em>vector</em> inside square brackets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>)]</code></pre></div>
+<pre><code>## [1] 1 9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">6</span>)]</code></pre></div>
+<pre><code>## [1]  3  5  7 13 15 17 19</code></pre>
+<p>Now something more complicated. Try to figure out what code below does, and what is the result of <code>which()</code> function:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressVec[<span class="kw">which</span>(addressVec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>)] &lt;-<span class="st"> &#39;o..O&#39;</span>
+addressVec</code></pre></div>
+<pre><code>##  [1] &quot;1&quot;    &quot;3&quot;    &quot;5&quot;    &quot;o..O&quot; &quot;o..O&quot; &quot;o..O&quot; &quot;o..O&quot; &quot;o..O&quot; &quot;o..O&quot; &quot;o..O&quot;</code></pre>
+<p>If you have problems, you can think of this example as a composition of actions. First there is expression <code>addressVec &gt;=6</code>, than we use <code>which()</code> function with argument from previous expression. Next the result is passed as an address. Last thing is assigment of new value to…</p>
+</div>
+<div id="data-frames-and-matrices" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Data frames (and matrices)</h3>
+<p>When dealing with <em>data frames</em> and addressing is possible in two ways. First is simmilar to <em>vector</em> addressing. However, as <em>data frames</em> have two dimentions, you will need to express them like <code>df[1,2]</code> – which tells <strong>R</strong> to look up the cell in row 1, column 2. But what if you want to check all the cells in particular row or column? Omit the number, but not the coma – like this: <code>df[,3]</code>. It will display all row values from column 3. And of course you can still use <em>vectors</em> when addressing. This way is also working for <em>matrices</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressDF &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">C1 =</span> <span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">10</span>), <span class="dt">C2 =</span> <span class="kw">seq</span>(<span class="dv">11</span>,<span class="dv">20</span>), <span class="dt">C3 =</span> <span class="kw">seq</span>(<span class="dv">21</span>,<span class="dv">30</span>))
+addressDF[<span class="dv">5</span>,<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressDF[<span class="dv">6</span>,]</code></pre></div>
+<pre><code>##   C1 C2 C3
+## 6  6 16 26</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressDF[<span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">7</span>), <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
+<pre><code>##   C1 C2 C3
+## 6  6 16 26
+## 7  7 17 27</code></pre>
+<p>The second option is tu use <code>$</code> sign followed with column name (and it work only for <em>data frames</em> and <em>lists</em>). This way, we tell <strong>R</strong> to look in whole column. If we want to display values from particular cells, we put them in brackets after column name, the same way as we do for <em>vectors</em>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressDF<span class="op">$</span>C2[<span class="dv">5</span>]</code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressDF<span class="op">$</span>C3[<span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">9</span>)]</code></pre></div>
+<pre><code>## [1] 26 27 28 29</code></pre>
+</div>
+<div id="lists" class="section level3">
+<h3><span class="header-section-number">4.1.3</span> Lists</h3>
+<p>As mentioned before each <em>list</em> element can have different structure. Thus, addressing is kind of a mixture of all above. First you need to address element of your <em>list</em>. You do it with double brakcets containing element number following name of variable. You can also use <code>$</code> sign with name of the element. Than you use addressing the same way you address <em>data frames</em>, <em>vectors</em> or <em>matrices</em>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">x1 =</span> <span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>), <span class="dt">x2 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">x3 =</span> <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">2</span>))
+addressList[[<span class="dv">2</span>]]</code></pre></div>
+<pre><code>## [1] 1 2 3 4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressList<span class="op">$</span>x2[<span class="dv">3</span>]</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressList[[<span class="dv">3</span>]]</code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addressList[[<span class="dv">3</span>]][,<span class="dv">3</span>]</code></pre></div>
+<pre><code>## [1] 5 6</code></pre>
+<p>Ok, now simple task for you. There is a function called <code>colnames()</code> which allow us to change names in <em>matrix</em> variable. To use it you need to put name of <em>matrix</em> variable in the parentheses (like this: <code>colnames(x)</code>), and assign value to it (e.g. <code>colnames(x) &lt;- c('one', 'two')). Now change names of of columns in *matrix* that is element of list above to</code>I`, ‘Love’, ‘R’.</p>
+</div>
+</div>
+<div id="operation-on-vectors" class="section level2">
+<h2><span class="header-section-number">4.2</span> Operation on Vectors</h2>
+<p>Old proverb:</p>
+<blockquote>
+<p><em>The power of R is vectorization</em></p>
+</blockquote>
+<p>Indeed, vectorization is one of the most usefull features of <strong>R</strong> environment. In short words, many functions are contructued in such manner that one can avoid using loops (since, they are often very slow). When you begin your journey with programming you will probably not notice the difference in computation speed between <em>vectorized way</em> and <em>loop way</em>. Nonetheless, what will you find attractive, is that in many cases writting in vectorized form feels more natural. So how it works? Most basic functions are <em>written and compiled</em> in very fast, low level languages like <strong>C</strong> or <strong>FORTRAN</strong>. It makes computation way faster, but still we use easy <strong>R</strong> syntax. Instead of running the <em>precompiled</em> function on each of the elements of vector we actually can pass the vector into function – and <strong>R</strong> will know what to do. The speed is achieved beacause when we use function on each element, <strong>R</strong> needs to figure out what to do several (or even hundred or thousands of) times, however when we pass whole vector into function, it needs to find out what to do only once. Sometimes, however we need to use some other functions, wich are not meant to process vectors (or you want to use some arbitrary functions on matrix, data frame or list). You will need to parse your data more than once to function. In <strong>R</strong> you can do it by using loops or by using so called <code>apply</code> family functions. When I was learning <strong>R</strong> it was most confusing thing to me, however once you get it, they become fairly easy to use. The most important difference for you as a beginer is that when using loops you should make some memory allocation – in human language, before you run loop, you should create vector which will store results. The loops achieve highest speed when your vector can fit all the values from loop. If you do not know how big your vector will be, you need to relay on <strong>R</strong> ability to re-allocate the memory, which is <strong>S L O W</strong>. <code>apply</code> family hopefully takes care of this problem, so everytime you know how to – use it. It will save you time and frustration of using loops. I will cover basic use of this functions later on examples.</p>
+</div>
+<div id="randomization-and-distribution" class="section level2">
+<h2><span class="header-section-number">4.3</span> Randomization and distribution</h2>
+<p>Random sampling is quite easy task. There is nice <code>sample()</code> function, that allow you to do that. You can sample from <em>numeric</em>, <em>integer</em> or even <em>character</em> <em>vectors</em>. You can even assign probabilities to particular elements of vector (we will not need that at the moment). So lets make some fun and make virtual casino. We will take two dice and will roll it 1000 times. If the sum of each result is greater odd and smaller than <code>5</code> we will earn 30EUR. If it is odd and higher than <code>5</code>, we will get 50EUR. However if the sum is even number we loose 70EUR. Lets see if we can beat casino… First lets define our dice and rolls.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">niceDice &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span>,<span class="dv">6</span>)
+rollDiceOne &lt;-<span class="st"> </span><span class="kw">sample</span>(niceDice, <span class="dv">1000</span>, <span class="dt">replace =</span> T)
+rollDiceTwo &lt;-<span class="st"> </span><span class="kw">sample</span>(niceDice, <span class="dv">1000</span>, <span class="dt">replace =</span> T)</code></pre></div>
+<p>Ok, you heard about power of vectorization, already so lets sum up both vectors:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sumDiceRolls &lt;-<span class="st"> </span>rollDiceOne <span class="op">+</span><span class="st"> </span>rollDiceTwo</code></pre></div>
+<p>Next lets make some use of knowledge we have already and subsitute our results with some cash…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cashDiceRolls &lt;-<span class="st"> </span>sumDiceRolls
+cashDiceRolls[<span class="kw">which</span>(cashDiceRolls <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>cashDiceRolls <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>)] &lt;-<span class="st"> </span><span class="dv">30</span>
+cashDiceRolls[<span class="kw">which</span>(cashDiceRolls <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>cashDiceRolls <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)] &lt;-<span class="st"> </span><span class="dv">50</span>
+cashDiceRolls[<span class="kw">which</span>(cashDiceRolls <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)] &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">70</span>
+<span class="kw">sum</span>(cashDiceRolls)</code></pre></div>
+<pre><code>## [1] -70000</code></pre>
+<p>Ok. What happened? We put our substitutoons in very wrong order… After first two substitutions we have only even numbers in our vector… So how to fix it? Start with assigning the highghest absolute value, and after all change it to negative one.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">cashDiceRolls &lt;-<span class="st"> </span>sumDiceRolls
+cashDiceRolls[<span class="kw">which</span>(cashDiceRolls <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)] &lt;-<span class="st"> </span><span class="dv">70</span>
+cashDiceRolls[<span class="kw">which</span>(cashDiceRolls <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>cashDiceRolls <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>)] &lt;-<span class="st"> </span><span class="dv">50</span>
+cashDiceRolls[<span class="kw">which</span>(cashDiceRolls <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>cashDiceRolls <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>)] &lt;-<span class="st"> </span><span class="dv">30</span>
+cashDiceRolls[<span class="kw">which</span>(cashDiceRolls  <span class="op">==</span><span class="st"> </span><span class="dv">70</span>)] &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">70</span>
+<span class="kw">sum</span>(cashDiceRolls)</code></pre></div>
+<pre><code>## [1] -11480</code></pre>
+<p>Now, thats not very nice… We lost a lot of cash… But we can also track how are luck changed. Maybe we were above <code>0</code> for a while, before things got South? Or maybe we were doomed since the begining? Lets make a plot (Fig. <a href="somwehere-between-basic-and-useful.html#fig:betaDensity-plot">4.2</a>) to evaluate our progress.</p>
+<div class="figure" style="text-align: center"><span id="fig:cassino-plot"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/cassino-plot-1.png" alt="How to lose cash in casino" width="60%" />
+<p class="caption">
+Figure 4.1: How to lose cash in casino
+</p>
+</div>
+<p>I think that your love to <strong>R</strong> is being deeper since I showed you how it can save a lot of your money!</p>
+<p>In nowadays stochastic analyses are more, and more popular. With <strong>R</strong> it is quite easy to generate random numbers, sample and do all the <em>mumbo jumbo</em> on data. There are few functions that cover <em>classical</em> distributions: normal, Poisson, binomial, uniform (and few others), that are actually build in base <strong>R</strong> distribution (full list you will find <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html">here</a>). Some more suffisticated stuff is usually covered by some packages you will need to download by yourself. You will easily find them by querying Google like this <a href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=Pearson+distribution+in+R&amp;ie=utf-8&amp;oe=utf-8&amp;gfe_rd=cr&amp;dcr=0&amp;ei=KTI5Ws_7LfPBXrSBr7gO">Pearson distribution in R</a>. By using this technique it is also possible to find other useful libraries for dealing with distributions (try to search for library that alows you to sample from trimmed distribution). All the distribution libraries follow the same schema when naming functions. They use letters: <code>d</code>, <code>p</code>, <code>q</code> and <code>r</code> followed by abbreviation of distibution name to generate: Density, distribution function, quantile function and random numbers – respectively. For instance, lets generate ten random numbers from <em>beta distribution</em>, whith parameters <code>10</code> and <code>3</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbeta</span>(<span class="dv">25</span>,<span class="dv">10</span>,<span class="dv">3</span>)</code></pre></div>
+<pre><code>##  [1] 0.8508212 0.8713589 0.6446619 0.7803670 0.8487061 0.5232747 0.8136516
+##  [8] 0.7626527 0.9074025 0.4604149 0.7268250 0.9307637 0.6321100 0.9307620
+## [15] 0.6255260 0.6365943 0.5832782 0.8919763 0.7955494 0.9847060 0.4967294
+## [22] 0.8264857 0.5554693 0.8411833 0.8944900</code></pre>
+<p>Or we can make this nice plot (Fig. <a href="somwehere-between-basic-and-useful.html#fig:betaDensity-plot">4.2</a>) for density of <em>beta distribution</em> with parameters <code>8</code> and <code>3</code>:</p>
+<div class="figure" style="text-align: center"><span id="fig:betaDensity-plot"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/betaDensity-plot-1.png" alt="Example of beta distribution" width="60%" />
+<p class="caption">
+Figure 4.2: Example of beta distribution
+</p>
+</div>
+</div>
+<div id="tidyverse-idea-and-dplyr-library" class="section level2">
+<h2><span class="header-section-number">4.4</span> <code>tidyverse</code> idea and <code>dplyr</code> library</h2>
+<p>The whole idea of tidy data comes from one of most famous <strong>R</strong> developer – <a href="http://hadley.nz/">Hadley Wickham</a>. In on of his papers <span class="citation">(Wickham <a href="#ref-hadley2014">2014</a>)</span> he described procedures for generating and cleaning data in standardized manner. Many packages right now are designed to work best with data structured according to this publication. Eventualy it lead to <code>tidiverse</code> – tools tailored for data science with common syntax and philosophy<span class="citation">(Wickham <a href="#ref-tidyverse2017">2017</a>)</span>. One of the most useful packages that are inlcuded in <code>tidiverse</code> <span class="citation">(Wickham <a href="#ref-tidyverse2017">2017</a>)</span> are <code>tidyr</code> <span class="citation">(Wickham and Henry <a href="#ref-tidyr2017">2017</a>)</span> and <code>dplyr</code> <span class="citation">(Wickham et al. <a href="#ref-dplyr2017">2017</a><a href="#ref-dplyr2017">b</a>)</span>. First heplps us to swap from ‘wide’ to ‘long’ table format (and back). The second package contains set of tools to easily manipulate rows, columns or even single cells in <em>data frame</em>. It is extremly powerful tool, which speeds up work with datasets so much that after few times dealing with it, you will leave traditional spread sheet forever.</p>
+<div id="wide-vs.long-tables" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Wide vs. long tables</h3>
+<p>Lets start with changing wide format table into long format table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wideTable &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">male =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">female =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">12</span>)
+wideTable</code></pre></div>
+<pre><code>##    male female
+## 1     1      3
+## 2     2      4
+## 3     3      5
+## 4     4      6
+## 5     5      7
+## 6     6      8
+## 7     7      9
+## 8     8     10
+## 9     9     11
+## 10   10     12</code></pre>
+<p>Than we just make a little <em>mumbo jumbo</em> and change it to long format:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&#39;tidyr&#39;</span>)
+<span class="kw">library</span>(<span class="st">&#39;magrittr&#39;</span>)
+<span class="kw">library</span>(<span class="st">&#39;dplyr&#39;</span>)
+longTable &lt;-<span class="st"> </span><span class="kw">gather</span>(wideTable, <span class="dt">key =</span> sex,<span class="dt">value =</span> number)
+longTable</code></pre></div>
+<pre><code>##       sex number
+## 1    male      1
+## 2    male      2
+## 3    male      3
+## 4    male      4
+## 5    male      5
+## 6    male      6
+## 7    male      7
+## 8    male      8
+## 9    male      9
+## 10   male     10
+## 11 female      3
+## 12 female      4
+## 13 female      5
+## 14 female      6
+## 15 female      7
+## 16 female      8
+## 17 female      9
+## 18 female     10
+## 19 female     11
+## 20 female     12</code></pre>
+<p>Thats how easy it But what if table is more complicated?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wideTable2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">male =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
+                         <span class="dt">female =</span> <span class="dv">3</span><span class="op">:</span><span class="dv">12</span>, 
+                         <span class="dt">type =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;bacteria&#39;</span>,<span class="st">&#39;virus&#39;</span>), <span class="dt">times =</span> <span class="dv">5</span>),
+                         <span class="dt">group =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>), <span class="dt">each =</span> <span class="dv">5</span>))
+wideTable2</code></pre></div>
+<pre><code>##    male female     type group
+## 1     1      3 bacteria     a
+## 2     2      4    virus     a
+## 3     3      5 bacteria     a
+## 4     4      6    virus     a
+## 5     5      7 bacteria     a
+## 6     6      8    virus     b
+## 7     7      9 bacteria     b
+## 8     8     10    virus     b
+## 9     9     11 bacteria     b
+## 10   10     12    virus     b</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(wideTable2, sex, number, <span class="op">-</span><span class="kw">c</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">4</span>))</code></pre></div>
+<pre><code>##        type group    sex number
+## 1  bacteria     a   male      1
+## 2     virus     a   male      2
+## 3  bacteria     a   male      3
+## 4     virus     a   male      4
+## 5  bacteria     a   male      5
+## 6     virus     b   male      6
+## 7  bacteria     b   male      7
+## 8     virus     b   male      8
+## 9  bacteria     b   male      9
+## 10    virus     b   male     10
+## 11 bacteria     a female      3
+## 12    virus     a female      4
+## 13 bacteria     a female      5
+## 14    virus     a female      6
+## 15 bacteria     a female      7
+## 16    virus     b female      8
+## 17 bacteria     b female      9
+## 18    virus     b female     10
+## 19 bacteria     b female     11
+## 20    virus     b female     12</code></pre>
+<p>In example above, using expression <code>-(3,4)</code> we indicated that we do not want to gather columns 3 and 4.</p>
+<p>Even more complicated?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wideTable3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">male =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">each =</span> <span class="dv">2</span>),
+                         <span class="dt">female =</span> <span class="kw">rep</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">times =</span> <span class="dv">2</span>), 
+                         <span class="dt">type =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;bacteria&#39;</span>,<span class="st">&#39;virus&#39;</span>), <span class="dt">times =</span> <span class="dv">10</span>),
+                         <span class="dt">group =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;a&#39;</span>,<span class="st">&#39;b&#39;</span>), <span class="dt">each =</span> <span class="dv">10</span>),
+                         <span class="dt">day =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+wideTable3</code></pre></div>
+<pre><code>##    male female     type group day
+## 1     1      3 bacteria     a   1
+## 2     1      4    virus     a   2
+## 3     2      5 bacteria     a   3
+## 4     2      6    virus     a   4
+## 5     3      7 bacteria     a   5
+## 6     3      8    virus     a   6
+## 7     4      9 bacteria     a   7
+## 8     4     10    virus     a   8
+## 9     5     11 bacteria     a   9
+## 10    5     12    virus     a  10
+## 11    6      3 bacteria     b   1
+## 12    6      4    virus     b   2
+## 13    7      5 bacteria     b   3
+## 14    7      6    virus     b   4
+## 15    8      7 bacteria     b   5
+## 16    8      8    virus     b   6
+## 17    9      9 bacteria     b   7
+## 18    9     10    virus     b   8
+## 19   10     11 bacteria     b   9
+## 20   10     12    virus     b  10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gather</span>(wideTable3, sex, number, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(group, number)</code></pre></div>
+<pre><code>##        type day    sex  a  b
+## 1  bacteria   1 female  3  3
+## 2  bacteria   1   male  1  6
+## 3  bacteria   3 female  5  5
+## 4  bacteria   3   male  2  7
+## 5  bacteria   5 female  7  7
+## 6  bacteria   5   male  3  8
+## 7  bacteria   7 female  9  9
+## 8  bacteria   7   male  4  9
+## 9  bacteria   9 female 11 11
+## 10 bacteria   9   male  5 10
+## 11    virus   2 female  4  4
+## 12    virus   2   male  1  6
+## 13    virus   4 female  6  6
+## 14    virus   4   male  2  7
+## 15    virus   6 female  8  8
+## 16    virus   6   male  3  8
+## 17    virus   8 female 10 10
+## 18    virus   8   male  4  9
+## 19    virus  10 female 12 12
+## 20    virus  10   male  5 10</code></pre>
+<p>Here our data set had additional column <code>group</code> storing values a and b. But imagine that <code>group</code> is not a variable, but it just stores the names of variables - which are a and b. This somehow might be frustrating, to decide if those are really separate variables or not. You might run into problem, that your column named <code>environmental factor</code> contains values: <em>pH</em>, <em>conductivity</em>, and <em>oxygen concentration</em>. This would be straightforward as each of this is different variable and you should spread this column into three different variables. On the other hand you might see a column that contains <em>minimum temperature</em> and <em>maximum temperature</em>. This would not be as straightforward and decision upon spreading this column would strongly depend on the context. Nonetheless, using <code>spread()</code> function we were able to transform values from this column as separate columns. We also used <em>piping operator</em> <code>%&gt;%</code>. It is a shortcut which allows us to pass the left side as an agrument to the function on the right side of operator. In general it means that writing <code>a %&gt;% funtion(b)</code> actually is translated into <code>function(a,b)</code>. In the begining this idea might be not very usefull for you, but actually it vary helpful, mainly because your code gets better structure and you can perform multiple operations without storing it in variables which you do not want.</p>
+<p>There is also one more common case that I should shortly mention - compound variable. It is a variable that stores multiple values in a single column. E.g. city and district, age and sex, sex and smoking, blood type and RH, etc. With <code>tidyr</code> is very easy to deal with it.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wideTable4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">type =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;bacteria.a&#39;</span>,<span class="st">&#39;virus.a&#39;</span>), <span class="dt">times =</span> <span class="dv">5</span>))
+wideTable4</code></pre></div>
+<pre><code>##          type
+## 1  bacteria.a
+## 2     virus.a
+## 3  bacteria.a
+## 4     virus.a
+## 5  bacteria.a
+## 6     virus.a
+## 7  bacteria.a
+## 8     virus.a
+## 9  bacteria.a
+## 10    virus.a</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wideTable4 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">separate</span>(type, <span class="kw">c</span>(<span class="st">&#39;organism&#39;</span>, <span class="st">&#39;type&#39;</span>), <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\\</span><span class="st">.&#39;</span>)</code></pre></div>
+<pre><code>##    organism type
+## 1  bacteria    a
+## 2     virus    a
+## 3  bacteria    a
+## 4     virus    a
+## 5  bacteria    a
+## 6     virus    a
+## 7  bacteria    a
+## 8     virus    a
+## 9  bacteria    a
+## 10    virus    a</code></pre>
+</div>
+<div id="world-of-dplyr" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> World of <code>dplyr</code></h3>
+<p><code>dplyr</code> is a library containing several useful functions, designed to ease all kinds of transformations, selections and filtering of your data frame. As the number and possibilities of functions are really huge, here I will concentrate only on some mostly used ones. Of course there is a well described documentation if you want to get deeper.</p>
+<div id="select-columns-and-filter-rows" class="section level4">
+<h4><span class="header-section-number">4.4.2.1</span> <code>select</code> columns and <code>filter</code> rows</h4>
+<p>Those are the most basic operations on data frames. <code>select()</code> function allows you to choose which columns you use. The biggest advantege of using this function instead of simple addressing, is that you can use some special functions inside it: <code>starts_with(), ends_with(), contains(), matches(), num_range()</code> which are helpful when using big data sets with numerous columns. There is also similar function <code>rename()</code> which can be used to change variable names, but in results (contrary to <code>select()</code>) it keeps all the variables. Lets look how the thing works on some simple examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">select</span>(wideTable3, <span class="kw">starts_with</span>(<span class="st">&#39;gr&#39;</span>)), <span class="dv">3</span>)</code></pre></div>
+<pre><code>##   group
+## 1     a
+## 2     a
+## 3     a</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">select</span>(wideTable3, <span class="op">-</span><span class="kw">starts_with</span>(<span class="st">&#39;gr&#39;</span>)), <span class="dv">3</span>)</code></pre></div>
+<pre><code>##   male female     type day
+## 1    1      3 bacteria   1
+## 2    1      4    virus   2
+## 3    2      5 bacteria   3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">select</span>(wideTable3, <span class="kw">contains</span>(<span class="st">&#39;ale&#39;</span>)), <span class="dv">3</span>)</code></pre></div>
+<pre><code>##   male female
+## 1    1      3
+## 2    1      4
+## 3    2      5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">rename</span>(wideTable3, <span class="dt">Male =</span> male), <span class="dv">3</span>)</code></pre></div>
+<pre><code>##   Male female     type group day
+## 1    1      3 bacteria     a   1
+## 2    1      4    virus     a   2
+## 3    2      5 bacteria     a   3</code></pre>
+<p>Filtering rows is also straightforward. Inside function <code>filter()</code> you cand use logical operators (<code>&amp;, |, xor, !</code>), comparisions (e.g. <code>==</code> or <code>&gt;=</code>), or functions (<code>is.na(), between(), near()</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(wideTable3, group <span class="op">==</span><span class="st"> &#39;a&#39;</span>)</code></pre></div>
+<pre><code>##    male female     type group day
+## 1     1      3 bacteria     a   1
+## 2     1      4    virus     a   2
+## 3     2      5 bacteria     a   3
+## 4     2      6    virus     a   4
+## 5     3      7 bacteria     a   5
+## 6     3      8    virus     a   6
+## 7     4      9 bacteria     a   7
+## 8     4     10    virus     a   8
+## 9     5     11 bacteria     a   9
+## 10    5     12    virus     a  10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(wideTable3, type <span class="op">!=</span><span class="st"> &#39;bacteria&#39;</span>)</code></pre></div>
+<pre><code>##    male female  type group day
+## 1     1      4 virus     a   2
+## 2     2      6 virus     a   4
+## 3     3      8 virus     a   6
+## 4     4     10 virus     a   8
+## 5     5     12 virus     a  10
+## 6     6      4 virus     b   2
+## 7     7      6 virus     b   4
+## 8     8      8 virus     b   6
+## 9     9     10 virus     b   8
+## 10   10     12 virus     b  10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">filter</span>(wideTable3, <span class="kw">near</span>(female, <span class="dv">5</span>))</code></pre></div>
+<pre><code>##   male female     type group day
+## 1    2      5 bacteria     a   3
+## 2    7      5 bacteria     b   3</code></pre>
+</div>
+</div>
+<div id="mutate-and-transmute" class="section level3">
+<h3><span class="header-section-number">4.4.3</span> <code>mutate</code> and <code>transmute</code></h3>
+<p>Both functions are widly used in data manipulation in <strong>R</strong>. Their main purpose is to create new variable (usually from existing ones) in data frame. Lets look on examples:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(wideTable3, male) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cumulativeMaleSum =</span> <span class="kw">cumsum</span>(male)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>)</code></pre></div>
+<pre><code>##   male cumulativeMaleSum
+## 1    1                 1
+## 2    1                 2
+## 3    2                 4
+## 4    2                 6
+## 5    3                 9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">select</span>(wideTable3, male, female) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cumulativeMaleSum =</span> <span class="kw">cumsum</span>(male),
+         <span class="dt">femaleLog =</span> <span class="kw">log</span>(female),
+         <span class="dt">cumSumFemaleLog =</span> <span class="kw">cumsum</span>(femaleLog)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>)</code></pre></div>
+<pre><code>##   male female cumulativeMaleSum femaleLog cumSumFemaleLog
+## 1    1      3                 1  1.098612        1.098612
+## 2    1      4                 2  1.386294        2.484907
+## 3    2      5                 4  1.609438        4.094345
+## 4    2      6                 6  1.791759        5.886104
+## 5    3      7                 9  1.945910        7.832014</code></pre>
+<p>As you can see in second example, when we use <code>mutate()</code> function, the newly created variables (in this example <code>femaleLog</code>) are available immediately so we can use them to create another variable (in this case <code>cumSumFemaleLog</code>) within one function call. In this example, I also used piping operator, becasue calculating intermediate steps and storing them as a result, which can be used later is useless as we are interested only in final outcome. The biggest advantage of this procedure is that we clean our <em>Environment</em> clean and preserve memomry – which is very important in long and memory consuming projects. Last but not least, the difference between <code>mutate()</code> and <code>transmute()</code> is that the latter do not preserve all variables, only the ones you created.</p>
+<div id="group_by-and-summarise" class="section level4">
+<h4><span class="header-section-number">4.4.3.1</span> <code>group_by</code> and <code>summarise</code></h4>
+<p><code>summarise()</code> is commonly used function on grouped data. It allows to calculate many typical descriptive statistics (like <code>mean()</code> or <code>quantile</code>) for particular groups in you data set, as well as it can count number of observations (<code>n()</code> function), or number of uniqe observations (<code>distinct()</code>). To see how it works in practice lets look back on our example and calculate mean value for <code>males</code> and <code>female</code>, as well as day range and number of cases for groups derived from <code>type</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wideTable3 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(type) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">meanF =</span> <span class="kw">mean</span>(female),
+            <span class="dt">meanM =</span> <span class="kw">mean</span>(male),
+            <span class="dt">numberOfDays =</span> (<span class="kw">range</span>(day)[<span class="dv">2</span>]<span class="op">-</span><span class="kw">range</span>(day)[<span class="dv">1</span>]),
+            <span class="dt">numberOfCases =</span> <span class="kw">n</span>())</code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   type     meanF meanM numberOfDays numberOfCases
+##   &lt;fctr&gt;   &lt;dbl&gt; &lt;dbl&gt;        &lt;int&gt;         &lt;int&gt;
+## 1 bacteria  7.00  5.50            8            10
+## 2 virus     8.00  5.50            8            10</code></pre>
+<p>Easy.</p>
+</div>
+<div id="is-there-anything-more-in-dplyr-library" class="section level4">
+<h4><span class="header-section-number">4.4.3.2</span> Is there anything more in <code>dplyr</code> library?</h4>
+<p>Yes. Actually I presented here only very very tiny fracture of <code>dplyr</code> possibilities just to familiarize you with syntax and using piping operator. When you go deeper into world of data frames transformation, you will find other commonly used functions like: different kinds of joining data frames (simmilar to SQL joining tables), conditional selecting, filtering, renaming rows and columns, extracting values or arranging your data frame. Thankfuly this procedures are so common that even if you won’t grasp it immedately from functions description, you will still find hundreds of tutorials on the web, or help in <em>StackOverflow</em>.</p>
+
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-hadley2014">
+<p>Wickham, Hadley. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10): 1–23.</p>
+</div>
+<div id="ref-tidyverse2017">
+<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div id="ref-tidyr2017">
+<p>Wickham, Hadley, and Lionel Henry. 2017. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div id="ref-dplyr2017">
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017b. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="lets-do-some-math.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["BeginnersGuideToGalaxy.pdf", "BeginnersGuideToGalaxy.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

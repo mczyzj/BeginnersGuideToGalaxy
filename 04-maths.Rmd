@@ -1,0 +1,16 @@
+# Lets do some math!
+
+## Simple statistical model
+Ok. There is no such thing as simple statistical model. However there are lots of packages that will make you suffer less. In fact this is one of biggest **R** advantages, that you can make even very suffisticated statistical modelling without any knowledge on programming since you use *black boxes*. When you are dealing with classic statistical models many of them are included in **base R** distribution - like linear or gereralized additive models. You would probably need to use mixed effect models, at some point. Good news is that there is a very nice and quite straightforward to use library called `lme4` . Every time you run into problem, and you do not know what to use for statistical modelling, or how to perform full procedure, just query google. There are hundrets of blogs, web pages and *Stack Overflow* discussion on it.
+
+## Other models
+
+### Libraries
+Other, usually dynamic models require more knowledge, experience and some libraries. Before you start looking for more tailored solutions, install following libraries: `deSolve`, `fitdistrplus`, `rriskDistributions` and `truncdist`. First one contains tools for solving differential equations sets, second and third provides you tools to deal with distriubutions (such as comparing distributions or estimating its parameters), and the last one allows you to use truncated distributions.
+
+### Simple asymptotic model and noise
+
+### Mechanistic model in **R**
+
+### Solving differential equations
+
