@@ -1,9 +1,9 @@
 # Functions
 
-In short, function is a piece of code that takes some arguments, makes *mumbo jumbo* and returns result. All the time, through this book we were using functions that are buil in **base R** or comes from additional packages (like `dplyr`). So you are now quite familiar whit the syntax that resambles typical mathematical syntax -- *name of a function followed by arguments in brackets - like f(x)*. From time to time you will need to do something in your code for few times with different arguments. In order to not repeat yourself and not *copy -- paste* your code multiple times you can wrap your procedure in a function. The best way (as always) to understand how to do it, is to do it. To begin with something simple we will start with makeing basic math functions which later will lead us to simple calculator.
+In short, function is a piece of code that takes some arguments, makes *mumbo jumbo* and returns result. All the time, through this book we were using functions that are built in **base R** or comes from additional packages (like `dplyr`). So you are now quite familiar whit the syntax that resembles typical mathematical syntax -- *name of a function followed by arguments in brackets - like f(x)*. From time to time you will need to do something in your code for few times with different arguments. In order to not repeat yourself and not *copy -- paste* your code multiple times you can wrap your procedure in a function. The best way (as always) to understand how to do it, is to do it. To begin with something simple we will start with making basic math functions which later will lead us to simple calculator.
 
 ## Simple math functions.
-Simple math operations include: *adding*, *substracting*, *dividing* and *multipling*. To make our calculator slightly less boring, we can also add *powers* and *nth rooting*. To not to complicate to much things in the begining, lets say that we want our function to take two and only two arguments. Lets look below how to code our functions:
+Simple math operations include: *adding*, *substracting*, *dividing* and *multipling*. To make our calculator slightly less boring, we can also add *powers* and *nth rooting*. To not to complicate to much things in the beginning, lets say that we want our function to take two and only two arguments. Lets look below how to code our functions:
 
 ```{r echo = TRUE, eval = FALSE}
 addF <- function(x,y) {
@@ -70,7 +70,7 @@ simpleCalculator(16,2,'all')
 
 ## It is not over yet... *Calculator shouldn't divide be 0*!
 
-We know that division by 0 is not the best idea in the world, thus we should stop users (or ourselves) from doing it. Thus we will add an `if...else` statment to our function. Next time when you use 0 as a second argument you will see an error. Also, we declare `mathType = 'all'` as a default value, so if we omit this parameter, function will evaluate anyway.
+We know that division by 0 is not the best idea in the world, thus we should stop users (or ourselves) from doing it. Thus we will add an `if...else` statement to our function. Next time when you use 0 as a second argument you will see an error. Also, we declare `mathType = 'all'` as a default value, so if we omit this parameter, function will evaluate anyway.
 
 ```{r}
 simpleCalculator <- function(x, y, mathType = 'all') {
