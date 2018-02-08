@@ -3,33 +3,33 @@
 ## Addressing
 
 ###Vectors
-When you deal with variables you often will want to use only a part of it in your work. Other times you will want to get rid of some values which follow certain criteria. In order to do it you need to know an 'addrress' of particular value in a *vector*, *data frame*, *list* etc. From now on, I will use some functions while describing it *at hoc*, since I believe the best way to learn them, is to use them. Lets creat a *vector* and see what we can do with it.
+When you deal with variables you often will want to use only a part of it in your work. Other times you will want to get rid of some values which follow certain criteria. In order to do it you need to know an 'address' of particular value in a *vector*, *data frame*, *list* etc. From now on, I will use some functions while describing it *at hoc*, since I believe the best way to learn them, is to use them. Lets create a *vector* and see what we can do with it.
 
 ```{r echo = T, eval = T}
 addressVec <- seq(from = 1, to = 20, by = 2)
 addressVec
 ```
 
-Instead of typing all the numbers by hand, we can use `seq()` function, to generate it automatically. This function takes two arguments `from` and `to`, however additionaly we can use option `by` which defines increment of the sequence. As your knowledge is growing I can tell you a secret. Often there is no need to name all the arguments and options in functions body. In the beginning you should use the names, but the more experienced you get you will notice that you omit them often. Actually we nearly always omit so called *default* options of a function. Use `?seq` to check the help page for this function. You will see that it can take more options than `from`, `to` and `by`, but since they are predifned we don't neet to bother and type them as long as we are OK with *default* settings. So, lets retype our *variable* definition:
+Instead of typing all the numbers by hand, we can use `seq()` function, to generate it automatically. This function takes two arguments `from` and `to`, however additionally we can use option `by` which defines increment of the sequence. As your knowledge is growing I can tell you a secret. Often there is no need to name all the arguments and options in functions body. In the beginning you should use the names, but the more experienced you get you will notice that you omit them often. Actually we nearly always omit so called *default* options of a function. Use `?seq` to check the help page for this function. You will see that it can take more options than `from`, `to` and `by`, but since they are predefined we don't need to bother and type them as long as we are OK with *default* settings. So, lets retype our *variable* definition:
 
 ```{r echo = T, eval =T}
 addressVec <- seq(1, 20, 2)
 addressVec
 ```
 
-The results are identical. Lets get back to addressing issues. Suppose you want to check the fifth element of a our `addressVec` variable. To do it we use variable name followed by element number in brackets (or square brakcets, if you will).
+The results are identical. Lets get back to addressing issues. Suppose you want to check the fifth element of a our `addressVec` variable. To do it we use variable name followed by element number in brackets (or square brackets, if you will).
 
 ```{r echo = T, eval =T}
 addressVec[5]
 ```
 
-If you want to get rid of fifth element just preced it with -.
+If you want to get rid of fifth element just precede it with -.
 
 ```{r echo = T, eval =T}
 addressVec[-5]
 ```
 
-Easy. The thing that is worth to mention right now is that **R Core Team** have reason and dignity of human beings so they start numeration of elements with value 1. In some other languages, because of no sensible reasons numeration starts with 0 -- which is horribly annoing.
+Easy. The thing that is worth to mention right now is that **R Core Team** have reason and dignity of human beings so they start numeration of elements with value 1. In some other languages, because of no sensible reasons numeration starts with 0 -- which is horribly annoying.
 What to do if we want to extract values of more than one element?
 
 ```{r echo = T, eval =T, error = T}
@@ -51,11 +51,11 @@ addressVec[which(addressVec >= 6)] <- 'o..O'
 addressVec
 ```
 
-If you have problems, you can think of this example as a composition of actions. First there is expression `addressVec >=6`, than we use `which()` function with argument from previous expression. Next the result is passed as an address. Last thing is assigment of new value to...
+If you have problems, you can think of this example as a composition of actions. First there is expression `addressVec >=6`, than we use `which()` function with argument from previous expression. Next the result is passed as an address. Last thing is assignment of new value to...
 
 ### Data frames (and matrices)
 
-When dealing with *data frames* and addressing is possible in two ways. First is simmilar to *vector* addressing. However, as *data frames* have two dimentions, you will need to express them like `df[1,2]` -- which tells **R** to look up the cell in row 1, column 2. But what if you want to check all the cells in particular row or column? Omit the number, but not the coma -- like this: `df[,3]`. It will display all row values from column 3. And of course you can still use *vectors* when addressing. This way is also working for *matrices*.
+When dealing with *data frames* and addressing is possible in two ways. First is similar to *vector* addressing. However, as *data frames* have two dimensions, you will need to express them like `df[1,2]` -- which tells **R** to look up the cell in row 1, column 2. But what if you want to check all the cells in particular row or column? Omit the number, but not the coma -- like this: `df[,3]`. It will display all row values from column 3. And of course you can still use *vectors* when addressing. This way is also working for *matrices*.
 
 ```{r echo = T, eval =T, error = T}
 addressDF <- data.frame(C1 = seq(1,10), C2 = seq(11,20), C3 = seq(21,30))
@@ -64,7 +64,7 @@ addressDF[6,]
 addressDF[c(6,7), 1:3]
 ```
 
-The second option is tu use `$` sign followed with column name (and it work only for *data frames* and *lists*). This way, we tell **R** to look in whole column. If we want to display values from particular cells, we put them in brackets after column name, the same way as we do for *vectors*:
+The second option is to use `$` sign followed with column name (and it work only for *data frames* and *lists*). This way, we tell **R** to look in whole column. If we want to display values from particular cells, we put them in brackets after column name, the same way as we do for *vectors*:
 
 ```{r echo = T, eval =T, error = T}
 addressDF$C2[5]
@@ -72,7 +72,7 @@ addressDF$C3[c(6:9)]
 ```
 
 ### Lists
-As mentioned before each *list* element can have different structure. Thus, addressing is kind of a mixture of all above. First you need to address element of your *list*. You do it with double brakcets containing element number following name of variable. You can also use `$` sign with name of the element. Than you use addressing the same way you address *data frames*, *vectors* or *matrices*.
+As mentioned before each *list* element can have different structure. Thus, addressing is kind of a mixture of all above. First you need to address element of your *list*. You do it with double brackets containing element number following name of variable. You can also use `$` sign with name of the element. Than you use addressing the same way you address *data frames*, *vectors* or *matrices*.
 
 ```{r echo = T, eval =T, error = T}
 addressList <- list(x1 = c('a', 'b'), x2 = 1:4, x3 = matrix(c(1:6), nrow = 2))
@@ -81,15 +81,15 @@ addressList$x2[3]
 addressList[[3]]
 addressList[[3]][,3]
 ```
-Ok, now simple task for you. There is a function called `colnames()` which allow us to change names in *matrix* variable. To use it you need to put name of *matrix* variable in the parentheses (like this: `colnames(x)`), and assign value to it (e.g. `colnames(x) <- c('one', 'two')). Now change names of of columns in *matrix* that is element of list above to `I`, 'Love', 'R'.
+OK, now simple task for you. There is a function called `colnames()` which allow us to change names in *matrix* variable. To use it you need to put name of *matrix* variable in the parentheses (like this: `colnames(x)`), and assign value to it (e.g. `colnames(x) <- c('one', 'two')). Now change names of of columns in *matrix* that is element of list above to `I`, 'Love', 'R'.
 
 ## Operation on Vectors
 Old proverb:
 
 > *The power of R is vectorization*
 
-Indeed, vectorization is one of the most usefull features of **R** environment. In short words, many functions are contructued in such manner that one can avoid using loops (since, they are often very slow). When you begin your journey with programming you will probably not notice the difference in computation speed between *vectorized way* and *loop way*. Nonetheless, what will you find attractive, is that in many cases writting in vectorized form feels more natural. So how it works? Most basic functions are *written and compiled* in very fast, low level languages like **C** or **FORTRAN**. It makes computation way faster, but still we use easy **R** syntax. Instead of running the *precompiled* function on each of the elements of vector we actually can pass the vector into function -- and **R** will know what to do. The speed is achieved beacause when we use function on each element, **R** needs to figure out what to do several (or even hundred or thousands of) times, however when we pass whole vector into function, it needs to find out what to do only once.
-Sometimes, however we need to use some other functions, wich are not meant to process vectors (or you want to use some arbitrary functions on matrix, data frame or list). You will need to parse your data more than once to function. In **R** you can do it by using loops or by using so called `apply` family functions. When I was learning **R** it was most confusing thing to me, however once you get it, they become fairly easy to use. The most important difference for you as a beginer is that when using loops you should make some memory allocation -- in human language, before you run loop, you should create vector which will store results. The loops achieve highest speed when your vector can fit all the values from loop. If you do not know how big your vector will be, you need to relay on **R** ability to re-allocate the memory, which is **S L O W**. `apply` family hopefully takes care of this problem, so everytime you know how to -- use it. It will save you time and frustration of using loops. I will cover basic use of this functions later on examples.
+Indeed, vectorization is one of the most useful features of **R** environment. In short words, many functions are constructed in such manner that one can avoid using loops (since, they are often very slow). When you begin your journey with programming you will probably not notice the difference in computation speed between *vectorized way* and *loop way*. Nonetheless, what will you find attractive, is that in many cases writing in vectorized form feels more natural. So how it works? Most basic functions are *written and compiled* in very fast, low level languages like **C** or **FORTRAN**. It makes computation way faster, but still we use easy **R** syntax. Instead of running the *precompiled* function on each of the elements of vector we actually can pass the vector into function -- and **R** will know what to do. The speed is achieved because when we use function on each element, **R** needs to figure out what to do several (or even hundred or thousands of) times, however when we pass whole vector into function, it needs to find out what to do only once.
+Sometimes, however we need to use some other functions, which are not meant to process vectors (or you want to use some arbitrary functions on matrix, data frame or list). You will need to parse your data more than once to function. In **R** you can do it by using loops or by using so called `apply` family functions. When I was learning **R** it was most confusing thing to me, however once you get it, they become fairly easy to use. The most important difference for you as a beginner is that when using loops you should make some memory allocation -- in human language, before you run loop, you should create vector which will store results. The loops achieve highest speed when your vector can fit all the values from loop. If you do not know how big your vector will be, you need to relay on **R** ability to re-allocate the memory, which is **S L O W**. `apply` family hopefully takes care of this problem, so every time you know how to -- use it. It will save you time and frustration of using loops. I will cover basic use of this functions later on examples.
 
 ## Randomization and distribution
 Random sampling is quite easy task. There is nice `sample()` function, that allow you to do that. You can sample from *numeric*, *integer* or even *character* *vectors*. You can even assign probabilities to particular elements of vector (we will not need that at the moment). So lets make some fun and make virtual casino. We will take two dice and will roll it 1000 times. If the sum of each result is greater odd and smaller than `5` we will earn 30EUR. If it is odd and higher than `5`, we will get 50EUR. However if the sum is even number we loose 70EUR. Lets see if we can beat casino...
@@ -101,13 +101,13 @@ rollDiceOne <- sample(niceDice, 1000, replace = T)
 rollDiceTwo <- sample(niceDice, 1000, replace = T)
 ```
 
-Ok, you heard about power of vectorization, already so lets sum up both vectors:
+OK, you heard about power of vectorization, already so lets sum up both vectors:
 
 ```{r echo = T, eval =T, error = T}
 sumDiceRolls <- rollDiceOne + rollDiceTwo
 ```
 
-Next lets make some use of knowledge we have already and subsitute our results with some cash...
+Next lets make some use of knowledge we have already and substitute our results with some cash...
 
 ```{r echo = T, eval =T, error = T}
 cashDiceRolls <- sumDiceRolls
@@ -117,7 +117,7 @@ cashDiceRolls[which(cashDiceRolls %% 2 == 0)] <- -70
 sum(cashDiceRolls)
 ```
 
-Ok. What happened? We put our substitutoons in very wrong order... After first two substitutions we have only even numbers in our vector... So how to fix it? Start with assigning the highghest absolute value, and after all change it to negative one.
+OK. What happened? We put our substitutions in very wrong order... After first two substitutions we have only even numbers in our vector... So how to fix it? Start with assigning the highest absolute value, and after all change it to negative one.
 
 ```{r echo = T, eval =T, error = T}
 cashDiceRolls <- sumDiceRolls
@@ -128,7 +128,7 @@ cashDiceRolls[which(cashDiceRolls  == 70)] <- -70
 sum(cashDiceRolls)
 ```
 
-Now, thats not very nice... We lost a lot of cash... But we can also track how are luck changed. Maybe we were above `0` for a while, before things got South? Or maybe we were doomed since the begining? Lets make a plot (Fig. \@ref(fig:betaDensity-plot)) to evaluate our progress.
+Now, that's not very nice... We lost a lot of cash... But we can also track how are luck changed. Maybe we were above `0` for a while, before things got South? Or maybe we were doomed since the beginning? Lets make a plot (Fig. \@ref(fig:betaDensity-plot)) to evaluate our progress.
 
 ```{r echo = FALSE, cassino-plot, fig.cap = 'How to lose cash in casino', out.width='60%', fig.align= 'center'}
 plot(seq(1,1000),cumsum(cashDiceRolls), type = 'l')
@@ -136,8 +136,8 @@ plot(seq(1,1000),cumsum(cashDiceRolls), type = 'l')
 
 I think that your love to **R** is being deeper since I showed you how it can save a lot of your money!
 
-In nowadays stochastic analyses are more, and more popular. With **R** it is quite easy to generate random numbers, sample and do all the *mumbo jumbo* on data. There are few functions that cover *classical* distributions: normal, Poisson, binomial, uniform (and few others), that are actually build in base **R** distribution (full list you will find [here](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html)). Some more suffisticated stuff is usually covered by some packages you will need to download by yourself. You will easily find them by querying Google like this [Pearson distribution in R](https://www.google.com/search?client=ubuntu&channel=fs&q=Pearson+distribution+in+R&ie=utf-8&oe=utf-8&gfe_rd=cr&dcr=0&ei=KTI5Ws_7LfPBXrSBr7gO). By using this technique it is also possible to find other useful libraries for dealing with distributions (try to search for library that alows you to sample from trimmed distribution).
-All the distribution libraries follow the same schema when naming functions. They use letters: `d`, `p`, `q` and `r` followed by abbreviation of distibution name to generate: Density, distribution function, quantile function and random numbers -- respectively. For instance, lets generate ten random numbers from *beta distribution*, whith parameters `10` and `3`:
+In nowadays stochastic analyses are more, and more popular. With **R** it is quite easy to generate random numbers, sample and do all the *mumbo jumbo* on data. There are few functions that cover *classical* distributions: normal, Poisson, binomial, uniform (and few others), that are actually build in base **R** distribution (full list you will find [here](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html)). Some more sophisticated stuff is usually covered by some packages you will need to download by yourself. You will easily find them by querying Google like this [Pearson distribution in R](https://www.google.com/search?client=ubuntu&channel=fs&q=Pearson+distribution+in+R&ie=utf-8&oe=utf-8&gfe_rd=cr&dcr=0&ei=KTI5Ws_7LfPBXrSBr7gO). By using this technique it is also possible to find other useful libraries for dealing with distributions (try to search for library that allows you to sample from trimmed distribution).
+All the distribution libraries follow the same schema when naming functions. They use letters: `d`, `p`, `q` and `r` followed by abbreviation of distribution name to generate: Density, distribution function, quantile function and random numbers -- respectively. For instance, lets generate ten random numbers from *beta distribution*, with parameters `10` and `3`:
 
 ```{r echo = T, eval =T, error = T}
 rbeta(25,10,3)
@@ -150,8 +150,8 @@ plot(seq(0,1, length = 300),dbeta(seq(0,1, length = 300),8,3), type = 'l')
 ```
 
 ## `tidyverse` idea and `dplyr` library
-The whole idea of tidy data comes from one of most famous **R** developer -- [Hadley Wickham](http://hadley.nz/). In on of his papers [@hadley2014] he described procedures for generating and cleaning data in standardized manner. Many packages right now are designed to work best with data structured according to this publication. Eventualy it lead to `tidiverse` -- tools tailored for data science with common syntax and philosophy[@tidyverse2017].
-One of the most useful packages that are inlcuded in `tidiverse` [@tidyverse2017] are `tidyr` [@tidyr2017] and `dplyr` [@dplyr2017]. First heplps us to swap from 'wide' to 'long' table format (and back). The second package contains set of tools to easily manipulate rows, columns or even single cells in *data frame*. It is extremly powerful tool, which speeds up work with datasets so much that after few times dealing with it, you will leave traditional spread sheet forever.
+The whole idea of tidy data comes from one of most famous **R** developer -- [Hadley Wickham](http://hadley.nz/). In on of his papers [@hadley2014] he described procedures for generating and cleaning data in standardized manner. Many packages right now are designed to work best with data structured according to this publication. Eventually it lead to `tidiverse` -- tools tailored for data science with common syntax and philosophy[@tidyverse2017].
+One of the most useful packages that are included in `tidiverse` [@tidyverse2017] are `tidyr` [@tidyr2017] and `dplyr` [@dplyr2017]. First helps us to swap from 'wide' to 'long' table format (and back). The second package contains set of tools to easily manipulate rows, columns or even single cells in *data frame*. It is extremely powerful tool, which speeds up work with data sets so much that after few times dealing with it, you will leave traditional spread sheet forever.
 
 ### Wide vs. long tables
 Lets start with changing wide format table into long format table.
@@ -171,7 +171,7 @@ longTable <- gather(wideTable, key = sex,value = number)
 longTable
 ```
 
-Thats how easy it  But what if table is more complicated?
+That how easy it is. But what if table is more complicated?
 
 ```{r echo = TRUE, eval = TRUE}
 wideTable2 <- data.frame(male = 1:10,
@@ -196,7 +196,7 @@ wideTable3
 gather(wideTable3, sex, number, 1:2) %>% spread(group, number)
 ```
 
-Here our data set had additional column `group` storing values a and b. But imagine that `group` is not a variable, but it just stores the names of variables - which are a and b. This somehow might be frustrating, to decide if those are really separate variables or not. You might run into problem, that your column named `environmental factor` contains values: *pH*, *conductivity*, and *oxygen concentration*. This would be straightforward as each of this is different variable and you should spread this column into three different variables. On the other hand you might see a column that contains *minimum temperature* and *maximum temperature*. This would not be as straightforward and decision upon spreading this column would strongly depend on the context. Nonetheless, using `spread()` function we were able to transform values from this column as separate columns. We also used *piping operator* `%>%`. It is a shortcut which allows us to pass the left side as an agrument to the function on the right side of operator. In general it means that writing `a %>% funtion(b)` actually is translated into `function(a,b)`. In the begining this idea might be not very usefull for you, but actually it vary helpful, mainly because your code gets better structure and you can perform multiple operations without storing it in variables which you do not want.
+Here our data set had additional column `group` storing values a and b. But imagine that `group` is not a variable, but it just stores the names of variables - which are a and b. This somehow might be frustrating, to decide if those are really separate variables or not. You might run into problem, that your column named `environmental factor` contains values: *pH*, *conductivity*, and *oxygen concentration*. This would be straightforward as each of this is different variable and you should spread this column into three different variables. On the other hand you might see a column that contains *minimum temperature* and *maximum temperature*. This would not be as straightforward and decision upon spreading this column would strongly depend on the context. Nonetheless, using `spread()` function we were able to transform values from this column as separate columns. We also used *piping operator* `%>%`. It is a shortcut which allows us to pass the left side as an argument to the function on the right side of operator. In general it means that writing `a %>% funtion(b)` actually is translated into `function(a,b)`. In the beginning this idea might be not very useful for you, but actually it vary helpful, mainly because your code gets better structure and you can perform multiple operations without storing it in variables which you do not want.
 
 There is also one more common case that I should shortly mention - compound variable. It is a variable that stores multiple values in a single column. E.g. city and district, age and sex, sex and smoking, blood type and RH, etc. With `tidyr` is very easy to deal with it.
 
@@ -212,7 +212,7 @@ wideTable4 %>% separate(type, c('organism', 'type'), sep = '\\.')
 
 #### `select` columns and `filter` rows
 
-Those are the most basic operations on data frames. `select()` function allows you to choose which columns you use. The biggest advantege of using this function instead of simple addressing, is that you can use some special functions inside it: `starts_with(), ends_with(), contains(), matches(), num_range()` which are helpful when using big data sets with numerous columns. There is also similar function `rename()` which can be used to change variable names, but in results (contrary to `select()`) it keeps all the variables.
+Those are the most basic operations on data frames. `select()` function allows you to choose which columns you use. The biggest advantage of using this function instead of simple addressing, is that you can use some special functions inside it: `starts_with(), ends_with(), contains(), matches(), num_range()` which are helpful when using big data sets with numerous columns. There is also similar function `rename()` which can be used to change variable names, but in results (contrary to `select()`) it keeps all the variables.
 Lets look how the thing works on some simple examples:
 
 ```{r echo = TRUE, eval = TRUE}
@@ -222,7 +222,7 @@ head(select(wideTable3, contains('ale')), 3)
 head(rename(wideTable3, Male = male), 3)
 ```
 
-Filtering rows is also straightforward. Inside function `filter()` you cand use logical operators (`&, |, xor, !`), comparisions (e.g. `==` or `>=`), or functions (`is.na(), between(), near()`).
+Filtering rows is also straightforward. Inside function `filter()` you can use logical operators (`&, |, xor, !`), comparisons (e.g. `==` or `>=`), or functions (`is.na(), between(), near()`).
 
 ```{r echo = TRUE, eval = TRUE}
 filter(wideTable3, group == 'a')
@@ -232,7 +232,7 @@ filter(wideTable3, near(female, 5))
 
 ### `mutate` and `transmute`
 
-Both functions are widly used in data manipulation in **R**. Their main purpose is to create new variable (usually from existing ones) in data frame. Lets look on examples:
+Both functions are widely used in data manipulation in **R**. Their main purpose is to create new variable (usually from existing ones) in data frame. Lets look on examples:
 
 ```{r echo = TRUE, eval = TRUE}
 select(wideTable3, male) %>%
@@ -245,10 +245,10 @@ select(wideTable3, male, female) %>%
   head(5)
 ```
 
-As you can see in second example, when we use `mutate()` function, the newly created variables (in this example `femaleLog`) are available immediately so we can use them to create another variable (in this case `cumSumFemaleLog`) within one function call. In this example, I also used piping operator, becasue calculating intermediate steps and storing them as a result, which can be used later is useless as we are interested only in final outcome. The biggest advantage of this procedure is that we clean our *Environment* clean and preserve memomry -- which is very important in long and memory consuming projects. Last but not least, the difference between `mutate()` and `transmute()` is that the latter do not preserve all variables, only the ones you created.
+As you can see in second example, when we use `mutate()` function, the newly created variables (in this example `femaleLog`) are available immediately so we can use them to create another variable (in this case `cumSumFemaleLog`) within one function call. In this example, I also used piping operator, because calculating intermediate steps and storing them as a result, which can be used later is useless as we are interested only in final outcome. The biggest advantage of this procedure is that we clean our *Environment* clean and preserve memory -- which is very important in long and memory consuming projects. Last but not least, the difference between `mutate()` and `transmute()` is that the latter do not preserve all variables, only the ones you created.
 
 #### `group_by` and `summarise`
-`summarise()` is commonly used function on grouped data. It allows to calculate many typical descriptive statistics (like `mean()` or `quantile`) for particular groups in you data set, as well as it can count number of observations (`n()` function), or number of uniqe observations (`distinct()`). To see how it works in practice lets look back on our example and calculate mean value for `males` and `female`, as well as day range and number of cases for groups derived from `type`.
+`summarise()` is commonly used function on grouped data. It allows to calculate many typical descriptive statistics (like `mean()` or `quantile`) for particular groups in you data set, as well as it can count number of observations (`n()` function), or number of unique observations (`distinct()`). To see how it works in practice lets look back on our example and calculate mean value for `males` and `female`, as well as day range and number of cases for groups derived from `type`.
 
 ```{r echo = TRUE, eval = TRUE}
 wideTable3 %>% 
@@ -262,4 +262,4 @@ wideTable3 %>%
 Easy.
 
 #### Is there anything more in `dplyr` library?
-Yes. Actually I presented here only very very tiny fracture of `dplyr` possibilities just to familiarize you with syntax and using piping operator. When you go deeper into world of data frames transformation, you will find other commonly used functions like: different kinds of joining data frames (simmilar to SQL joining tables), conditional selecting, filtering, renaming rows and columns, extracting values or arranging your data frame. Thankfuly this procedures are so common that even if you won't grasp it immedately from functions description, you will still find hundreds of tutorials on the web, or help in *StackOverflow*.
+Yes. Actually I presented here only very very tiny fracture of `dplyr` possibilities just to familiarize you with syntax and using piping operator. When you go deeper into world of data frames transformation, you will find other commonly used functions like: different kinds of joining data frames (similar to SQL joining tables), conditional selecting, filtering, renaming rows and columns, extracting values or arranging your data frame. Thankfully this procedures are so common that even if you won't grasp it immediately from functions description, you will still find hundreds of tutorials on the web, or help in *StackOverflow*.
