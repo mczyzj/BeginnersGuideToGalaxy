@@ -15,7 +15,7 @@ parA <- 2.15
 parB <- 0.08
 varX <- seq(0,1, length.out = 1000)
 mmFunction <- parA * varX/(parB + varX)
-plot(mmFunction~varX, type = 'lines')
+plot(mmFunction~varX, type = 'l')
 ```
 As you can see, as long as you have simple equation it is very straightforward to translate it into R. But we want something more useful, for instance adding noise or uncertainty to our model. Lets assume, that we are not sure what is the value of *parameter a*. Lets say that from previous research and expert knowledge we assume that it can be as high 2.5, but never is lower than 1.8. Also it usually takes value of 2.15. Knowing this we can use PERT distribution to include uncertainty in model.
 
@@ -24,14 +24,14 @@ library('mc2d')
 sParA <- rpert(1000, 1.8, 2.15, 2.5)
 parB <- 0.08
 mmSAFunction <- sParA * varX/(parB + varX)
-plot(mmSAFunction~varX, type = 'lines')
+plot(mmSAFunction~varX, type = 'l')
 ```
 We added some uncertainty to our function. But what with *parameter b*, how our uncertainty on its value affects the outcome? Lets assume that it's value is normally distributed with *mean = 0.8* and *sd = 0.23*
 
 ```{r fig.height = 4}
 sParB <- rnorm(1000, 0.08, 0.023) 
 mmSABFunction <- sParA * varX/(sParB + varX)
-plot(mmSABFunction~varX, type = 'lines')
+plot(mmSABFunction~varX, type = 'l')
 
 ```
 It seems that inclusion of uncertainty on value of *parameter b* does change our outcome. Lets also include some variability into the outcome. We can assume that for some reasons value of function will vary for different reasons than our uncertainty about value of both *parameters*. And usually it varies from $f(x)$ by some value from uniform distribution. The 25^th and 75^th percentile are given by: `-0.13` and `0.17`. To calculate parameters of this distribution we will use `rriskDistributions` package
@@ -40,16 +40,18 @@ library('rriskDistributions')
 unifParams <- get.unif.par(p = c(0.25, 0.75), q = c(-0.13, 0.17), plot = F)
 fVariability <- runif(1000, min = unifParams[1], max = unifParams[2])
 mmFSFunction <- ((sParA * varX/(sParB + varX)) + fVariability)
-plot(mmFSFunction~varX, type = 'lines')
+plot(mmFSFunction~varX, type = 'l')
 ```
 It seems that there are differences between those three plots. So lets overlay them one on another to inspect visually differences.
 ```{r fig.height = 5}
-plot(varX, mmFunction, type = 'lines', col = 'black', ylim = c(0, 3))
+plot(varX, mmFunction, type = 'l',
+     col = 'black', ylim = c(0, 3),
+     main = 'Michaelis-Menten function', xlab = 'x', ylab = 'f(x) = a*x/(b+x)')
 lines(varX, mmSAFunction, col = 'blue')
 lines(varX, mmSABFunction, col = 'green', lty = 'dashed')
 lines(varX, mmFSFunction, col = 'red', lty = 'dotted')
 ```
-### Mechanistic model in **R**
+### Polynomial models in **R**
 
 
 ### Solving differential equations
