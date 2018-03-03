@@ -60,6 +60,7 @@ lines(varX, mmFSFunction, col = 'red', lty = 'dotted')
 
 ### Polynomial models in **R**
 
+Writing polynomial model is also very similar to how you write in on a piece of paper.
 
 ### Solving differential equations
 

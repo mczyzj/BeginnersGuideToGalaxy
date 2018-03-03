@@ -34,7 +34,7 @@ knitr::include_graphics('instalPacks.png')
 * **e1071** [@R-e1071]
 * **truncdist** [@R-truncdist]
 
-Now every time you need functions from specific library you can just tick box next to package name, and RStudio will load it for you.
+Now every time you need functions from specific package in library you can just tick box next to package name, and RStudio will load it for you.
 
 ## Conventions
 
@@ -58,4 +58,4 @@ knitr::kable(
   booktabs = TRUE, longtable = TRUE
 )
 ```
-* Tables and figures are references are clickable e.g. see Table \@ref(tab:nice-tab) or see Figure \@ref(fig:option-settings).
+* Tables and figures and references are clickable e.g. see Table \@ref(tab:nice-tab) or see Figure \@ref(fig:option-settings).
