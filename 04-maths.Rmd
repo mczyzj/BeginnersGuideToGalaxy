@@ -1,12 +1,12 @@
 # Lets do some math!
 
 ## Simple statistical model
-OK. There is no such thing as simple statistical model. However there are lots of packages that will make you suffer less. In fact this is one of biggest **R** advantages, that you can make even very sophisticated statistical modelling without any knowledge on programming since you use *black boxes*. When you are dealing with classic statistical models many of them are included in **base R** distribution - like linear or generalized additive models. You would probably need to use mixed effect models, at some point. Good news is that there is a very nice and quite straightforward to use library called `lme4`. Every time you run into problem, and you do not know what to use for statistical modelling, or how to perform full procedure, just query Google. There are hundreds of blogs, web pages and *Stack Overflow* discussion on it.
+OK. There is no such thing as simple statistical model. However there are lots of packages that will make you suffer less. In fact this is one of biggest **R** advantages, that you can make even very sophisticated statistical modelling without any knowledge on programming since you use *black boxes*. When you are dealing with classic statistical models many of them are included in **base R** distribution -- like linear or generalized additive models. You would probably need to use mixed effect models, at some point. Good news is that there is a very nice and quite straightforward to use package called `lme4`. Every time you run into problem, and you do not know what to use for statistical modelling, or how to perform full procedure, just query Google. There are hundreds of blogs, web pages and *Stack Overflow* discussion on it.
 
 ## Other models
 
-### Libraries
-Other, usually dynamic models require more knowledge, experience and some libraries. Before you start looking for more tailored solutions, install following libraries: `deSolve`, `fitdistrplus`, `rriskDistributions` and `truncdist`. First one contains tools for solving differential equations sets, second and third provides you tools to deal with distributions (such as comparing distributions or estimating its parameters), and the last one allows you to use truncated distributions.
+### Packages
+Other, usually dynamic models, require more knowledge, experience and some packages. Before you start looking for more tailored solutions, install following packages: `deSolve`, `fitdistrplus`, `rriskDistributions` and `truncdist`. First one contains tools for solving differential equations sets, second and third provides you tools to deal with distributions (such as comparing distributions or estimating its parameters), and the last one allows you to use truncated distributions.
 
 ### Simple mechanistic model and noise
 To show some basic mechanistic model, we will use the well known Michaelis-Menten function: $f(x) = \frac{ax}{b+x}$, with *parameter a = 2.15* and *parameter b = 0.08*.
@@ -39,7 +39,7 @@ plot(mmSABFunction~varX, type = 'l')
 par(mfrow = c(1,1))
 ```
 
-It seems that inclusion of uncertainty on value of *parameter b* does change our outcome. Lets also include some variability into the outcome. We can assume that for some reasons value of function will vary for different reasons than our uncertainty about value of both *parameters*. And usually it varies from $f(x)$ by some value from uniform distribution. The 25^th and 75^th percentile are given by: `-0.13` and `0.17`. To calculate parameters of this distribution we will use `rriskDistributions` package.
+It seems that inclusion of uncertainty on value of *parameter b* does change our outcome. Lets also include some variability into the outcome. We can assume that for some reasons value of function will vary more than just our uncertainty about value of both *parameters*. And usually it varies from $f(x)$ by some value from uniform distribution. The 25^th and 75^th percentile are given by: `-0.13` and `0.17`. To calculate parameters of this distribution we will use `rriskDistributions` package.
 ```{r fig.height = 4, message = FALSE, fig.cap = 'Michaelis-Menten function fully stochastic', , fig.show = 'hold'}
 library('rriskDistributions')
 unifParams <- get.unif.par(p = c(0.25, 0.75), q = c(-0.13, 0.17), plot = F)
