@@ -2,7 +2,7 @@
 
 ## Addressing
 
-###Vectors
+## Vectors
 When you deal with variables you often will want to use only a part of it in your work. Other times you will want to get rid of some values which follow certain criteria. In order to do it you need to know an 'address' of particular value in a *vector*, *data frame*, *list* etc. From now on, I will use some functions while describing it *at hoc*, since I believe the best way to learn them, is to use them. Lets create a *vector* and see what we can do with it.
 
 ```{r echo = T, eval = T}
@@ -53,7 +53,7 @@ addressVec
 
 If you have problems, you can think of this example as a composition of actions. First there is expression `addressVec >=6`, than we use `which()` function with argument from previous expression. Next the result is passed as an address. Last thing is assignment of new value to...
 
-### Data frames (and matrices)
+## Data frames (and matrices)
 
 When dealing with *data frames*, addressing is possible in two ways. First is similar to *vector* addressing. However, as *data frames* have two dimensions, you will need to express them like `df[1, 2]` -- which tells **R** to look up the cell in row 1, column 2. But what if you want to check all the cells in particular row or column? Omit the number, but not the coma -- like this: `df[, 3]`. It will display all row values from column 3. And of course you can still use *vectors* when addressing. This way also works for *matrices*.
 
@@ -71,7 +71,7 @@ addressDF$C2[5]
 addressDF$C3[c(6:9)]
 ```
 
-### Lists
+## Lists
 As mentioned before each *list* element can have different structure. Thus, addressing is kind of a mixture of all above. First you need to address element of your *list*. You do it with double brackets containing element number following name of variable. You can also use `$` sign with name of the element. Than you use addressing the same way you address *data frames*, *vectors* or *matrices*.
 
 ```{r echo = T, eval =T, error = T}
@@ -153,7 +153,7 @@ plot(seq(0, 1, length = 300), dbeta(seq(0, 1, length = 300), 8, 3), type = 'l')
 The whole idea of tidy data comes from one of most famous **R** developers -- [Hadley Wickham](http://hadley.nz/). In on of his papers [@hadley2014] he described procedures for generating and cleaning data in standardized manner. Many packages right now are designed to work best with data structured according to this publication. Eventually it lead to `tidiverse` -- tools tailored for data science with common syntax and philosophy [@tidyverse2017].
 One of the most useful packages that are included in `tidiverse` [@tidyverse2017] are `tidyr` [@tidyr2017] and `dplyr` [@dplyr2017]. First helps us to swap from 'wide' to 'long' table format (and back). The second package contains set of tools to easily manipulate rows, columns or even single cells in *data frame*. It is extremely powerful tool, which speeds up work with data sets so much, that after few times dealing with it, you will leave traditional spread sheet forever.
 
-### Wide vs. long tables
+## Wide vs. long tables
 Lets start with changing wide format table into long format table.
 
 ```{r echo = TRUE, eval = TRUE}
@@ -206,11 +206,11 @@ wideTable4
 wideTable4 %>% separate(type, c('organism', 'type'), sep = '\\.')
 ```
 
-### World of `dplyr`
+## World of `dplyr`
 
 `dplyr` is a library containing several useful functions, designed to ease all kinds of transformations, selections and filtering of your data frame. As the number and possibilities of functions are really huge, here I will concentrate only on some mostly used ones. Of course there is a well described documentation if you want to get deeper.
 
-#### `select` columns and `filter` rows
+## `select` columns and `filter` rows
 
 Those are the most basic operations on data frames. `select()` function allows you to choose which columns you use. The biggest advantage of using this function instead of simple addressing, is that you can use some special functions inside it: `starts_with(), ends_with(), contains(), matches(), num_range()` which are helpful when using big data sets with numerous columns. There is also similar function `rename()` which can be used to change variable names, but in results (contrary to `select()`) it keeps all the variables.
 Lets look how the thing works on some simple examples:
@@ -230,7 +230,7 @@ filter(wideTable3, type != 'bacteria')
 filter(wideTable3, near(female, 5))
 ```
 
-### `mutate` and `transmute`
+## `mutate` and `transmute`
 
 Both functions are widely used in data manipulation in **R**. Their main purpose is to create new variable (usually from existing ones) in data frame. Lets look on examples:
 
@@ -248,7 +248,7 @@ select(wideTable3, male, female) %>%
 
 As you can see in second example, when we use `mutate()` function, the newly created variables (in this example `femaleLog`) are available immediately so we can use them to create another variable (in this case `cumSumFemaleLog`) within one function call. In this example, I also used piping operator, because calculating intermediate steps and storing them as a result, which can be used later is useless, as we are interested only in the final outcome. The biggest advantage of this procedure is that we keep our *Environment* clean and preserve memory -- which is very important in long and memory consuming projects. Last but not least, the difference between `mutate()` and `transmute()` is that the latter do not preserve all variables, only the ones you created.
 
-#### `group_by` and `summarise`
+## `group_by` and `summarise`
 `summarise()` is commonly used function on grouped data. It allows to calculate many typical descriptive statistics (like `mean()` or `quantile()`) for particular groups in you data set, as well as it can count number of observations (`n()` function), or number of unique observations (`distinct()`). To see how it works in practice lets look back on our example and calculate mean value for `males` and `female`, as well as day range and number of cases for groups derived from `type`.
 
 ```{r echo = TRUE, eval = TRUE}
@@ -262,5 +262,5 @@ wideTable3 %>%
 
 Easy.
 
-#### Is there anything more in `dplyr` library?
+## Is there anything more in `dplyr` library?
 Yes. Actually I presented here only very very tiny fracture of `dplyr` possibilities just to familiarize you with syntax and using piping operator. When you go deeper into world of data frames transformation, you will find other commonly used functions like: different kinds of joining data frames (similar to **SQL** joining tables), conditional selecting, filtering, renaming rows and columns, extracting values or arranging your data frame. Thankfully this procedures are so common that even if you won't grasp it immediately from functions description, you will still find hundreds of tutorials on the web, or help in *StackOverflow*.

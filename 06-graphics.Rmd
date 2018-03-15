@@ -5,10 +5,10 @@ What would be our work value without visualization? Not much. **R** provides use
 ## Base plots
 Before we get to `ggplot2`, we should begin with base graphic functions. It is true that the do not look as pretty as plots from dedicated libraries, but they are extremely useful in quick checking of our workflow. Not to mention, that many packages are still operating with old fashioned base graphics.
 
-###How to make plot?
+## How to make plot?
 In previous chapters we made some plots, but we did not cover the details. Most important thing is to acknowledge that we can make plots with `hist()`, `plot()`, `barplot()` and `boxplot()` functions (to mention only the most common). There are of course other types of plots you might need, however those three are the *classic* ones. If you are looking for more examples of base plots, you should visit help page of `graphics` package. To change the look of your plot, just provide proper arguments to this function, like `col` for color of line/points or, `xlab` and `ylab` to change names of axis labels. Unfortunately a list of arguments that you can control and adjust is long. The good news is that all of them have their default value, so you need to change only the ones you want, without thinking about rest. Full list of parameter you can change you will find after executing: `?par` command. As this help page contains many different kinds of parameters you should scroll to find *Graphical Parameters* chapter.
 
-###Can we actually do something?
+## Can we actually do something?
 Yes we can. But as I said earlier scope of this book is not graphics. Thus I will cover here only the basic things you should know, or at least know where to find them. Under I will present only code and its output. Try to figure out yourself what is going on. You can also copy - paste the code in your script or console, edit it and learn how it works by doing. Even the best book is just a book, and nothing will substitute the knowledge you gain by experiencing.
 ```{r}
 graphicDummy <- data.frame(x = rnorm(100, 10, 2), y = rpois(100, 1.2))

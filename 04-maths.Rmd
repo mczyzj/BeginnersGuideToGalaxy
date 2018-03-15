@@ -5,10 +5,10 @@ OK. There is no such thing as simple statistical model. However there are lots o
 
 ## Other models
 
-### Packages
+## Packages
 Other, usually dynamic models, require more knowledge, experience and some packages. Before you start looking for more tailored solutions, install following packages: `deSolve`, `fitdistrplus`, `rriskDistributions` and `truncdist`. First one contains tools for solving differential equations sets, second and third provides you tools to deal with distributions (such as comparing distributions or estimating its parameters), and the last one allows you to use truncated distributions.
 
-### Simple mechanistic model and noise
+## Simple mechanistic model and noise
 To show some basic mechanistic model, we will use the well known Michaelis-Menten function: $f(x) = \frac{ax}{b+x}$, with *parameter a = 2.15* and *parameter b = 0.08*.
 ```{r MMfunction, fig.height = 4, fig.cap = 'Simple Michaelis-Menten function', fig.show = 'hold'}
 parA <- 2.15
@@ -58,9 +58,9 @@ lines(varX, mmSABFunction, col = 'green', lty = 'dashed')
 lines(varX, mmFSFunction, col = 'red', lty = 'dotted')
 ```
 
-### Polynomial models in **R**
+## Polynomial models in **R**
 
 Writing polynomial model is also very similar to how you write in on a piece of paper.
 
-### Solving differential equations
+## Solving differential equations
 

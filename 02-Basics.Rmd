@@ -4,20 +4,20 @@ operators <- read.delim("/media/michal/DATA/ROwe/BeginnersGuideToGalaxy/helperFi
 names(operators) <- c('sign', 'type', 'action')
 ```
 
-##Getting started
+## Getting started
 
-### Help
+## Help
 There are just few things you really need to remember and follow when you want to start using **R**. First, there is very good *help* build in. To access it, you use `?` sign with name of function: e.g.: `?t.test`. After executing command, in your window with *Help* pane, a page dedicated to this function will pop up. You will get information on syntax, options to use with this function and in most cases some code examples. However, with single question mark you are telling **R** to only look into functions from packages that are *currently loaded* and have this *precise name*. If you want to tell **R** to look for proper function in *all packages* or you are not sure what the exact name is you can use double question mark e.g. `??mutate`. In effect, in the same pane and window as previously you will get a list of results that match your query. Finally, using *Packages* pane, you can click on one of the packages names, to display all of the functions within it. Than, by clicking on the name of functions you are interested in, you will be taken to proper page with description.
 
-### Internet is a great source of information
+## Internet is a great source of information
 Anytime you feel lost or need help that is beyond the scope of manuals, just ask Google. For instance you can use this query: *how to make density plot in R*. Thanks to huge community you will find a lot of answers. The most reliable ones can be found on *StackOverflow*, *StatsExchange* and *RBloggers*. If you don't know if there is a package to perform particular task, also ask uncle Google. For instance, if you want to use random numbers from Dirichlet distribution, you can use this query: *dirichlet distribution r*.
 
-### More on internet sources
+## More on internet sources
 A good practice, when you want to learn programming language, is to read what other people do and how they code. In the beginning it might be a bit overwhelming or confusing to read all the stuff. However, reading others work will get you used to syntax and workflow, and will give you great basics to invent your own code. Hopefully, you don't need to spend hours searching for some interesting blogs. There is great blog aggregator [R weekly](https://rweekly.org), that gathers in one place the best posts, pod-casts, etc. on **R**, every week.
 
 ## Syntax
 
-### Common operators
+## Common operators
 There are three main *signs* used in **R's** syntax. First two are assignment symbols: `<-` and `=`; for convention we use them in different cases. Third one is `#`. It is a symbol used for comments. Everything following this symbol to the end of code line will not be executed. There are also other signs (or symbols) which are building blocks of language, however their use is very precisely defined and reserved for certain events. Below you find a table with reference for most common operators used. You will faster grasp it while you write your own code, than by reading about it. Thus, I suggest we go deeper into variable types in **R** language.
 
 ```{r tab-operators, echo = FALSE}
@@ -27,7 +27,7 @@ knitr::kable(
 )
 ```
 
-### Variables
+## Variables
 Concept of variable is crucial for programming. In **R** variables can contain many things: vectors, data frames, results of statistical analyses etc. Each of variables have some characteristic properties. They are defined by *class* of the variable. Thanks to *class* attribute, **R** knows, how to deal with variable -- what is the internal structure and what operations can be performed over variable. Data can be stored in variables in different manners. To assign something to variable we use `<-` operator, which tells **R** to store right side of arrow under name on the left side of arrow. The simplest variable is *vector*, which can be of *class*: *character*, *integer*, *numeric* or *logical*. For instance:
 
 ```{r echo = T, eval = T}
@@ -76,7 +76,7 @@ First of all, all names are *case-sensitive*, which means that **R** recognize v
 
 And the golden rule should be - whatever guideline you follow -- be consequent!
 
-### Math operations 
+## Math operations 
 In **R** we use standard math operators `+ - * /` to perform addition, subtraction, multiplication and division. Symbol `^` indicates that we want to use power, and sqrt to make square root. OK, so whats the name of a function to get n^th^ root? Probably you remember from math lessons that $\sqrt [n] {x} = x^\frac{1}{n}$, thus you can just write `x^(1/n)`. To change order of operation (which are following mathematics rules) use brackets `()`. Other important mathematical functions are `%%` for modulo, and %/% for integer division.
 
 ```{r eval = T, echo = T}
@@ -97,7 +97,7 @@ atanValue <- atan(0.89)
 atanValue*180/pi
 ```
 
-### Logics
+## Logics
 Logical expression are often used in programming. They compare left side with right side arguments of statement. The result of those comparison might be `TRUE` or `FALSE` (in many other languages those are called *Boolean* values) which belong to *class Logical*. In Table \@ref(tab:tab-operators) you will find list of most common logical operators used to build statements. Here is a small *cheatsheet tables*:
 
 ```{r echo = F, eval = T}
@@ -108,8 +108,10 @@ orTable <- outer(logicResults, logicResults, '|')
 ```
 
 ```{r tab-logics, echo = FALSE, result = 'asis'}
-knitr::kable(
-  list(andTable, orTable),
+knitr::kable(andTable, caption = 'AND Table',
+  booktabs = TRUE, longtable = TRUE
+)
+knitr::kable(orTable, caption = 'OR Table',
   booktabs = TRUE, longtable = TRUE
 )
 ##check kableExtra to format tables
@@ -124,7 +126,7 @@ Below you can see them in action:
 5L | 11.1 <= 6
 ```
 
-### Functions
+## Functions
 When writing code we generally want to perform some actions on our variables. There is a lot of *build in functions* in base **R** distribution, and a whole Galaxy of *functions* provided by community. Function can be literally any action performed on variables. For instance, there are some build in statistical functions like `t.test()` or `chisq.test()`. Other function can be use to draw some charts and plots, e.g. `plot()`. It's easy to recognize function, since its structure is *name* followed by parentheses *()*. Inside parentheses user provides arguments and options to function. Lets see how it works with one of *build in* functions:
 
 ```{r echo = T, eval = T}
