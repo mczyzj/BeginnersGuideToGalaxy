@@ -1,5 +1,9 @@
 # Graphics
 
+```{r echo = FALSE, eval = TRUE}
+library('ggplot2')
+```
+
 What would be our work value without visualization? Not much. **R** provides use with some tools to make plots, charts and other visual stuff. However base version has very limited graphic design by default and making it pretty needs a lot of time and code. Nowadays, however, in `tidyverse` there is a very powerful library with dozens of extensions - `ggplot2`. *GG* stands for *Gramar of Graphics* and in practice it means that we build our visualization layer after layer. The vast spectrum of `ggplot` functions and its extensions is out of the scope of this book. Here we will focus on the basic and most useful things as well as how to find not so common functionalities.
 
 ## Base plots
@@ -9,7 +13,7 @@ Before we get to `ggplot2`, we should begin with base graphic functions. It is t
 In previous chapters we made some plots, but we did not cover the details. Most important thing is to acknowledge that we can make plots with `hist()`, `plot()`, `barplot()` and `boxplot()` functions (to mention only the most common). There are of course other types of plots you might need, however those three are the *classic* ones. If you are looking for more examples of base plots, you should visit help page of `graphics` package. To change the look of your plot, just provide proper arguments to this function, like `col` for color of line/points or, `xlab` and `ylab` to change names of axis labels. Unfortunately a list of arguments that you can control and adjust is long. The good news is that all of them have their default value, so you need to change only the ones you want, without thinking about rest. Full list of parameter you can change you will find after executing: `?par` command. As this help page contains many different kinds of parameters you should scroll to find *Graphical Parameters* chapter.
 
 ## Can we actually do something?
-Yes we can. But as I said earlier scope of this book is not graphics. Thus I will cover here only the basic things you should know, or at least know where to find them. Under I will present only code and its output. Try to figure out yourself what is going on. You can also copy - paste the code in your script or console, edit it and learn how it works by doing. Even the best book is just a book, and nothing will substitute the knowledge you gain by experiencing.
+Yes we can. But as I said earlier scope of this book is not graphics. Thus I will cover here only the basic things you should know, or at least know where to find them. Bellow, I will present only code and its output. After what you read, you should be perfectly fine with figuring out what is going on. You can also copy - paste the code in your script or console, edit it and learn how it works by doing. Even the best book is just a book, and nothing will substitute the knowledge you gain by experiencing.
 ```{r}
 graphicDummy <- data.frame(x = rnorm(100, 10, 2), y = rpois(100, 1.2))
 plot(graphicDummy$x~graphicDummy$y)
@@ -21,3 +25,22 @@ hist(graphicDummy$y)
 plot(density(graphicDummy$x))
 plot(density(graphicDummy$y))
 ```
+
+## `ggplot2` - Graphics taken into other dimension
+This package use different approach to make plots and charts (however it is not limited to only those). The philosophy it follows is called Grammar of Graphics [@wilkinson2005; @layered-grammar]. Within this workframe, we build whole plot (chart, etc.) by adding layer after layer of visual options. *With great power comes great responsibility* -- `ggplot2` as well as it's extensions are highly customisable, thus if you want to use non-default settings it may take some time before you figure out how to do it. Here we will briefly cover the most basic stuff, but there is very good book that goes deeper into manipulation of visual effects, with lots of examples -- R Graphics Cookbook [chang2013] which is also available [on line](http://www.cookbook-r.com/Graphs/).
+
+Making basic plot requires defining 2 layers:
+
+1. Data
+2. Type of plot/chart
+
+```{r}
+plotTable <- data.frame(time = 1:10,
+                        depVal = c((1:10)*2)+2,
+                        typeDep = rep(c('first', 'second'), times = 5))
+ggplot(plotTable, aes(x = time, y = depVal)) +
+  geom_point(aes(colour = typeDep, alpha = 0.8, shape = typeDep, size = 3.5),
+             show.legend = FALSE)
+```
+
+In the function call (1^st layer), we define data set (`plotTable`) and aesthetics (`x` and `y` values). In following layer, we define 3 aesthetics -- `colour`, `alpha`, `shape` of points and their `size`. We also tell `ggplot` to not to make legend. Actually we obtain the same plot using a little bit different syntax. Unfortunately, when you first start working with `ggplot` (and even when you have some experience), you will often run into small problems that will need some adjustments in your code. Hopefully, this package is so broadly used that you will easily find a lot of solution of your problems on *Stack Overflow* as well as many extensions with predefined functions to make sophisticated graphics.
