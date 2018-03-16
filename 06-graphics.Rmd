@@ -38,9 +38,33 @@ Making basic plot requires defining 2 layers:
 plotTable <- data.frame(time = 1:10,
                         depVal = c((1:10)*2)+2,
                         typeDep = rep(c('first', 'second'), times = 5))
-ggplot(plotTable, aes(x = time, y = depVal)) +
+basePlot <- ggplot(plotTable, aes(x = time, y = depVal)) +
   geom_point(aes(colour = typeDep, alpha = 0.8, shape = typeDep, size = 3.5),
              show.legend = FALSE)
+basePlot
 ```
 
 In the function call (1^st layer), we define data set (`plotTable`) and aesthetics (`x` and `y` values). In following layer, we define 3 aesthetics -- `colour`, `alpha`, `shape` of points and their `size`. We also tell `ggplot` to not to make legend. Actually we obtain the same plot using a little bit different syntax. Unfortunately, when you first start working with `ggplot` (and even when you have some experience), you will often run into small problems that will need some adjustments in your code. Hopefully, this package is so broadly used that you will easily find a lot of solution of your problems on *Stack Overflow* as well as many extensions with predefined functions to make sophisticated graphics.
+
+Lets take a little deeper look into layers and aesthetics. Default look of plot is little bit boreing, and usually unsuitable for publications. In code below we will use another layers to define plot background, plot and axis names.
+
+```{r}
+basePlot +
+  labs(title = 'Basic dot plot', x = 'Time', y = 'Dependent variable') +
+  theme(axis.title.x = element_text(size = rel(0.7), colour = 'red'),
+        axis.title.y = element_text(size = rel(1.1)), 
+        plot.background = element_rect(fill = 'yellow'),
+        panel.background = element_rect(fill = 'pink'),
+        panel.grid = element_blank())
+  
+```
+Beautiful!  
+However we can use simple trick to make our plot in format that nis actually supported by scientific journals:
+```{r}
+basePlot +
+  labs(title = 'Basic dot plot', x = 'Time', y = 'Dependent variable') +
+  theme_bw() +
+  theme(panel.grid = element_blank())
+```
+
+
