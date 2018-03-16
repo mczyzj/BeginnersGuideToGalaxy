@@ -2,6 +2,8 @@
 
 ## Addressing
 
+----
+
 ## Vectors
 When you deal with variables you often will want to use only a part of it in your work. Other times you will want to get rid of some values which follow certain criteria. In order to do it you need to know an 'address' of particular value in a *vector*, *data frame*, *list* etc. From now on, I will use some functions while describing it *at hoc*, since I believe the best way to learn them, is to use them. Lets create a *vector* and see what we can do with it.
 

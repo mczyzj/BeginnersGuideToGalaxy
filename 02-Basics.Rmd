@@ -1,10 +1,13 @@
 # Basics
+
 ```{r echo = FALSE, eval = TRUE}
 operators <- read.delim("/media/michal/DATA/ROwe/BeginnersGuideToGalaxy/helperFiles/operators", header=FALSE, stringsAsFactors=FALSE)
 names(operators) <- c('sign', 'type', 'action')
 ```
 
 ## Getting started
+
+-----
 
 ## Help
 There are just few things you really need to remember and follow when you want to start using **R**. First, there is very good *help* build in. To access it, you use `?` sign with name of function: e.g.: `?t.test`. After executing command, in your window with *Help* pane, a page dedicated to this function will pop up. You will get information on syntax, options to use with this function and in most cases some code examples. However, with single question mark you are telling **R** to only look into functions from packages that are *currently loaded* and have this *precise name*. If you want to tell **R** to look for proper function in *all packages* or you are not sure what the exact name is you can use double question mark e.g. `??mutate`. In effect, in the same pane and window as previously you will get a list of results that match your query. Finally, using *Packages* pane, you can click on one of the packages names, to display all of the functions within it. Than, by clicking on the name of functions you are interested in, you will be taken to proper page with description.
@@ -16,6 +19,8 @@ Anytime you feel lost or need help that is beyond the scope of manuals, just ask
 A good practice, when you want to learn programming language, is to read what other people do and how they code. In the beginning it might be a bit overwhelming or confusing to read all the stuff. However, reading others work will get you used to syntax and workflow, and will give you great basics to invent your own code. Hopefully, you don't need to spend hours searching for some interesting blogs. There is great blog aggregator [R weekly](https://rweekly.org), that gathers in one place the best posts, pod-casts, etc. on **R**, every week.
 
 ## Syntax
+
+-----
 
 ## Common operators
 There are three main *signs* used in **R's** syntax. First two are assignment symbols: `<-` and `=`; for convention we use them in different cases. Third one is `#`. It is a symbol used for comments. Everything following this symbol to the end of code line will not be executed. There are also other signs (or symbols) which are building blocks of language, however their use is very precisely defined and reserved for certain events. Below you find a table with reference for most common operators used. You will faster grasp it while you write your own code, than by reading about it. Thus, I suggest we go deeper into variable types in **R** language.
