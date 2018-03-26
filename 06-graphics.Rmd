@@ -2,6 +2,7 @@
 
 ```{r echo = FALSE, eval = TRUE}
 library('ggplot2')
+library('dplyr')
 ```
 
 What would be our work value without visualization? Not much. **R** provides use with some tools to make plots, charts and other visual stuff. However base version has very limited graphic design by default and making it pretty needs a lot of time and code. Nowadays, however, in `tidyverse` there is a very powerful library with dozens of extensions - `ggplot2`. *GG* stands for *Gramar of Graphics* and in practice it means that we build our visualization layer after layer. The vast spectrum of `ggplot` functions and its extensions is out of the scope of this book. Here we will focus on the basic and most useful things as well as how to find not so common functionalities.
@@ -29,6 +30,7 @@ plot(density(graphicDummy$y))
 ## `ggplot2` - Graphics taken into other dimension
 This package use different approach to make plots and charts (however it is not limited to only those). The philosophy it follows is called Grammar of Graphics [@wilkinson2005; @layered-grammar]. Within this workframe, we build whole plot (chart, etc.) by adding layer after layer of visual options. *With great power comes great responsibility* -- `ggplot2` as well as it's extensions are highly customisable, thus if you want to use non-default settings it may take some time before you figure out how to do it. Here we will briefly cover the most basic stuff, but there is very good book that goes deeper into manipulation of visual effects, with lots of examples -- R Graphics Cookbook [chang2013] which is also available [on line](http://www.cookbook-r.com/Graphs/).
 
+*Basic plot*
 Making basic plot requires defining 2 layers:
 
 1. Data
@@ -46,7 +48,7 @@ basePlot
 
 In the function call (1^st layer), we define data set (`plotTable`) and aesthetics (`x` and `y` values). In following layer, we define 3 aesthetics -- `colour`, `alpha`, `shape` of points and their `size`. We also tell `ggplot` to not to make legend. Actually we obtain the same plot using a little bit different syntax. Unfortunately, when you first start working with `ggplot` (and even when you have some experience), you will often run into small problems that will need some adjustments in your code. Hopefully, this package is so broadly used that you will easily find a lot of solution of your problems on *Stack Overflow* as well as many extensions with predefined functions to make sophisticated graphics.
 
-Lets take a little deeper look into layers and aesthetics. Default look of plot is little bit boreing, and usually unsuitable for publications. In code below we will use another layers to define plot background, plot and axis names.
+Lets take a little deeper look into layers and aesthetics. Default look of plot is little bit boring, and usually unsuitable for publications. In code below we will use another layers to define plot background, plot and axis names.
 
 ```{r}
 basePlot +
@@ -59,12 +61,44 @@ basePlot +
   
 ```
 Beautiful!  
-However we can use simple trick to make our plot in format that nis actually supported by scientific journals:
+However we can use simple trick to make our plot in format that is actually supported by scientific journals:
 ```{r}
 basePlot +
   labs(title = 'Basic dot plot', x = 'Time', y = 'Dependent variable') +
   theme_bw() +
   theme(panel.grid = element_blank())
 ```
+
+*Density plots*
+But what if we want to actually plot something useful? Lets say that we want to graphically compare distributions of two data sets. We can do it by histograms (boring) or by plotting density functions. First we should generate some data. Assume that you are tossing coin, but you have this strange gut feeling that something is not right. In 500 trials you had 218 tails and 282 heads.
+
+```{r}
+coinDensity <- data.frame(coin = c(rep(1, times = 282), rep(0, times = 218)))
+ggplot(coinDensity, aes(x = coin)) + geom_density()
+```
+
+And we want to check if it is really different from binomial distribution.
+```{r}
+tCoinDensity <- data.frame(coin = rbinom(500, 1, 0.5))
+ggplot(tCoinDensity, aes(x = coin)) + geom_density()
+```
+
+Now we have two plots which is not the best way to visually check two distributions. It would be much better if we plot them one by one, preferably with different colors and opacity. Below it's short code snippet how to do it in **R**.
+
+```{r}
+coinTest <- bind_rows(coinDensity, tCoinDensity) %>%
+  bind_cols(distribution = rep(c('empirical', 'theoretical'), each = 500))
+ggplot(coinTest, aes(x = coin, fill = distribution)) + 
+  geom_density(alpha = 0.7, colour = 'yellow') +
+  scale_fill_manual(values = c('blue', 'violet'))
+
+```
+
+Indeed, the coin is slightly biased towards heads.
+
+*Box-plot and bar plot*
+
+*Regression*
+
 
 
