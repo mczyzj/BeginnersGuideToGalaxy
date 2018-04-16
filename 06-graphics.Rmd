@@ -1,6 +1,6 @@
 # Graphics
 
-```{r echo = FALSE, eval = TRUE}
+```{r echo = FALSE, eval = TRUE, message = FALSE}
 library('ggplot2')
 library('dplyr')
 ```
@@ -14,21 +14,23 @@ Before we get to `ggplot2`, we should begin with base graphic functions. It is t
 In previous chapters we made some plots, but we did not cover the details. Most important thing is to acknowledge that we can make plots with `hist()`, `plot()`, `barplot()` and `boxplot()` functions (to mention only the most common). There are of course other types of plots you might need, however those three are the *classic* ones. If you are looking for more examples of base plots, you should visit help page of `graphics` package. To change the look of your plot, just provide proper arguments to this function, like `col` for color of line/points or, `xlab` and `ylab` to change names of axis labels. Unfortunately a list of arguments that you can control and adjust is long. The good news is that all of them have their default value, so you need to change only the ones you want, without thinking about rest. Full list of parameter you can change you will find after executing: `?par` command. As this help page contains many different kinds of parameters you should scroll to find *Graphical Parameters* chapter.
 
 ## Can we actually do something?
-Yes we can. But as I said earlier scope of this book is not graphics. Thus I will cover here only the basic things you should know, or at least know where to find them. Bellow, I will present only code and its output. After what you read, you should be perfectly fine with figuring out what is going on. You can also copy - paste the code in your script or console, edit it and learn how it works by doing. Even the best book is just a book, and nothing will substitute the knowledge you gain by experiencing.
-```{r}
+Yes we can. But as I said earlier scope of this book is not graphics. Thus I will cover here only the basic things you should know, or at least know where to find them. Bellow, I will present only code and its output. After what you read, you should be perfectly fine with figuring out what is going on. You can also copy - paste the code in your script or console, edit it and learn how it works by doing. Even the best book is just a book, and nothing will substitute the knowledge you gain by experiencing.  
+
+```{r fig.height = 4.5}
 graphicDummy <- data.frame(x = rnorm(100, 10, 2), y = rpois(100, 1.2))
+par(mfrow = c(2,4))
 plot(graphicDummy$x~graphicDummy$y)
 plot(graphicDummy$x~as.factor(graphicDummy$y))
-boxplot(graphicDummy$x~graphicDummy$y)
-barplot(graphicDummy$x)
-hist(graphicDummy$x)
-hist(graphicDummy$y)
-plot(density(graphicDummy$x))
-plot(density(graphicDummy$y))
+boxplot(graphicDummy$x~graphicDummy$y, main = 'Boxplot')
+barplot(graphicDummy$x, main = 'Barplot')
+hist(graphicDummy$x, main = 'Histogram x')
+hist(graphicDummy$y, main = 'Histogram y')
+plot(density(graphicDummy$x), main = 'Density x')
+plot(density(graphicDummy$y), main = 'Density y')
 ```
 
 ## `ggplot2` - Graphics taken into other dimension
-This package use different approach to make plots and charts (however it is not limited to only those). The philosophy it follows is called Grammar of Graphics [@wilkinson2005; @layered-grammar]. Within this workframe, we build whole plot (chart, etc.) by adding layer after layer of visual options. *With great power comes great responsibility* -- `ggplot2` as well as it's extensions are highly customisable, thus if you want to use non-default settings it may take some time before you figure out how to do it. Here we will briefly cover the most basic stuff, but there is very good book that goes deeper into manipulation of visual effects, with lots of examples -- R Graphics Cookbook [chang2013] which is also available [on line](http://www.cookbook-r.com/Graphs/).
+This package use different approach to make plots and charts (however it is not limited to only those). The philosophy it follows is called Grammar of Graphics [@wilkinson2005; @layered-grammar]. Within this workframe, we build whole plot (chart, etc.) by adding layer after layer of visual options. *With great power comes great responsibility* -- `ggplot2` as well as it's extensions are highly customisable, thus if you want to use non-default settings it may take some time before you figure out how to do it. Here we will briefly cover the most basic stuff, but there is very good book that goes deeper into manipulation of visual effects, with lots of examples -- R Graphics Cookbook [@chang2013] which is also available [on line](http://www.cookbook-r.com/Graphs/).
 
 *Basic plot*
 Making basic plot requires defining 2 layers:
@@ -36,7 +38,7 @@ Making basic plot requires defining 2 layers:
 1. Data
 2. Type of plot/chart
 
-```{r}
+```{r fig.height = 2.5}
 plotTable <- data.frame(time = 1:10,
                         depVal = c((1:10)*2)+2,
                         typeDep = rep(c('first', 'second'), times = 5))
@@ -50,7 +52,7 @@ In the function call (1^st layer), we define data set (`plotTable`) and aestheti
 
 Lets take a little deeper look into layers and aesthetics. Default look of plot is little bit boring, and usually unsuitable for publications. In code below we will use another layers to define plot background, plot and axis names.
 
-```{r}
+```{r fig.height = 2.5}
 basePlot +
   labs(title = 'Basic dot plot', x = 'Time', y = 'Dependent variable') +
   theme(axis.title.x = element_text(size = rel(0.7), colour = 'red'),
@@ -62,7 +64,7 @@ basePlot +
 ```
 Beautiful!  
 However we can use simple trick to make our plot in format that is actually supported by scientific journals:
-```{r}
+```{r fig.height = 2.5}
 basePlot +
   labs(title = 'Basic dot plot', x = 'Time', y = 'Dependent variable') +
   theme_bw() +
@@ -72,20 +74,20 @@ basePlot +
 *Density plots*
 But what if we want to actually plot something useful? Lets say that we want to graphically compare distributions of two data sets. We can do it by histograms (boring) or by plotting density functions. First we should generate some data. Assume that you are tossing coin, but you have this strange gut feeling that something is not right. In 500 trials you had 218 tails and 282 heads.
 
-```{r}
+```{r fig.height = 2.5}
 coinDensity <- data.frame(coin = c(rep(1, times = 282), rep(0, times = 218)))
 ggplot(coinDensity, aes(x = coin)) + geom_density()
 ```
 
 And we want to check if it is really different from binomial distribution.
-```{r}
+```{r fig.height = 2.5}
 tCoinDensity <- data.frame(coin = rbinom(500, 1, 0.5))
 ggplot(tCoinDensity, aes(x = coin)) + geom_density()
 ```
 
 Now we have two plots which is not the best way to visually check two distributions. It would be much better if we plot them one by one, preferably with different colors and opacity. Below it's short code snippet how to do it in **R**.
 
-```{r}
+```{r fig.height = 2.5}
 coinTest <- bind_rows(coinDensity, tCoinDensity) %>%
   bind_cols(distribution = rep(c('empirical', 'theoretical'), each = 500))
 ggplot(coinTest, aes(x = coin, fill = distribution)) + 
@@ -96,9 +98,46 @@ ggplot(coinTest, aes(x = coin, fill = distribution)) +
 
 Indeed, the coin is slightly biased towards heads.
 
-*Box-plot and bar plot*
+*Box-plot*
+When dealing with comparison of two or more groups we usually check their distribution by visually inspecting so called *box plots* or *box-whiskers plots*. This plot shows interquartile range (IQR) as box, median as a line inside box, 1.5 IQR as *whiskers* and all of the data points that are more than 1^st quartile - 1.5 IQR or 3^rd quartile + 1.5 IRQ as separated dots called *outliers*. There are few different approaches to define *outlieres* and *whiskers* in box plots, nonetheless above is most common. It is very straightforward to make box-plots with `ggplot2`:
+
+```{r fig.height = 2.5}
+boxGroups <- data.frame(group = rep(c('normal', 'chisq', 'pois'), each = 100),
+                        values = c(rnorm(100, 3, 0.65), rchisq(100, 3), rpois(100, 3)))
+ggplot(boxGroups, aes(x = group, y = values)) +
+  geom_boxplot()
+```
+
+*Bar plot*
+This visualization technique is mainly used to show categorical variables as rectangles with height (length) that is proportional to value that each categorical variable represents. It is also very easy to create bar-plots in `ggplot2`:
+
+```{r fig.height = 2.5}
+barGroups <- boxGroups %>% group_by(group) %>% summarise(meanVal = mean(values))
+ggplot(barGroups, aes(x = group, y = meanVal)) +
+  geom_bar(stat = 'identity')
+```
+
 
 *Regression*
+Last common visualization is regression plot. With layer by layer approach we can control all the elements of the plot. Below code shows how you can visualize both dots and lines for regression, change title and labels and set some non standard appearance of plot.
 
-
-
+```{r fig.height = 3}
+regVar <- c(sample(1:20, 100, replace = T))
+regRes <- ((regVar * 2.6) + 0.8) + order(rnorm(100, 10, 4.25))
+regDF <- data.frame(x = regVar, y = regRes)
+ggplot(regDF, aes(x, y)) +
+  geom_point(fill = 'yellow', colour = '#ff0099', shape = 21, stroke = 1.15) +
+  geom_ribbon(stat='smooth', method = "lm", se = TRUE, 
+              fill = '#990011', colour = 'yellow', alpha = 0.4,
+              linetype = 3, size = 0.2) +
+  geom_line(stat='smooth', method = "lm",
+            colour = 'green', alpha = 1,
+            linetype = 4, size = 1.15) +
+  theme(panel.background = element_rect(fill = NA),
+        axis.line = element_line(size = 1.15, colour = 'grey')) +
+  labs(x = 'Values of X',
+       y = 'y = 2.6 * x + 0.8',
+       title = 'Example of regression plot') +
+  annotate('text', label = 'y==2.6*x+0.8+epsilon', parse = T,
+           x = 3.5, y = 135, colour = 'blue')
+```
