@@ -2,9 +2,7 @@
 
 ## Addressing
 
-----
-
-## Vectors
+### Vectors
 When you deal with variables you often will want to use only a part of it in your work. Other times you will want to get rid of some values which follow certain criteria. In order to do it you need to know an 'address' of particular value in a *vector*, *data frame*, *list* etc. From now on, I will use some functions while describing it *at hoc*, since I believe the best way to learn them, is to use them. Lets create a *vector* and see what we can do with it.
 
 ```{r echo = T, eval = T}
@@ -55,7 +53,7 @@ addressVec
 
 If you have problems, you can think of this example as a composition of actions. First there is expression `addressVec >=6`, than we use `which()` function with argument from previous expression. Next the result is passed as an address. Last thing is assignment of new value to...
 
-## Data frames (and matrices)
+### Data frames (and matrices)
 
 When dealing with *data frames*, addressing is possible in two ways. First is similar to *vector* addressing. However, as *data frames* have two dimensions, you will need to express them like `df[1, 2]` -- which tells **R** to look up the cell in row 1, column 2. But what if you want to check all the cells in particular row or column? Omit the number, but not the coma -- like this: `df[, 3]`. It will display all row values from column 3. And of course you can still use *vectors* when addressing. This way also works for *matrices*.
 
@@ -73,7 +71,21 @@ addressDF$C2[5]
 addressDF$C3[c(6:9)]
 ```
 
-## Lists
+When working with *matrices* you will find a lot of functions that apply to them (check help page for `base` package). The one you should familiarize with, if you plan on working with *matrix* operations are:
+
+* `dim()` -- returns dimensions of *matrix*
+* `rownames()` and `colnames()` -- to specify row and column names
+* `cbind()` and `rbind()` -- to add columns or rows to a *matrix* (respectively)
+* `lower.tri()`, `upper.tri()` -- lower and upper triangular part of *matrix*
+* `t()` -- *matrix* transposition
+* `outer()` -- outer products of *matrix*
+* `rowsums()`, `rowmeans()`. `colsums()` and `colmeans()` -- tool to calculate sum and mean of rows or columns
+* `%*%` -- *matrix* multiplication operator (`matrixOne %*% matrix2`)
+* `diag()` -- diagonals of a *matrix*
+
+You can also check *help* for `Matrix` package which contains dozens of functions to deal with *matrix* algebra and *matrix* transformations.
+
+### Lists
 As mentioned before each *list* element can have different structure. Thus, addressing is kind of a mixture of all above. First you need to address element of your *list*. You do it with double brackets containing element number following name of variable. You can also use `$` sign with name of the element. Than you use addressing the same way you address *data frames*, *vectors* or *matrices*.
 
 ```{r echo = T, eval =T, error = T}
@@ -84,6 +96,158 @@ addressList[[3]]
 addressList[[3]][, 3]
 ```
 OK, now simple task for you. There is a function called `colnames()` which allow us to change names in *matrix* variable. To use it you need to put name of *matrix* variable in the parentheses (like this: `colnames(x)`), and assign value to it (e.g. `colnames(x) <- c('one', 'two')). Now change names of of columns in *matrix* that is element of list above to `I`, 'Love', 'R'.
+
+## Control flow
+Controlling flow of function, script or whole program is the essence of programming. In general we can divide procedures in two big categories: **conditional control** and **iteration control**. In the first category we will find `if...else` statements. They change execution of code depending on state of input or previous results. In the second category we will find tools to repeatedly do execute some code. Typically tools to control repeating of code are `for` and `while` loops. However, in R there are special functions, which are basically `for` loops but have slightly better performance, and are shorter to write. We call them `apply` functions family.
+
+### `if...else` and `ifelse` statments
+The simplest way to control how the code is executed are conditions. In an abstract form it is something like telling your machine: if the state is red make it blue, else make it green. The most general form it is written like below:
+
+```{r echo = TRUE, eval = FALSE}
+if (x) { #writting just X without any condtition is evaluated as x == TRUE
+  function(x)
+}
+####rest of the code####
+
+#Or...
+if (x) {
+  function(x)
+} else { #in this example this block will be evaluated if x == FALSE
+  function(y)
+}
+```
+
+As you see, writing conditionals in their basic form is quite easy. If our script can be in just on of two different states while it start evaluating conditions both of above examples will be suitable. In practice it happens quite often that we need to plan different actions because of dichotomy in the results of previous actions. If our code in this place is going to make some simple things you can consider using `ifelse()` shortcut. It works like below:
+
+```{r}
+coinToss <- sample(c(0,1), 3, replace = T)
+coinToss
+ifelse(coinToss > 0, 'Win!', 'Looser!')
+```
+
+But what if your script can have more than two states when you start evaluating conditions? You will need to use `else if()` structure. A simple example is below:
+
+```{r}
+coinToss <- sample(c(0,1), 3, replace = T)
+sumOfCoins <- sum(coinToss)# we can have four states here 0,1,2,3
+sumOfCoins
+
+if (sumOfCoins == 0) {
+  'Looser'
+} else if (sumOfCoins == 1) {
+  'Barely alive'
+} else if (sumOfCoins >= 2) {
+  'Big Winner!!!'
+}
+
+#Or because the functions realting to particular conditions are simple, you
+#can make nested ifelse
+ifelse(sum(sumOfCoins) == 0, 'Looser',
+       ifelse(sum(sumOfCoins) == 1, 'Barely alive', 'Big Winner!!!'))
+```
+
+### `for` and `while` loops
+In many cases we want to use the same function over data stored in different *vectors*, columns or data sets. Other time we need to make sequence of computations in which every result depends on the previous one (like, for instance, in [Fibonacci sequence](https://en.wikipedia.org/wiki/Fibonacci_number)). In yet another situation we need to run function over data set, but only till we reach specific value. Of course, we can do everything manually, by copy-pasting code, taping *ctrl+enter* several times and so on. In every programming language we will find tools that help us automatize this procedures, and by side effect make them less prone to error. Those are called loops. Namely, the most common loops used are `for` and `while`. The difference between them, is that in first one we define number of iterations and in the second one we define condition that must be met so the loops is executed. In other words `for (i in 1:10) {x + i}` means that numbers from 1 to 10 will be added to x in a sequence. `while (x < 5) {print(x <- x - 1)}` on the other hand will subtract value `1` from `x` as long as `x` is greater than `0`. You thing that is worth to mention is that `while` loops are general form and `for` loops are special cases. It means that it is possible to rewrite any `for` loop into `while` loop, but not the other way.
+
+Also when working in loops you should always preallocate memory for your output. In simple words it means, that if you are writing loop, that grows the vector instead of just substitute values, **R** needs to copy your previous results in each iteration. Thus making a *vector* of length of your number of iterations (or a *list*) before you start a loop will save you some computational time.
+
+To illustrate how it works in practice lets look on some simple examples:
+
+```{r}
+exampleDF <- data.frame(norm = rnorm(100, 5, 1.5),
+                        chisq = rchisq(100, 3),
+                        pois = rpois(100, 3.33))
+distroMeans <- vector('list', length(exampleDF)) #prealocate space
+
+for (i in seq_along(exampleDF)) {
+  distroMeans[[i]] <- summary(exampleDF[[i]])
+}
+
+distroMeans
+```
+
+Above example is very simple, and actually can be made without loop. Try to call from your console following command `summary(exampleDF)`. This is called vectorization which will be explained few paragraphs below.
+
+But lets get back to loops and write something that might be useful (yet very simple). Assume that you are investigating animals reproduction. You have a herd that counts 60 animals. The reproduction factor is `1.34`, and survival factor is '0.75'. So the overall growth factor can be calculated as *reproduction factor* \* *survival factor*. In each generation there is some noise in reproduction, i.e. from -3 to 2 animals are born with equal probability. This means, that number of animals in each generation directly depends of the outcome of previous generation. We want to make a chart (Fig. \@ref(fig:popPlot)) to visualize population dynamics in `100` generation, thus we decide to use `while (time < 101)` loop.
+
+```{r popPlot, fig.cap = 'Population dynamics', fig.height = 3.5}
+#define initial parameters
+N_0   <- 100
+rf    <- 1.34
+sf    <- 0.75
+gf    <- rf*sf
+n_gen <- 1:101
+#we could repeat this inside loop, however we know the number of iterations
+#thus calculating noise vector outside loop is better for performance
+noise <- sample(-3:2, 100, replace = T)
+t <- 1
+geners <- vector('integer', length = length(n_gen))
+geners[1] <- N_0
+while (t < 101) {
+  geners[c(t + 1)] <- floor((geners[t] * gf + noise[t]))
+  t <- t + 1
+}
+
+plot(n_gen, geners, type = 'l',
+     main = 'Population dynamics',
+     xlab = 'generation', ylab = 'number of animals',
+     col = 'blue', lty = 3)
+```
+
+It appears that we found a way to make a species extinct...
+
+### `apply` function family
+
+For simple loops there is a shortcut. Namely, there is an `apply` function family that performs defined function over vector, list, matrix etc. Probably your need to use it will be reduced to `lapply()` and `sapply()` function in the beginning, thus I will focus on them here. From my experience it is better to first understand and correctly use `for` and `while` loops, than switch to `lapply()` and `sapply()` and than learn how to correctly use functions like `tapply()`, `mapply()`, `vapply()`. `sapply()` generally is the same as `lapply()`, the only difference is that the later function results in *list* of the same length as first argument. Each element of list contains results of function that was applied to the first argument. Simplified version tries to simplify results to *vector*, *matrix* or *array*. One tricky thing is that we we want to use function that takes more arguments than just our arguments of values over which we want to iterate we need to use a bit different syntax. In general, lets say our list is named as `X`, our function is `SomeFunction`, which takes arguments `A` and `B` (`SomeFunction(A, B)). Lets asume that each element of `X` is used as an argument `B` in consequent iterations, while `A` is fixed and equals `10`. The correct for of using lapply (or sapply) will be: `lapply(X, SomeFunction, A = 10)`.
+
+```{r}
+testApply  <- list(x = 1:10, b = rep(c(4,5), times = 5), c = rpois(5, 25))
+testLapply <- lapply(testApply, mean)
+testSapply <- sapply(testApply, mean)
+
+#Here we combine previous results with another lapply,
+#and use function with multiple arguments.
+lapply(testSapply, rpois, n = 15)
+head(sapply(testSapply, rpois, n = 15))
+```
+
+It is also possible to use so called anonymous functions (simplifying -- function that does not have name and exists temporally) as an argument.
+
+```{r}
+testApplyFun <- 1:5
+lapply(testApplyFun, function(x) x + 0.5)
+sapply(testApplyFun, function(x) x + 0.5)
+```
+
+On the basis of previous code that calculated population dynamics, we can write general function and use it with `lappy()` to estimate different population dynamics depending on initial population size. Than, by addition of consequent lines representing populations with different starting points we create plot for all 4 populations (Fig. \@ref(fig:lapplyPopPlot)).
+
+```{r lapplyPopPlot, fig.cap = 'Population dynamics with different starting point', fig.height = 3.5}
+popDyn <- function(N_0, rf = 1.34, sf = 0.75, n_gen) {
+  gf    <- rf*sf
+  noise <- sample(-3:2, 100, replace = T)
+  t <- 1
+  geners <- vector('integer', length = n_gen)
+  geners[1] <- N_0
+  while (t < 101) {
+  geners[c(t + 1)] <- floor((geners[t] * gf + noise[t]))
+  t <- t + 1
+  }
+  return(geners)
+}
+
+N_0   <- c(50, 100, 150, 200, 250)
+popSizes <- lapply(N_0, popDyn, n_gen = 101)
+
+n_gen = 101
+plot(1:n_gen, popSizes[[5]], type = 'l',
+     main = 'Population dynamics',
+     xlab = 'generation', ylab = 'number of animals',
+     col = 'blue', lty = 3, ylim = c(-10, max(popSizes[[5]])))
+lines(1:n_gen, popSizes[[4]], col = 'green')
+lines(1:n_gen, popSizes[[3]], col = 'red')
+lines(1:n_gen, popSizes[[2]], col = 'yellow')
+lines(1:n_gen, popSizes[[1]], col = 'black')
+```
 
 ## Operation on Vectors
 Old proverb:
@@ -155,7 +319,7 @@ plot(seq(0, 1, length = 300), dbeta(seq(0, 1, length = 300), 8, 3), type = 'l')
 The whole idea of tidy data comes from one of most famous **R** developers -- [Hadley Wickham](http://hadley.nz/). In on of his papers [@hadley2014] he described procedures for generating and cleaning data in standardized manner. Many packages right now are designed to work best with data structured according to this publication. Eventually it lead to `tidiverse` -- tools tailored for data science with common syntax and philosophy [@tidyverse2017].
 One of the most useful packages that are included in `tidiverse` [@tidyverse2017] are `tidyr` [@tidyr2017] and `dplyr` [@dplyr2017]. First helps us to swap from 'wide' to 'long' table format (and back). The second package contains set of tools to easily manipulate rows, columns or even single cells in *data frame*. It is extremely powerful tool, which speeds up work with data sets so much, that after few times dealing with it, you will leave traditional spread sheet forever.
 
-## Wide vs. long tables
+### Wide vs. long tables
 Lets start with changing wide format table into long format table.
 
 ```{r echo = TRUE, eval = TRUE}
@@ -170,7 +334,7 @@ library('tidyr')
 library('magrittr')
 library('dplyr')
 longTable <- gather(wideTable, key = sex, value = number)
-longTable
+longTable[7:12, ]
 ```
 
 That is how easy it can be done. But what if table is more complicated?
@@ -181,7 +345,7 @@ wideTable2 <- data.frame(male = 1:10,
                          type = rep(c('bacteria', 'virus'), times = 5),
                          group = rep(c('a', 'b'), each = 5))
 wideTable2
-gather(wideTable2, sex, number, -c(3, 4))
+gather(wideTable2, sex, number, -c(3, 4))[7:13, ]
 ```
 
 In example above, using expression `-(3, 4)` we indicated that we do not want to gather columns 3 and 4.
@@ -194,8 +358,9 @@ wideTable3 <- data.frame(male = rep(1:10, each = 2),
                          type = rep(c('bacteria','virus'), times = 10),
                          group = rep(c('a','b'), each = 10),
                          day = 1:10)
-wideTable3
-gather(wideTable3, sex, number, 1:2) %>% spread(group, number)
+wideTable3[7:13, ]
+gather(wideTable3, sex, number, 1:2) %>%
+  spread(group, number) %>% .[7:13, ]
 ```
 
 Here our data set had additional column `group` storing values `a` and `b`. But imagine that `group` is not a variable, but it just stores the names of variables - which are a and b. This somehow might be frustrating, to decide if those are really separate variables or not. You might run into problem, that your column named `environmental factor` contains values: *pH*, *conductivity*, and *oxygen concentration*. This would be straightforward as each of this is different variable and you should spread this column into three different variables. On the other hand you might see a column that contains *minimum temperature* and *maximum temperature*. This would not be as straightforward and decision upon spreading this column would strongly depend on the context. Nonetheless, using `spread()` function we were able to transform values from this column as separate columns. We also used *piping operator* `%>%`. It is a shortcut, which allows us to pass the left side as an argument to the function on the right side of operator. In general it means that writing `a %>% funtion(b)` actually is translated into `function(a, b)`. In the beginning this idea might be not very useful for you, but with time it will get helpful. Mainly because your code gets better structure and you can perform multiple operations without storing it in variables (which you do not want, since it consumes memory).
@@ -208,13 +373,11 @@ wideTable4
 wideTable4 %>% separate(type, c('organism', 'type'), sep = '\\.')
 ```
 
-## World of `dplyr`
-
+### World of `dplyr`
 `dplyr` is a library containing several useful functions, designed to ease all kinds of transformations, selections and filtering of your data frame. As the number and possibilities of functions are really huge, here I will concentrate only on some mostly used ones. Of course there is a well described documentation if you want to get deeper.
 
-## `select` columns and `filter` rows
-
-Those are the most basic operations on data frames. `select()` function allows you to choose which columns you use. The biggest advantage of using this function instead of simple addressing, is that you can use some special functions inside it: `starts_with(), ends_with(), contains(), matches(), num_range()` which are helpful when using big data sets with numerous columns. There is also similar function `rename()` which can be used to change variable names, but in results (contrary to `select()`) it keeps all the variables.
+### `select` columns and `filter` rows
+Those are the most basic operations on *data frames*. `select()` function allows you to choose which columns you use. The biggest advantage of using this function instead of simple addressing, is that you can use some special functions inside it: `starts_with(), ends_with(), contains(), matches(), num_range()` which are helpful when using large data sets with numerous columns. There is also similar function `rename()` which can be used to change variable names, but in results (contrary to `select()`) it keeps all the variables.
 Lets look how the thing works on some simple examples:
 
 ```{r echo = TRUE, eval = TRUE}
@@ -232,7 +395,7 @@ filter(wideTable3, type != 'bacteria')
 filter(wideTable3, near(female, 5))
 ```
 
-## `mutate` and `transmute`
+### `mutate` and `transmute`
 
 Both functions are widely used in data manipulation in **R**. Their main purpose is to create new variable (usually from existing ones) in data frame. Lets look on examples:
 
@@ -250,7 +413,7 @@ select(wideTable3, male, female) %>%
 
 As you can see in second example, when we use `mutate()` function, the newly created variables (in this example `femaleLog`) are available immediately so we can use them to create another variable (in this case `cumSumFemaleLog`) within one function call. In this example, I also used piping operator, because calculating intermediate steps and storing them as a result, which can be used later is useless, as we are interested only in the final outcome. The biggest advantage of this procedure is that we keep our *Environment* clean and preserve memory -- which is very important in long and memory consuming projects. Last but not least, the difference between `mutate()` and `transmute()` is that the latter do not preserve all variables, only the ones you created.
 
-## `group_by` and `summarise`
+### `group_by` and `summarise`
 `summarise()` is commonly used function on grouped data. It allows to calculate many typical descriptive statistics (like `mean()` or `quantile()`) for particular groups in you data set, as well as it can count number of observations (`n()` function), or number of unique observations (`distinct()`). To see how it works in practice lets look back on our example and calculate mean value for `males` and `female`, as well as day range and number of cases for groups derived from `type`.
 
 ```{r echo = TRUE, eval = TRUE}
