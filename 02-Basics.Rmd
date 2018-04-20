@@ -1,5 +1,5 @@
 # Basics
-
+In this chapter you will see some short introduction to **R** environment. The basic information will be covered with more concern in following chapters.
 ```{r echo = FALSE, eval = TRUE}
 operators <- read.delim("/media/michal/DATA/ROwe/BeginnersGuideToGalaxy/helperFiles/operators", header=FALSE, stringsAsFactors=FALSE)
 names(operators) <- c('sign', 'type', 'action')
@@ -7,22 +7,18 @@ names(operators) <- c('sign', 'type', 'action')
 
 ## Getting started
 
------
-
-## Help
+### Help
 There are just few things you really need to remember and follow when you want to start using **R**. First, there is very good *help* build in. To access it, you use `?` sign with name of function: e.g.: `?t.test`. After executing command, in your window with *Help* pane, a page dedicated to this function will pop up. You will get information on syntax, options to use with this function and in most cases some code examples. However, with single question mark you are telling **R** to only look into functions from packages that are *currently loaded* and have this *precise name*. If you want to tell **R** to look for proper function in *all packages* or you are not sure what the exact name is you can use double question mark e.g. `??mutate`. In effect, in the same pane and window as previously you will get a list of results that match your query. Finally, using *Packages* pane, you can click on one of the packages names, to display all of the functions within it. Than, by clicking on the name of functions you are interested in, you will be taken to proper page with description.
 
-## Internet is a great source of information
+### Internet is a great source of information
 Anytime you feel lost or need help that is beyond the scope of manuals, just ask Google. For instance you can use this query: *how to make density plot in R*. Thanks to huge community you will find a lot of answers. The most reliable ones can be found on *StackOverflow*, *StatsExchange* and *RBloggers*. If you don't know if there is a package to perform particular task, also ask uncle Google. For instance, if you want to use random numbers from Dirichlet distribution, you can use this query: *dirichlet distribution r*.
 
-## More on internet sources
+### More on internet sources
 A good practice, when you want to learn programming language, is to read what other people do and how they code. In the beginning it might be a bit overwhelming or confusing to read all the stuff. However, reading others work will get you used to syntax and workflow, and will give you great basics to invent your own code. Hopefully, you don't need to spend hours searching for some interesting blogs. There is great blog aggregator [R weekly](https://rweekly.org), that gathers in one place the best posts, pod-casts, etc. on **R**, every week.
 
 ## Syntax
 
------
-
-## Common operators
+### Common operators
 There are three main *signs* used in **R's** syntax. First two are assignment symbols: `<-` and `=`; for convention we use them in different cases. Third one is `#`. It is a symbol used for comments. Everything following this symbol to the end of code line will not be executed. There are also other signs (or symbols) which are building blocks of language, however their use is very precisely defined and reserved for certain events. Below you find a table with reference for most common operators used. You will faster grasp it while you write your own code, than by reading about it. Thus, I suggest we go deeper into variable types in **R** language.
 
 ```{r tab-operators, echo = FALSE}
@@ -32,7 +28,7 @@ knitr::kable(
 )
 ```
 
-## Variables
+### Variables
 Concept of variable is crucial for programming. In **R** variables can contain many things: vectors, data frames, results of statistical analyses etc. Each of variables have some characteristic properties. They are defined by *class* of the variable. Thanks to *class* attribute, **R** knows, how to deal with variable -- what is the internal structure and what operations can be performed over variable. Data can be stored in variables in different manners. To assign something to variable we use `<-` operator, which tells **R** to store right side of arrow under name on the left side of arrow. The simplest variable is *vector*, which can be of *class*: *character*, *integer*, *numeric* or *logical*. For instance:
 
 ```{r echo = T, eval = T}
@@ -69,7 +65,7 @@ class(listVariable$x3)
 
 There are plenty of other *classes*, e.g. for *time variables*, however mentioned above are the basic ones you will deal mostly. Also because they are so often used, you should learn how to recognize their structure at a glance. Later on, I will present you how (and when) each of this variables types can be used in work. 
 
-### Naming Variables
+#### Naming Variables
 First of all, all names are *case-sensitive*, which means that **R** recognize variables named `RVariable`, `rVariable` and `Rvariable` as three different objects. Second thing to remember is that variable name *have to* start with a letter and may contain only letters, numbers and symbols: . (dot) and _ (underscore). There are also some *good practices* in naming variables (after [Hadley Wickham Style guide](http://adv-r.had.com.nz/Style.html)):
 
 * use lowercase to names variables (and functions)
@@ -139,4 +135,4 @@ tTestResult <- t.test(numericVector, integerVector)
 print(tTestResult)
 ```
 
-We used `t.test()` function, with two arguments: `numericVector` and `integerVector`. In second function call, we *ordered* **R** to print out the results of statistical test stored in variable `tTestResult` -- which is the argument of this function.
+We used `t.test()` function, with two arguments: `numericVector` and `integerVector`. In second function call, we *ordered* **R** to print out the results of statistical test stored in variable `tTestResult` -- which is the argument of this function. I'll show you how to write your own function in chapter \@ref(Functions).
