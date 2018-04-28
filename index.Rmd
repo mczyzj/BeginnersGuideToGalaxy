@@ -23,6 +23,6 @@ To give you an example and how awesome and powerful **R** is, I wrote whole this
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'devtools', 'dplyr', 'stringr','tidyr', 'tidyverse', 'fitdistrplus', 'e1071', 'truncdist'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'dplyr', 'stringr','tidyr', 'tidyverse', 'fitdistrplus', 'mc2d', 'ggplot2', 'nlsMicrobio', 'truncdist', 'deSolve', 'segmented'
 ), 'packages.bib')
 ```

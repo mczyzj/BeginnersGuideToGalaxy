@@ -10,8 +10,6 @@ bookdown::pdf_book:
   toc_unnumbered: no
   toc_appendix: yes
   highlight: "tango"
-  linkcolor: blue
-  urlcolor: red
 bookdown::epub_book: default
 bookdown::gitbook:
   css: style.css
