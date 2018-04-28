@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Beginners Guide to R’s Galaxy</title>
   <meta name="description" content="Quick introduction to astonishing R’s Galaxy">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Beginners Guide to R’s Galaxy" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michal J. Czyz">
 
 
-<meta name="date" content="2018-02-07">
+<meta name="date" content="2018-03-08">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -142,9 +142,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html"><i class="fa fa-check"></i><b>5</b> Lets do some math!</a><ul>
 <li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-statistical-model"><i class="fa fa-check"></i><b>5.1</b> Simple statistical model</a></li>
 <li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#other-models"><i class="fa fa-check"></i><b>5.2</b> Other models</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#libraries"><i class="fa fa-check"></i><b>5.2.1</b> Libraries</a></li>
-<li class="chapter" data-level="5.2.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-asymptotic-model-and-noise"><i class="fa fa-check"></i><b>5.2.2</b> Simple asymptotic model and noise</a></li>
-<li class="chapter" data-level="5.2.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#mechanistic-model-in-r"><i class="fa fa-check"></i><b>5.2.3</b> Mechanistic model in <strong>R</strong></a></li>
+<li class="chapter" data-level="5.2.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#packages"><i class="fa fa-check"></i><b>5.2.1</b> Packages</a></li>
+<li class="chapter" data-level="5.2.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-mechanistic-model-and-noise"><i class="fa fa-check"></i><b>5.2.2</b> Simple mechanistic model and noise</a></li>
+<li class="chapter" data-level="5.2.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#polynomial-models-in-r"><i class="fa fa-check"></i><b>5.2.3</b> Polynomial models in <strong>R</strong></a></li>
 <li class="chapter" data-level="5.2.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.2.4</b> Solving differential equations</a></li>
 </ul></li>
 </ul></li>
@@ -153,12 +153,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.2" data-path="functions-1.html"><a href="functions-1.html#building-your-own-calculator"><i class="fa fa-check"></i><b>6.2</b> Building your own calculator</a></li>
 <li class="chapter" data-level="6.3" data-path="functions-1.html"><a href="functions-1.html#it-is-not-over-yet-calculator-shouldnt-divide-be-0"><i class="fa fa-check"></i><b>6.3</b> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a></li>
+<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphics.html"><a href="graphics.html#base-plots"><i class="fa fa-check"></i><b>7.1</b> Base plots</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="graphics.html"><a href="graphics.html#how-to-make-plot"><i class="fa fa-check"></i><b>7.1.1</b> How to make plot?</a></li>
+<li class="chapter" data-level="7.1.2" data-path="graphics.html"><a href="graphics.html#can-we-actually-do-something"><i class="fa fa-check"></i><b>7.1.2</b> Can we actually do something?</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="8" data-path="final-indications.html"><a href="final-indications.html"><i class="fa fa-check"></i><b>8</b> Final indications</a><ul>
 <li class="chapter" data-level="8.1" data-path="final-indications.html"><a href="final-indications.html#use-projects"><i class="fa fa-check"></i><b>8.1</b> Use Projects</a></li>
 <li class="chapter" data-level="8.2" data-path="final-indications.html"><a href="final-indications.html#use-rmarkodow"><i class="fa fa-check"></i><b>8.2</b> Use RMarkodow</a></li>
 <li class="chapter" data-level="8.3" data-path="final-indications.html"><a href="final-indications.html#use-.rds-files"><i class="fa fa-check"></i><b>8.3</b> Use .rds files</a></li>
+<li class="chapter" data-level="8.4" data-path="final-indications.html"><a href="final-indications.html#nice-resources-you-should-read"><i class="fa fa-check"></i><b>8.4</b> Nice resources you SHOULD read</a></li>
+<li class="chapter" data-level="8.5" data-path="final-indications.html"><a href="final-indications.html#whole-game"><i class="fa fa-check"></i><b>8.5</b> Whole Game</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -181,8 +188,37 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="graphics" class="section level1">
 <h1><span class="header-section-number">Chapter 7</span> Graphics</h1>
-<p>What would be our work value without visualisation? Not much. <strong>R</strong> provides use with some tools to make plots, charst and other visual stuff. However base version has very limited graphic design by default and making it pretty needs a lot of time and code. Nowadays, however, in <code>tidyverse</code> there is a very powerfull library with dozens of extensions - <code>ggplot2</code>. <em>GG</em> stands for <em>Gramar of Graphics</em> and in parctice it means that we build our visualisation layer after layer.</p>
+<p>What would be our work value without visualization? Not much. <strong>R</strong> provides use with some tools to make plots, charts and other visual stuff. However base version has very limited graphic design by default and making it pretty needs a lot of time and code. Nowadays, however, in <code>tidyverse</code> there is a very powerful library with dozens of extensions - <code>ggplot2</code>. <em>GG</em> stands for <em>Gramar of Graphics</em> and in practice it means that we build our visualization layer after layer. The vast spectrum of <code>ggplot</code> functions and its extensions is out of the scope of this book. Here we will focus on the basic and most useful things as well as how to find not so common functionalities.</p>
+<div id="base-plots" class="section level2">
+<h2><span class="header-section-number">7.1</span> Base plots</h2>
+<p>Before we get to <code>ggplot2</code>, we should begin with base graphic functions. It is true that the do not look as pretty as plots from dedicated libraries, but they are extremely useful in quick checking of our workflow. Not to mention, that many packages are still operating with old fashioned base graphics.</p>
+<div id="how-to-make-plot" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> How to make plot?</h3>
+<p>In previous chapters we made some plots, but we did not cover the details. Most important thing is to acknowledge that we can make plots with <code>hist()</code>, <code>plot()</code>, <code>barplot()</code> and <code>boxplot()</code> functions (to mention only the most common). There are of course other types of plots you might need, however those three are the <em>classic</em> ones. If you are looking for more examples of base plots, you should visit help page of <code>graphics</code> package. To change the look of your plot, just provide proper arguments to this function, like <code>col</code> for color of line/points or, <code>xlab</code> and <code>ylab</code> to change names of axis labels. Unfortunately a list of arguments that you can control and adjust is long. The good news is that all of them have their default value, so you need to change only the ones you want, without thinking about rest. Full list of parameter you can change you will find after executing: <code>?par</code> command. As this help page contains many different kinds of parameters you should scroll to find <em>Graphical Parameters</em> chapter.</p>
+</div>
+<div id="can-we-actually-do-something" class="section level3">
+<h3><span class="header-section-number">7.1.2</span> Can we actually do something?</h3>
+<p>Yes we can. But as I said earlier scope of this book is not graphics. Thus I will cover here only the basic things you should know, or at least know where to find them. Under I will present only code and its output. Try to figure out yourself what is going on. You can also copy - paste the code in your script or console, edit it and learn how it works by doing. Even the best book is just a book, and nothing will substitute the knowledge you gain by experiencing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graphicDummy &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">2</span>), <span class="dt">y =</span> <span class="kw">rpois</span>(<span class="dv">100</span>, <span class="fl">1.2</span>))
+<span class="kw">plot</span>(graphicDummy<span class="op">$</span>x<span class="op">~</span>graphicDummy<span class="op">$</span>y)</code></pre></div>
+<p><img src="BeginnersGuideToGalaxy_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(graphicDummy<span class="op">$</span>x<span class="op">~</span><span class="kw">as.factor</span>(graphicDummy<span class="op">$</span>y))</code></pre></div>
+<p><img src="BeginnersGuideToGalaxy_files/figure-html/unnamed-chunk-42-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">boxplot</span>(graphicDummy<span class="op">$</span>x<span class="op">~</span>graphicDummy<span class="op">$</span>y)</code></pre></div>
+<p><img src="BeginnersGuideToGalaxy_files/figure-html/unnamed-chunk-42-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(graphicDummy<span class="op">$</span>x)</code></pre></div>
+<p><img src="BeginnersGuideToGalaxy_files/figure-html/unnamed-chunk-42-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(graphicDummy<span class="op">$</span>x)</code></pre></div>
+<p><img src="BeginnersGuideToGalaxy_files/figure-html/unnamed-chunk-42-5.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hist</span>(graphicDummy<span class="op">$</span>y)</code></pre></div>
+<p><img src="BeginnersGuideToGalaxy_files/figure-html/unnamed-chunk-42-6.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">density</span>(graphicDummy<span class="op">$</span>x))</code></pre></div>
+<p><img src="BeginnersGuideToGalaxy_files/figure-html/unnamed-chunk-42-7.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="kw">density</span>(graphicDummy<span class="op">$</span>y))</code></pre></div>
+<p><img src="BeginnersGuideToGalaxy_files/figure-html/unnamed-chunk-42-8.png" width="672" /></p>
 
+</div>
+</div>
 </div>
             </section>
 
@@ -208,10 +244,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -235,9 +272,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

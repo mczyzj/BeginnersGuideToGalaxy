@@ -1,7 +1,7 @@
 # Introduction {#intro}
 
 ## Audience
-I wrote this small book for all those who are new to programming, as well for those who are new to **R** language. I tried to cover all the necessary knowledge you need to be familiarize with to start basic work in **R** in a compact way. I also tried to avoid things that may overwhelm or confuse people who are new to programming (like code efficiency). However if you want to play more, with more complex coding you need to read a lot from other sources. You will find some advises what should you do next in last chapter (\ref(finalindications)) of this book.
+I wrote this small book for all those who are new to programming, as well for those who are new to **R** language. I tried to cover all the necessary knowledge you need to be familiarize with to start basic work in **R** in a compact way. I also tried to avoid things that may overwhelm or confuse people who are new to programming (like code efficiency). However if you want to play more, with more complex coding you need to read a lot from other sources. You will find some advises what should you do next in last chapter (\@ref(finalind)) of this book.
 
 ## What this book is not about?
 Mainly this book not on any advanced R. I do not cover here things like *function factories*, *creating packages* or *S3* classes. It also do not cover specific **R** application in detail, like *statistics*, *predictive modeling* or *text analyses*. Finally this book will not cover programming paradigms such as *Test Driven Development* or *Meta-programming*. There are plenty of well written resources that go really deep in those applications.
@@ -34,11 +34,14 @@ In your *'Files'* window, you will find *Packages* pane, which contains *Install
 knitr::include_graphics('instalPacks.png')
 ```
 
-* **mc2d**
-* **nlsMicrobio**
-* **tidyverse** [@R-dplyr]
+* **deSolve** [@R-deSolve]
 * **fitdistrplus** [@R-fitdistrplus]
-* **deSolve**
+* **mc2d** [@R-mc2d]
+* **minpack.lm** [@R-minpack.lm]
+* **nls2** [@R-nls2]
+* **nlsMicrobio** [@R-nlsMicrobio]
+* **segmented** [@R-segmented]
+* **tidyverse** [@R-tidyverse; @R-dplyr; @R-ggplot2; @R-tidyr]
 
 Now every time you need functions from specific package in library you can just tick box next to package name, and RStudio will load it for you.
 

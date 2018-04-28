@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>A Beginners Guide to R’s Galaxy</title>
   <meta name="description" content="Quick introduction to astonishing R’s Galaxy">
-  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="A Beginners Guide to R’s Galaxy" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Michal J. Czyz">
 
 
-<meta name="date" content="2018-02-07">
+<meta name="date" content="2018-04-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="lets-do-some-math.html">
-<link rel="next" href="graphics.html">
+<link rel="next" href="graphs.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -100,15 +100,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">A Minimal Book Example</a></li>
+<li><a href="./">Beginners Guide to Galaxy</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> In the beginning there was only darknes…</a></li>
 <li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
-<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>2.1</b> RStudio</a></li>
-<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#few-tips-to-make-life-easier"><i class="fa fa-check"></i><b>2.2</b> Few tips to make life easier</a></li>
-<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#installing-packages"><i class="fa fa-check"></i><b>2.3</b> Installing packages</a></li>
-<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#conventions"><i class="fa fa-check"></i><b>2.4</b> Conventions</a></li>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#audience"><i class="fa fa-check"></i><b>2.1</b> Audience</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-this-book-is-not-about"><i class="fa fa-check"></i><b>2.2</b> What this book is not about?</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#few-tips-to-make-life-easier"><i class="fa fa-check"></i><b>2.4</b> Few tips to make life easier</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#installing-packages"><i class="fa fa-check"></i><b>2.5</b> Installing packages</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#conventions"><i class="fa fa-check"></i><b>2.6</b> Conventions</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
 <li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a><ul>
@@ -119,11 +121,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#syntax"><i class="fa fa-check"></i><b>3.2</b> Syntax</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#common-operators"><i class="fa fa-check"></i><b>3.2.1</b> Common operators</a></li>
 <li class="chapter" data-level="3.2.2" data-path="basics.html"><a href="basics.html#variables"><i class="fa fa-check"></i><b>3.2.2</b> Variables</a></li>
-<li class="chapter" data-level="3.2.3" data-path="basics.html"><a href="basics.html#naming-variables"><i class="fa fa-check"></i><b>3.2.3</b> Naming Variables</a></li>
-<li class="chapter" data-level="3.2.4" data-path="basics.html"><a href="basics.html#math-operations"><i class="fa fa-check"></i><b>3.2.4</b> Math operations</a></li>
-<li class="chapter" data-level="3.2.5" data-path="basics.html"><a href="basics.html#logics"><i class="fa fa-check"></i><b>3.2.5</b> Logics</a></li>
-<li class="chapter" data-level="3.2.6" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>3.2.6</b> Functions</a></li>
 </ul></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#math-operations"><i class="fa fa-check"></i><b>3.3</b> Math operations</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#logics"><i class="fa fa-check"></i><b>3.4</b> Logics</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>3.5</b> Functions</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html"><i class="fa fa-check"></i><b>4</b> Somwehere between basic and useful</a><ul>
 <li class="chapter" data-level="4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#addressing"><i class="fa fa-check"></i><b>4.1</b> Addressing</a><ul>
@@ -131,21 +132,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#data-frames-and-matrices"><i class="fa fa-check"></i><b>4.1.2</b> Data frames (and matrices)</a></li>
 <li class="chapter" data-level="4.1.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#lists"><i class="fa fa-check"></i><b>4.1.3</b> Lists</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#operation-on-vectors"><i class="fa fa-check"></i><b>4.2</b> Operation on Vectors</a></li>
-<li class="chapter" data-level="4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#randomization-and-distribution"><i class="fa fa-check"></i><b>4.3</b> Randomization and distribution</a></li>
-<li class="chapter" data-level="4.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#tidyverse-idea-and-dplyr-library"><i class="fa fa-check"></i><b>4.4</b> <code>tidyverse</code> idea and <code>dplyr</code> library</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#wide-vs.long-tables"><i class="fa fa-check"></i><b>4.4.1</b> Wide vs. long tables</a></li>
-<li class="chapter" data-level="4.4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#world-of-dplyr"><i class="fa fa-check"></i><b>4.4.2</b> World of <code>dplyr</code></a></li>
-<li class="chapter" data-level="4.4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.4.3</b> <code>mutate</code> and <code>transmute</code></a></li>
+<li class="chapter" data-level="4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#control-flow"><i class="fa fa-check"></i><b>4.2</b> Control flow</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#if...else-and-ifelse-statments"><i class="fa fa-check"></i><b>4.2.1</b> <code>if...else</code> and <code>ifelse</code> statments</a></li>
+<li class="chapter" data-level="4.2.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#for-and-while-loops"><i class="fa fa-check"></i><b>4.2.2</b> <code>for</code> and <code>while</code> loops</a></li>
+<li class="chapter" data-level="4.2.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#apply-function-family"><i class="fa fa-check"></i><b>4.2.3</b> <code>apply</code> function family</a></li>
 </ul></li>
+<li class="chapter" data-level="4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#operation-on-vectors"><i class="fa fa-check"></i><b>4.3</b> Operation on Vectors</a></li>
+<li class="chapter" data-level="4.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#randomization-and-distribution"><i class="fa fa-check"></i><b>4.4</b> Randomization and distribution</a></li>
+<li class="chapter" data-level="4.5" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#tidyverse-idea-and-dplyr-library"><i class="fa fa-check"></i><b>4.5</b> <code>tidyverse</code> idea and <code>dplyr</code> library</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#wide-vs.long-tables"><i class="fa fa-check"></i><b>4.5.1</b> Wide vs. long tables</a></li>
+<li class="chapter" data-level="4.5.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#world-of-dplyr"><i class="fa fa-check"></i><b>4.5.2</b> World of <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#select-columns-and-filter-rows"><i class="fa fa-check"></i><b>4.5.3</b> <code>select</code> columns and <code>filter</code> rows</a></li>
+<li class="chapter" data-level="4.5.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.5.4</b> <code>mutate</code> and <code>transmute</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.5.5</b> <code>group_by</code> and <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#is-there-anything-more-in-dplyr-library"><i class="fa fa-check"></i><b>4.6</b> Is there anything more in <code>dplyr</code> library?</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html"><i class="fa fa-check"></i><b>5</b> Lets do some math!</a><ul>
-<li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-statistical-model"><i class="fa fa-check"></i><b>5.1</b> Simple statistical model</a></li>
-<li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#other-models"><i class="fa fa-check"></i><b>5.2</b> Other models</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#libraries"><i class="fa fa-check"></i><b>5.2.1</b> Libraries</a></li>
-<li class="chapter" data-level="5.2.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-asymptotic-model-and-noise"><i class="fa fa-check"></i><b>5.2.2</b> Simple asymptotic model and noise</a></li>
-<li class="chapter" data-level="5.2.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#mechanistic-model-in-r"><i class="fa fa-check"></i><b>5.2.3</b> Mechanistic model in <strong>R</strong></a></li>
-<li class="chapter" data-level="5.2.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.2.4</b> Solving differential equations</a></li>
+<li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#models"><i class="fa fa-check"></i><b>5.1</b> Models</a></li>
+<li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#packages"><i class="fa fa-check"></i><b>5.2</b> Packages</a></li>
+<li class="chapter" data-level="5.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-mechanistic-model-and-noise"><i class="fa fa-check"></i><b>5.3</b> Simple mechanistic model and noise</a></li>
+<li class="chapter" data-level="5.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.4</b> Solving differential equations</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#the-simple-epidemiological"><i class="fa fa-check"></i><b>5.4.1</b> The simple epidemiological</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#ploting-seri-model"><i class="fa fa-check"></i><b>5.4.2</b> Ploting SERI model</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="functions-1.html"><a href="functions-1.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
@@ -153,15 +162,32 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6.2" data-path="functions-1.html"><a href="functions-1.html#building-your-own-calculator"><i class="fa fa-check"></i><b>6.2</b> Building your own calculator</a></li>
 <li class="chapter" data-level="6.3" data-path="functions-1.html"><a href="functions-1.html#it-is-not-over-yet-calculator-shouldnt-divide-be-0"><i class="fa fa-check"></i><b>6.3</b> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="graphics.html"><a href="graphics.html"><i class="fa fa-check"></i><b>7</b> Graphics</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="chapter" data-level="8" data-path="final-indications.html"><a href="final-indications.html"><i class="fa fa-check"></i><b>8</b> Final indications</a><ul>
-<li class="chapter" data-level="8.1" data-path="final-indications.html"><a href="final-indications.html#use-projects"><i class="fa fa-check"></i><b>8.1</b> Use Projects</a></li>
-<li class="chapter" data-level="8.2" data-path="final-indications.html"><a href="final-indications.html#use-rmarkodow"><i class="fa fa-check"></i><b>8.2</b> Use RMarkodow</a></li>
-<li class="chapter" data-level="8.3" data-path="final-indications.html"><a href="final-indications.html#use-.rds-files"><i class="fa fa-check"></i><b>8.3</b> Use .rds files</a></li>
+<li class="chapter" data-level="7" data-path="graphs.html"><a href="graphs.html"><i class="fa fa-check"></i><b>7</b> Graphics</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphs.html"><a href="graphs.html#base-plots"><i class="fa fa-check"></i><b>7.1</b> Base plots</a></li>
+<li class="chapter" data-level="7.2" data-path="graphs.html"><a href="graphs.html#how-to-make-plot"><i class="fa fa-check"></i><b>7.2</b> How to make plot?</a></li>
+<li class="chapter" data-level="7.3" data-path="graphs.html"><a href="graphs.html#can-we-actually-do-something"><i class="fa fa-check"></i><b>7.3</b> Can we actually do something?</a></li>
+<li class="chapter" data-level="7.4" data-path="graphs.html"><a href="graphs.html#ggplot2---graphics-taken-into-other-dimension"><i class="fa fa-check"></i><b>7.4</b> <code>ggplot2</code> - Graphics taken into other dimension</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="graphs.html"><a href="graphs.html#basic-plot-in-ggplot2"><i class="fa fa-check"></i><b>7.4.1</b> Basic plot in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="graphs.html"><a href="graphs.html#density-plots"><i class="fa fa-check"></i><b>7.4.2</b> Density plots</a></li>
+<li class="chapter" data-level="7.4.3" data-path="graphs.html"><a href="graphs.html#box-plot-and-bar-plot"><i class="fa fa-check"></i><b>7.4.3</b> Box-plot and bar-plot</a></li>
+<li class="chapter" data-level="7.4.4" data-path="graphs.html"><a href="graphs.html#regression"><i class="fa fa-check"></i><b>7.4.4</b> Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="simple-workflow.html"><a href="simple-workflow.html"><i class="fa fa-check"></i><b>8</b> Simple workflow</a><ul>
+<li class="chapter" data-level="8.1" data-path="simple-workflow.html"><a href="simple-workflow.html#data"><i class="fa fa-check"></i><b>8.1</b> Data</a></li>
+<li class="chapter" data-level="8.2" data-path="simple-workflow.html"><a href="simple-workflow.html#exploaratory-visualisation-and-setup"><i class="fa fa-check"></i><b>8.2</b> Exploaratory visualisation and setup</a></li>
+<li class="chapter" data-level="8.3" data-path="simple-workflow.html"><a href="simple-workflow.html#growth-models"><i class="fa fa-check"></i><b>8.3</b> Growth models</a></li>
+<li class="chapter" data-level="8.4" data-path="simple-workflow.html"><a href="simple-workflow.html#copy-paste-data-set"><i class="fa fa-check"></i><b>8.4</b> Copy-paste data set</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="finalindications.html"><a href="finalindications.html"><i class="fa fa-check"></i><b>9</b> Final indications</a><ul>
+<li class="chapter" data-level="9.1" data-path="finalindications.html"><a href="finalindications.html#use-projects"><i class="fa fa-check"></i><b>9.1</b> Use Projects</a></li>
+<li class="chapter" data-level="9.2" data-path="finalindications.html"><a href="finalindications.html#use-rmarkodow"><i class="fa fa-check"></i><b>9.2</b> Use RMarkodow</a></li>
+<li class="chapter" data-level="9.3" data-path="finalindications.html"><a href="finalindications.html#use-.rds-files"><i class="fa fa-check"></i><b>9.3</b> Use .rds files</a></li>
+<li class="chapter" data-level="9.4" data-path="finalindications.html"><a href="finalindications.html#nice-resources-you-should-read"><i class="fa fa-check"></i><b>9.4</b> Nice resources you SHOULD read</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -181,10 +207,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="functions-1" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Functions</h1>
-<p>In short, function is a piece of code that takes some arguments, makes <em>mumbo jumbo</em> and returns result. All the time, through this book we were using functions that are buil in <strong>base R</strong> or comes from additional packages (like <code>dplyr</code>). So you are now quite familiar whit the syntax that resambles typical mathematical syntax – <em>name of a function followed by arguments in brackets - like f(x)</em>. From time to time you will need to do something in your code for few times with different arguments. In order to not repeat yourself and not <em>copy – paste</em> your code multiple times you can wrap your procedure in a function. The best way (as always) to understand how to do it, is to do it. To begin with something simple we will start with makeing basic math functions which later will lead us to simple calculator.</p>
+<p>In short, function is a piece of code that takes some arguments, makes <em>mumbo jumbo</em> and returns result. All the time, through this book we were using functions that are built in <strong>base R</strong> or comes from additional packages (like <code>dplyr</code>). So you are now quite familiar whit the syntax that resembles typical mathematical syntax – <em>name of a function followed by arguments in brackets - like f(x)</em>. From time to time you will need to do something in your code for few times with different arguments. In order to not repeat yourself and not <em>copy – paste</em> your code multiple times you can wrap your procedure in a function. The best way (as always) to understand how to do it, is to do it. To begin with something simple we will start with making basic math functions which later will lead us to simple calculator.</p>
 <div id="simple-math-functions." class="section level2">
 <h2><span class="header-section-number">6.1</span> Simple math functions.</h2>
-<p>Simple math operations include: <em>adding</em>, <em>substracting</em>, <em>dividing</em> and <em>multipling</em>. To make our calculator slightly less boring, we can also add <em>powers</em> and <em>nth rooting</em>. To not to complicate to much things in the begining, lets say that we want our function to take two and only two arguments. Lets look below how to code our functions:</p>
+<p>Simple math operations include: <em>adding</em>, <em>substracting</em>, <em>dividing</em> and <em>multipling</em>. To make our calculator slightly less boring, we can also add <em>powers</em> and <em>nth rooting</em>. To not to complicate to much things in the beginning, lets say that we want our function to take two and only two arguments. Lets look below how to code our functions:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">addF &lt;-<span class="st"> </span><span class="cf">function</span>(x,y) {
   <span class="kw">return</span>(x<span class="op">+</span>y)
 }
@@ -253,7 +279,7 @@ ntrF &lt;-<span class="st"> </span><span class="cf">function</span>(x,y) {
 </div>
 <div id="it-is-not-over-yet-calculator-shouldnt-divide-be-0" class="section level2">
 <h2><span class="header-section-number">6.3</span> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</h2>
-<p>We know that division by 0 is not the best idea in the world, thus we should stop users (or ourselves) from doing it. Thus we will add an <code>if...else</code> statment to our function. Next time when you use 0 as a second argument you will see an error. Also, we declare <code>mathType = 'all'</code> as a default value, so if we omit this parameter, function will evaluate anyway.</p>
+<p>We know that division by 0 is not the best idea in the world, thus we should stop users (or ourselves) from doing it. Thus we will add an <code>if...else</code> statement to our function. Next time when you use 0 as a second argument you will see an error. Also, we declare <code>mathType = 'all'</code> as a default value, so if we omit this parameter, function will evaluate anyway.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">simpleCalculator &lt;-<span class="st"> </span><span class="cf">function</span>(x, y, <span class="dt">mathType =</span> <span class="st">&#39;all&#39;</span>) {
   <span class="cf">if</span> (mathType <span class="op">==</span><span class="st"> &#39;divide&#39;</span> <span class="op">&amp;</span><span class="st"> </span>y <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
     <span class="kw">return</span>(<span class="st">&#39;You cannot divide by 0, please change y value.&#39;</span>)
@@ -317,7 +343,7 @@ ntrF &lt;-<span class="st"> </span><span class="cf">function</span>(x,y) {
         </div>
       </div>
 <a href="lets-do-some-math.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="graphics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="graphs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -335,10 +361,11 @@ gitbook.start({
 "facebook": true,
 "twitter": true,
 "google": false,
+"linkedin": false,
 "weibo": false,
 "instapper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -351,7 +378,7 @@ gitbook.start({
 },
 "download": ["BeginnersGuideToGalaxy.pdf", "BeginnersGuideToGalaxy.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "none"
 }
 });
 });
@@ -362,9 +389,11 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(script.src))
-      script.src  = script.src.replace(/^https?:/, '');
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

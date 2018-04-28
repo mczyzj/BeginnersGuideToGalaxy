@@ -1,0 +1,129 @@
+\documentclass[]{tufte-book}
+
+% ams
+\usepackage{amssymb,amsmath}
+
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \makeatletter
+  \@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
+  \makeatother
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \makeatletter
+  \@ifpackageloaded{soul}{
+     \renewcommand\allcapsspacing[1]{{\addfontfeature{LetterSpace=15}#1}}
+     \renewcommand\smallcapsspacing[1]{{\addfontfeature{LetterSpace=10}#1}}
+   }{}
+  \makeatother
+
+\fi
+
+% graphix
+\usepackage{graphicx}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+
+% booktabs
+\usepackage{booktabs}
+
+% url
+\usepackage{url}
+
+% hyperref
+\usepackage{hyperref}
+
+% units.
+\usepackage{units}
+
+
+\setcounter{secnumdepth}{2}
+
+% citations
+\usepackage{natbib}
+\bibliographystyle{apalike}
+
+% pandoc syntax highlighting
+
+% longtable
+\usepackage{longtable,booktabs}
+
+% multiplecol
+\usepackage{multicol}
+
+% strikeout
+\usepackage[normalem]{ulem}
+
+% morefloats
+\usepackage{morefloats}
+
+
+% tightlist macro required by pandoc >= 1.14
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% title / author / date
+\title{A Beginners Guide to R's Galaxy}
+\author{Michal J. Czyz}
+\date{2018-03-15}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
+\begin{document}
+
+\maketitle
+
+
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+
+\chapter{In the beginning there was only
+darknes\ldots{}}\label{in-the-beginning-there-was-only-darknes}
+
+\textbf{R} \citep{rcore2017} is one of the most common used languages in
+Data Science. It is so called fourth-generation programming language
+(4GL), meaning it is \emph{user-friendly}, while still quite powerful.
+\textbf{R} is powered by huge open-source oriented community. Thanks to
+their work, during many years of development, enormous number of
+\emph{packages} (also incorrectly called \emph{libraries}) were
+established, making using \textbf{R} for common works related to Data
+Science easy even for Beginners.
+
+The purpose of this document is to familiarize with \textbf{R} people
+who have at least some basics in statistics or modelling and no
+knowledge on programming. Thus, examples you will find in this book are
+driven by making life easier for all of those who struggle with data in
+their work.
+
+To give you an example and how awesome and powerful \textbf{R} is, I
+wrote whole this book in \textbf{R} using package \textbf{bookdown}
+\citep{xie2016, R-bookdown}. Hoping this short description encouraged
+you to dive into \emph{World of R}, we can start learning opportunities
+of this programming language.
+
+\bibliography{book.bib,packages.bib}
+
+
+
+\end{document}

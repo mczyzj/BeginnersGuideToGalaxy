@@ -96,25 +96,25 @@ SIR (Susceptible, Infectious, Recovered) is a typical compartmental model for ep
 Main step of this procedure is to define function which will be used to solve *Ordinary Differential Equations (ODE)*. This function takes three parameter -- t (which is time sequence), state (which are our initial conditions) and parameters. In the body of the function we define differential equations which connect our compartments. To solve the system of differential equations we use `ode()` function from `deSolve` package and save our results in `modelOutput` variable, which we will later use to make a plot.
 
 ```{r}
-parameters <- c(b     = 0.1,       # birth rate
-                d     = 0.1,       # death rate
-                beta  = 0.0002,    # transmission parameter
-                gamma = 0.5,       # 1/gamma = infectious period
-                a     = 0.4        # 1/a = latent period
+parameters <- c(b     = 0.1,        # birth rate
+                d     = 0.1,        # death rate
+                beta  = 0.00025,    # transmission parameter
+                gamma = 0.6,        # 1/gamma = infectious period
+                a     = 0.1        # 1/a = latent period
                 )
 
-times <- seq(0, 60, by=1)
+time <- 1:100
 
 # Initial conditions
-N = 10000  # population size
-E0 = 0     # initialy exposed
-I0 = 1     # initialy infected
-R0 = 0     # initialy recovered
+N = 15000    # population size
+E0 = 150     # initialy exposed
+I0 = 15      # initialy infected
+R0 = 20      # initialy recovered
 
 initial <- c(S = N - (E0 + I0 + R0), E = E0, I= I0, R = R0)
 
 # ODE Model
-SEIR <- function(t, state, parameters) {
+fSEIR <- function(t, state, parameters) {
   with(as.list(c(state, parameters)), {
     dS = b * (S + E + I + R) - beta * S * I - d * S
     dE = beta * S * I - a * E - d * E
@@ -124,12 +124,12 @@ SEIR <- function(t, state, parameters) {
   })
 }
 
-modelOutput <- deSolve::ode(y = initial, func = SEIR, times = times, parms = parameters)
+modelOutput <- deSolve::ode(y = initial, func = fSEIR, times = time, parms = parameters)
 head(modelOutput)
 ```
 
 ### Ploting SERI model
-To create a plot using our favorite library `ggplot2` (which will be described with more details in chapter \@ref(Graphics)) we first need to convert our modelOutput to object of class *data frame*. Than we can use code below to plot our model.
+To create a plot using our favorite library `ggplot2` (which will be described with more details in chapter \@ref(graphs)) we first need to convert our modelOutput to object of class *data frame*. Than we can use code below to plot our model.
 
 ```{r}
 modelOutput <- as.data.frame(modelOutput)

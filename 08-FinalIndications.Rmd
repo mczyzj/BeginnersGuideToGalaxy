@@ -1,4 +1,4 @@
-# Final indications {#finalindications}
+# Final indications {#finalind}
 
 ## Use Projects
 To organize your work, not only in **RStudio**, but also on hard drive you should use projects. It is extremely easy in this IDE. Just click button -- *Create new project* -- choose *New Directory* and type of project you need. **RStudio** will take care of everything for you. Later you can easily add files of sub-folders with specifying content into your project and use relational links. Also, using projects makes easy to maintain clean global environment, which beginners often tend to underestimate and than they run into troubles.
@@ -39,3 +39,14 @@ Statistics, programming and modeling
 * [RECONlearn -- free resources on epidemiology](https://reconlearn.netlify.com)
 * [Norm Matloff's blog discussing issues with statistics and data science](https://matloff.wordpress.com/)
 * [Rosetta Code -- a repository for code to solve large number of problems with tens of different programming languages](https://rosettacode.org/wiki/Rosetta_Code)
+
+## Solving problems
+As you saw, **R** can be used for many different purposes, like statistics or modeling, whiteout any programming knowledge.  However, the more you will work with it, the sooner you will find how programming skills, can help you will daily work. Of course some problems in the beginning will be to complicated to solve quickly, but spending time on finding solution will save you lots of time in future. Also, if you follow few simple rules, you will work faster and be less frustrated. This rules make simple workflow:
+
+* take some time to analyze the problem
+* divide your problem into small pieces
+* start with solving piece that you know (or are very close to) solve with least effort
+* don't be afraid to ask or look into web for solutions
+* take all the small pieces and put them together
+
+Remember -- it is better to do something than do nothing. Even if you are stuck with something, you will still benefit from solutions for smaller pieces of your problem, that you managed to find. In the beginning try to think about robustness and speed of your code, but do not seek for best optimized code at all cost. Sometimes it's just not worth spending half an hour to make your code faster by 1 second. The more you will read, the more ideas about how to write best code you will get.

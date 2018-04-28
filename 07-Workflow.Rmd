@@ -115,7 +115,7 @@ summary(bar1.nlsLM)
 BaranyiBc1 <- summary(bar1.nlsLM)$parameters
 ```
 
-Lets substitute variables in equation (later I'll show you haw to do it automaticaly):
+Lets substitute variables in equation (later I'll show you haw to do it automatically):
 
 `LOG10N ~ LOG10Nmax + log10((-1 + exp(mumax * lag) + exp(mumax * t))/(exp(mumax * t) - 1 + exp(mumax * lag) * 10^(LOG10Nmax - LOG10N0`
 
@@ -156,17 +156,21 @@ points(BcList$Bc1$LOG10N~BcList$Bc1$t)
 
 As I stated before, the *lag* and *stationary* phase segments are not nice, however slope of the *growth* phase seems to fit slightly better than the one calculated with `nlsML()` and `baranyi`. Also we need to remember that the more data points exist in set, and the better they are spread among independent variable range, the easier it gets to make statistical procedures, and the results will be more robust.
 
-We can also try to fit non linear regression for `buchanan` with `nlsML()` and `nls2` (the latter with brute force). Unfortunately, `nls` methods are quite sensitive on data and initial values, thus sometimes it takes a while to find something that makes sens or does not throw error now as `{r} cat('singular gradient matrix at initial parameter estimates')`.
+We can also try to fit non linear regression for `buchanan` with `nlsML()` and `nls2` (the latter with brute force). Unfortunately, `nls` methods are quite sensitive on data and initial values, thus sometimes it takes a while to find something that makes sens or does not throw error now as `singular gradient matrix at initial parameter estimates`.
 
 ```{r}
 ## Levenberg-Marquardt algorithm
 buch1.nlsLM <- nlsLM(buchanan, BcList$Bc1,
-                    list(lag = 200, mumax = 0.03, LOG10N0 = 3, LOG10Nmax = 6.5),
-                    control = nls.lm.control(maxiter = 500))
+                     list(lag = 200, mumax = 0.03,
+                          LOG10N0 = 3, LOG10Nmax = 6.5),
+                     control = nls.lm.control(maxiter = 500))
 ## Gauss-Newton algorithm with brute-force
 buch1.nlsBF <- nls2(buchanan, data = BcList$Bc1,
-                    start = list(lag = 280, mumax = 0.03, LOG10N0 = 3.5, LOG10Nmax = 7),
-                    control = nls.control(maxiter = 1000, tol = 1e-01, minFactor = 1/100), algorithm = 'brute-force')
+                    start = list(lag = 280, mumax = 0.03,
+                                 LOG10N0 = 3.5, LOG10Nmax = 7),
+                    control = nls.control(maxiter = 1000,
+                                          tol = 1e-01, minFactor = 1/100),
+                    algorithm = 'brute-force')
 BuchananBFBc1<- summary(buch1.nlsLM)$parameters
 BuchananBc1<- summary(buch1.nlsBF)$parameters
 ```
@@ -191,7 +195,7 @@ BuchananBc1
 BuchananBFBc1
 ```
 
-As you can see, all the methods differ in their estimates (for Baranyi it $\mu_{max}$ is exressed as natural logarithm, so we can use equation $log_{10}(x) = \frac{ln(x)}{ln(10)}$ to obtain value `r 0.3515197/log(10)`). Some of them work better some work worse. Sometimes they produce false convergence, sometimes they highly rely even on small changes in initial values and sometimes they just do not work with our data set. Other thing one should consider is very wise proverb:
+As you can see, all the methods differ in their estimates (for Baranyi it $\mu_{max}$ is expressed as natural logarithm, so we can use equation $log_{10}(x) = \frac{ln(x)}{ln(10)}$ to obtain value `r 0.3515197/log(10)`). Some of them work better some work worse. Sometimes they produce false convergence, sometimes they highly rely even on small changes in initial values and sometimes they just do not work with our data set. Other thing one should consider is very wise proverb:
 
 > *Garbage in, garbage out.*
 
@@ -214,7 +218,7 @@ bar3.nlsLM <- nlsLM(baranyi, BcList$Bc3,
                 control = nls.lm.control(maxiter = 500))
 ```
 
-Hurray! No errors... for now at least. Lets inspect visually how our models fit to data (Fig. \@ref(fig:BB23-models)).
+Hurray! No errors... for now at least. Now, we can use our variable that contains estimated parameters to make prediction. We will need new *data frame* containing values for which we want to make prediction. Because, we want also to plot predicted lines (to check how they fit to our data sets), we can predict values along sequence of numbers from 1 to 270. So, lets inspect visually how our models fit to data (Fig. \@ref(fig:BB23-models)).
 
 ```{r BB23-models, fig.cap = 'Predicted values vs. data points', fig.height = 4.7, message = FALSE}
 newTime <- data.frame(t = 1:270)
@@ -228,22 +232,26 @@ par(mfrow = c(2,2))
 plot(predBuch2 ~ newTime$t, type = 'l', col = 'red',
      main = 'Buchanan', sub = 'dataset Bc2', cex.main = 0.75, cex.sub = 0.6,
      xlab = 'time', ylab = 'Log10N', cex.lab = 0.6)
-  points(BcList$Bc2$t, BcList$Bc2$LOG10N, col = 'blue')
+  points(BcList$Bc2$t, BcList$Bc2$LOG10N,
+         col = 'blue', pch = 15)
   
 plot(predBuch3 ~ newTime$t, type = 'l', col = 'red',
      main = 'Buchanan', sub = 'dataset Bc3', cex.main = 0.75, cex.sub = 0.6,
      xlab = 'time', ylab = 'Log10N', cex.lab = 0.6)
-  points(BcList$Bc3$t, BcList$Bc3$LOG10N, col = 'blue')
+  points(BcList$Bc3$t, BcList$Bc3$LOG10N,
+         col = 'blue', pch = 15)
 
 plot(predBar2 ~ newTime$t, type = 'l', col = 'red',
      main = 'Baranyi', sub = 'dataset Bc2', cex.main = 0.75, cex.sub = 0.6,
      xlab = 'time', ylab = 'Log10N', cex.lab = 0.6)
-  points(BcList$Bc2$t, BcList$Bc2$LOG10N, col = 'blue')
+  points(BcList$Bc2$t, BcList$Bc2$LOG10N,
+         col = 'blue', pch = 15)
 
 plot(predBar3 ~ newTime$t, type = 'l', col = 'red',
      main = 'Baranyi', sub = 'dataset Bc3', cex.main = 0.75, cex.sub = 0.6,
      xlab = 'time', ylab = 'Log10N', cex.lab = 0.6)
-  points(BcList$Bc3$t, BcList$Bc3$LOG10N, col = 'blue')
+  points(BcList$Bc3$t, BcList$Bc3$LOG10N,
+         col = 'blue', pch = 15)
 ```
 
 Fit seems to be quite reasonable. Finally lets check the parameters of models:
@@ -254,6 +262,9 @@ summary(buch3.nlsLM)$parameters
 summary(bar2.nlsLM)$parameters
 summary(bar3.nlsLM)$parameters
 ```
+
+## Going further
+Now you have all the necessary techniques, to go beyond the scope of this book. With more data sets you will be easily able to make prediction how $\mu_{max}$ changes along temperature gradient. From standard error it will be fairly easy to calculate standard deviation, and use it for estimation of your parameters distribution. Than you can use random sampling for stochastic simulations. With some effort and clever queries, you will find how to make beautiful plots using powerful `ggplot2` package and its extensions. Of course, in the beginning it will take some time, and probably frustration, but all in all you are now using one of the most powerful and differentiated IT tools. It's only upon you how you will use the knowledge.
 
 
 ## Copy-paste data set

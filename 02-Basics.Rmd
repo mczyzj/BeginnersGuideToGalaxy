@@ -136,4 +136,4 @@ tTestResult <- t.test(numericVector, integerVector)
 print(tTestResult)
 ```
 
-We used `t.test()` function, with two arguments: `numericVector` and `integerVector`. In second function call, we *ordered* **R** to print out the results of statistical test stored in variable `tTestResult` -- which is the argument of this function. I'll show you how to write your own function in chapter \@ref(Functions).
+We used `t.test()` function, with two arguments: `numericVector` and `integerVector`. In second function call, we *ordered* **R** to print out the results of statistical test stored in variable `tTestResult` -- which is the argument of this function. I'll show you how to write your own function in chapter \@ref(functions).

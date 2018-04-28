@@ -316,8 +316,8 @@ plot(seq(0, 1, length = 300), dbeta(seq(0, 1, length = 300), 8, 3), type = 'l')
 ```
 
 ## `tidyverse` idea and `dplyr` library
-The whole idea of tidy data comes from one of most famous **R** developers -- [Hadley Wickham](http://hadley.nz/). In on of his papers [@hadley2014] he described procedures for generating and cleaning data in standardized manner. Many packages right now are designed to work best with data structured according to this publication. Eventually it lead to `tidiverse` -- tools tailored for data science with common syntax and philosophy [@tidyverse2017].
-One of the most useful packages that are included in `tidiverse` [@tidyverse2017] are `tidyr` [@tidyr2017] and `dplyr` [@dplyr2017]. First helps us to swap from 'wide' to 'long' table format (and back). The second package contains set of tools to easily manipulate rows, columns or even single cells in *data frame*. It is extremely powerful tool, which speeds up work with data sets so much, that after few times dealing with it, you will leave traditional spread sheet forever.
+The whole idea of tidy data comes from one of most famous **R** developers -- [Hadley Wickham](http://hadley.nz/). In on of his papers [@hadley2014] he described procedures for generating and cleaning data in standardized manner. Many packages right now are designed to work best with data structured according to this publication. Eventually it lead to `tidiverse` -- tools tailored for data science with common syntax and philosophy [@R-tidyverse].
+One of the most useful packages that are included in `tidiverse` [@R-tidyverse] are `tidyr` [@R-tidyr] and `dplyr` [@R-dplyr]. First helps us to swap from 'wide' to 'long' table format (and back). The second package contains set of tools to easily manipulate rows, columns or even single cells in *data frame*. It is extremely powerful tool, which speeds up work with data sets so much, that after few times dealing with it, you will leave traditional spread sheet forever.
 
 ### Wide vs. long tables
 Lets start with changing wide format table into long format table.
@@ -329,7 +329,7 @@ wideTable
 
 Than we just make a little *mumbo jumbo* and change it to long format:
 
-```{r echo = TRUE, eval = TRUE}
+```{r echo = TRUE, eval = TRUE, message = FALSE}
 library('tidyr')
 library('dplyr')
 longTable <- gather(wideTable, key = sex, value = number)
