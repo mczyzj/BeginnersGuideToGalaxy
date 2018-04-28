@@ -331,7 +331,6 @@ Than we just make a little *mumbo jumbo* and change it to long format:
 
 ```{r echo = TRUE, eval = TRUE}
 library('tidyr')
-library('magrittr')
 library('dplyr')
 longTable <- gather(wideTable, key = sex, value = number)
 longTable[7:12, ]

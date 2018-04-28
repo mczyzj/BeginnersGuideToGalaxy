@@ -1,0 +1,41 @@
+# Final indications {#finalindications}
+
+## Use Projects
+To organize your work, not only in **RStudio**, but also on hard drive you should use projects. It is extremely easy in this IDE. Just click button -- *Create new project* -- choose *New Directory* and type of project you need. **RStudio** will take care of everything for you. Later you can easily add files of sub-folders with specifying content into your project and use relational links. Also, using projects makes easy to maintain clean global environment, which beginners often tend to underestimate and than they run into troubles.
+
+## Use RMarkodow
+To make your work more reproducible, and also to make nice looking output (in html or PDFs) it is a good idea to work in RMarkdown files instead of RScripts. The syntax of **RMarkdown** is nearly identical to original **Markdown**, but allows you to execute and store **RCode**. You can find [RMarkdown introduction here](http://rmarkdown.rstudio.com/articles_intro.html). There is also nice [cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) which contains all commands you will need. As there is strong pressure to make research and science more open and reproducible, it is strongly advised that you work with proper tools to do it like **RMarkdown** or **Project Jupyter**. If you want to learn more, there is very nice [guide by British Ecological Society](https://www.britishecologicalsociety.org/wp-content/uploads/2017/12/guide-to-reproducible-code.pdf) you should read.
+
+Also, you need to know that to make output in PDFs format, you will first need to install **LaTeX** distribution. There are tons of tutorials how to do it on different operating system. The thing is that even you don't use **LaTeX** directly, **R** uses it *under the hood* to (oversimplifying) to convert **RMarkdown** to PDFs. For **Linux** users, one piece of advice is to install *full* distribution instead of *base*, it take more time and disk space, but will save you frustration of installing additional packages later.
+
+## Use .rds files
+Usually we work with plain text files like csv or tsv in **R**. However, there is also a highly valuable format of files called rds, that makes work even more pleasant. It not only preserves all classes of variables, but also takes less space than plain text file, due to compression algorithms. Also when using `saveRDS()` you don't need to define hundreds of parameters, just name of object you want to save and its file name. The downside is that it is format to use directly with **R** and won't work with other programs.
+
+## Nice resources you SHOULD read
+There is few hundred of books relating more or less to work in **R**. There is also a huge number of blogs, web pages and other on-line resources that helps with work in **R**. Here you will find some of them that I find very useful in everyday work with R and statistics.
+
+***
+\begin{center}
+\begingroup\Large
+R and its packages  
+\endgroup
+\end{center}
+***
+
+* [Basic Transformations and Explorations in the Tidyverse](https://annamarbut.blogspot.de/2018/02/basic-transformations-and-explorations.html)
+* [R Graphic CookBook free on-line version](http://www.cookbook-r.com/Graphs/)
+* [Advanced R free on-line version](https://adv-r.hadley.nz/)
+* [Collection of R cheat sheets](https://www.rstudio.com/resources/cheatsheets/)
+* [R Weekly -- Collection of best news from data science world](https://rweekly.org)
+
+***
+\begin{center}
+\begingroup\Large
+Statistics, programming and modeling
+\endgroup
+\end{center}
+***
+
+* [RECONlearn -- free resources on epidemiology](https://reconlearn.netlify.com)
+* [Norm Matloff's blog discussing issues with statistics and data science](https://matloff.wordpress.com/)
+* [Rosetta Code -- a repository for code to solve large number of problems with tens of different programming languages](https://rosettacode.org/wiki/Rosetta_Code)

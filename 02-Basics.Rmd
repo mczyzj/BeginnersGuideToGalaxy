@@ -19,7 +19,7 @@ A good practice, when you want to learn programming language, is to read what ot
 ## Syntax
 
 ### Common operators
-There are three main *signs* used in **R's** syntax. First two are assignment symbols: `<-` and `=`; for convention we use them in different cases. Third one is `#`. It is a symbol used for comments. Everything following this symbol to the end of code line will not be executed. There are also other signs (or symbols) which are building blocks of language, however their use is very precisely defined and reserved for certain events. Below you find a table with reference for most common operators used. You will faster grasp it while you write your own code, than by reading about it. Thus, I suggest we go deeper into variable types in **R** language.
+In general **R** syntax resembles syntax of standard math functions $f(x, z) = a * x + b * z$. So in **R** the syntax to call this function would be... `f(x, z)`, which would evaluate (behind scenes) expression `a * x + b * z`. You can think about functions in this language with general pattern `function_name(argument_1, argument_2, ..., argument_n)`. Next thing you should know before you start working is that there are three main *signs* used in **R's** syntax. First two are assignment symbols: `<-` and `=`; for convention we use them in different cases. **You need to use `=` ONLY for function arguments**. Third one is `#`. It is a symbol used for comments. Everything following this symbol to the end of code line will not be executed. There are also other signs (or symbols) which are building blocks of language, however their use is very precisely defined and reserved for certain events. Below you find a table with reference for most common operators used. You will faster grasp it while you write your own code, than by reading about it. Thus, I suggest we go deeper into variable types in **R** language.
 
 ```{r tab-operators, echo = FALSE}
 knitr::kable(
@@ -43,6 +43,7 @@ class(logicalVector)
 ```
 
 For more complex data, we have four basic classes: *vectors*, *lists*, *data frames* and *matrices*. *Matrix* is similar to *data frame*. The most obvious difference is that *matrix* contains only one *class* of variables (usually *numeric* or *integer*), while *data frame* can store *numeric*, as well as *characters* and *factors* (for now, you can assume that *factor* class is used to store categorical variables) in separate columns. Also *matrices* are used when programmers want to achieve great speed in mathematical computation. *Data frames* are resembling tables from popular spreadsheet software. Lets look:
+
 ```{r echo = T, eval = T}
 matrixVariable <- matrix(c(1:10), nrow = 2)
 matrixVariable
@@ -78,7 +79,7 @@ First of all, all names are *case-sensitive*, which means that **R** recognize v
 And the golden rule should be - whatever guideline you follow -- be consequent!
 
 ## Math operations 
-In **R** we use standard math operators `+ - * /` to perform addition, subtraction, multiplication and division. Symbol `^` indicates that we want to use power, and sqrt to make square root. OK, so whats the name of a function to get n^th^ root? Probably you remember from math lessons that $\sqrt [n] {x} = x^\frac{1}{n}$, thus you can just write `x^(1/n)`. To change order of operation (which are following mathematics rules) use brackets `()`. Other important mathematical functions are `%%` for modulo, and %/% for integer division.
+In **R** we use standard math operators `+ - * /` to perform addition, subtraction, multiplication and division. Symbol `^` indicates that we want to use power, and `sqrt` to make square root. OK, so whats the name of a function to get n^th^ root? Probably you remember from math lessons that $\sqrt [n] {x} = x^\frac{1}{n}$, thus you can just write `x^(1/n)`. To change order of operation (which are following mathematics rules) use brackets `()`. Other important mathematical functions are `%%` for modulo, and `%/%` for integer division.
 
 ```{r eval = T, echo = T}
 5 + 2

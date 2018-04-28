@@ -1,0 +1,303 @@
+# Simple workflow
+
+```{r echo = FALSE, eval = TRUE, message = FALSE}
+library('ggplot2')
+library('dplyr')
+library('tidyr')
+library('nlsMicrobio')
+library('minpack.lm')
+library('segmented')
+library('nls2')
+```
+
+## Data
+
+We manage to go through whole introduction to *R's Galaxy*. But that's not the end. For a final word I would like to go with you with once again through some of the stuff you will need more or less in your everyday job. We will use **R** to see, how we can predict some values in basic microbiology.
+
+First we need a data set. I downloaded data from deposited in [ComBase](https://www.combase.cc/index.php/en/) for *Bacillus cereus* in broth with conditions as follows: pH = 6.1, water activity (aw) = 0.974, sodium chloride in environment = 4.5%, temperatures = 15, 16, 20, 22, 30 degrees Celsius. This data comes from Food Standards Agency, UK, and is hardcoded (so you can copy-paste) in the end of this chapter.
+
+```{r eval = T, echo = F}
+BcDF <- data.frame(Time = c(0.00, 17.00, 43.00, 66.50, 139.50, 187.00, 283.00,
+                            478.00, 526.00, 550.00, 605.50, 887.00,
+                            0.00, 7.00, 17.00, 24.00, 25.00, 31.00, 42.00,
+                            48.00, 54.00, 71.00, 75.00, 78.00, 92.00, 95.00,
+                            149.00, 166.00, 170.50, 187.50, 199.00, 216.00,
+                            0.00, 17.62, 23.82, 40.43, 46.18, 71.17, 92.03,
+                            115.17, 120.10, 137.05, 140.40, 143.08, 159.85,
+                            165.25, 185.68, 191.27, 209.27, 210.95, 214.55,
+                            237.90,
+                            0.00, 16.22, 19.02, 20.93, 23.40, 40.98, 45.23,
+                            47.98, 66.07, 69.35, 71.68, 89.60, 161.32, 166.12,
+                            187.20, 190.45, 209.13,
+                            0.00, 1.13, 2.05, 2.93, 4.08, 4.98, 6.02, 6.90,
+                            8.02, 9.02, 10.08, 10.95, 12.08, 12.98, 14.13,
+                            15.38, 16.22, 19.75),
+                   LogC = c(3.25, 3.54, 3.53, 3.40, 3.34, 3.38, 3.40, 5.78,
+                            7.00, 6.70, 7.34, 6.48, 3.25, 2.95, 3.23, 3.20,
+                            3.18, 3.18, 3.15, 3.53, 2.78, 3.28, 5.04, 4.85,
+                            5.41, 5.60, 7.15, 7.52, 7.41, 7.63, 7.36, 7.59,
+                            4.33, 3.48, 3.45, 2.76, 2.92, 2.65, 3.39, 4.56,
+                            5.15, 6.18, 6.34, 6.80, 7.30, 7.35, 7.43, 7.24,
+                            6.54, 7.28, 7.27, 7.17, 2.54, 2.30, 2.24, 2.40,
+                            2.54, 5.15, 5.73, 6.42, 7.72, 7.94, 7.73, 7.95,
+                            8.02, 7.88, 7.99, 7.95, 7.32, 3.67, 3.51, 3.55,
+                            3.70, 3.98, 4.46, 4.77, 4.92, 5.28, 6.24, 6.44,
+                            6.92, 7.17, 7.18, 7.36, 7.48, 7.68, 7.98),
+                   Temp = c(rep(16, times = 12), rep(22, times = 20),
+                            rep(15, times = 20), rep(20, times = 17),
+                            rep(30, times = 18)),
+                   resID = c(rep('Bc1', times = 12), rep('Bc2', times = 20),
+                             rep('Bc3', times = 20), rep('Bc4', times = 17),
+                             rep('Bc5', times = 18)))
+
+```
+
+## Exploaratory visualisation and setup
+We will start with visually inspecting this data set.
+
+```{r Bc-plot, fig.cap = 'Growths in temperature range'}
+ggplot(BcDF, aes(x = Time, y = LogC)) + 
+  geom_point(aes(colour = resID)) +
+  facet_wrap(~Temp)
+```
+
+Unfortunately, one plot on Fig. \@ref(fig:Bc-plot) (30 degrees Celsius) is bit compressed, so lets isolate it and look closer on the points (Fig. \@ref(fig:Bc30deg-plot)).
+
+```{r Bc30deg-plot, fig.cap = 'Growth in 30 deg. C', fig.height = 2.5}
+BcDFsub39 <- subset(BcDF, Temp == 30)
+ggplot(BcDFsub39, aes(x = Time, y = LogC)) +
+  geom_point()
+```
+
+It seems that there is at least short lag phase in each of the growth temperatures. We will use `nlsMicrobio` package, which contains some models, that we will use to estimate $\mu_{max}$. First we will split, whole *data frame* into *list* of *data frames* -- one for each temperature. Than we will use our good friend `lapply()` to change names of columns in all data sets so it fits needs of our function. 
+
+```{r}
+BcList <- split(BcDF, f= BcDF$resID)
+BcList <- lapply(BcList, setNames, nm = c('t',  'LOG10N', 'Temp', 'resID'))
+```
+
+From plots above (i.e., Fig. \@ref(fig:Bc-plot) and Fig. \@ref(fig:Bc30deg-plot)) we make an assumption that all of those growth curves have shorter or longer lag phase.
+
+## Growth models
+It would be nice to use trilinear (Buchanan) and Baranyi model to estimate $\mu_{max}$. However writing it by hand is error prone, we can use predefined models from `nlsMicrobio` package (and that is why we need precise names of columns). Lets see how models look:
+
+```{r}
+baranyi
+buchanan
+```
+
+To estimate *trilinear* model we could also use `segmented` package, however than we would use different approach to solve the problem -- we would estimate *breakpoints* or *knots* and than fit linear regression for each segment. The problem with this approach is that because of data in *lag* and *stationary* phase, with this method we would obtain slope values $\neq 0$ for those phases.
+
+Unfortunately, when using *non-linear* regression algorithms we sometimes run into trouble and cannot really estimate values we are interested in. Sometimes we need to make small changes in initial values that we parse as function arguments. In other times, **R** is unable to make estimations due to data structure. The main problem is that there is no *one size fits all* solution, and often finding best way to solve a problem is an iterative process of manually finding best starting parameters or using multiple functions to find the working one. Below we attempt to find $\mu_{max}$ with  *Baranyi* and *Buchanan* approach.
+
+```{r error = TRUE}
+bar1.nls <- nls(baranyi, BcList$Bc1,
+                list(lag = 200, mumax = 0.03, LOG10N0 = 3, LOG10Nmax = 6.5),
+                control = nls.control(maxiter = 500))
+bar2.nls <- nls(baranyi, BcList$Bc2,
+                list(lag = 2, mumax = 0.5, LOG10N0 = 2, LOG10Nmax = 8))
+bar3.nls <- nls(baranyi, BcList$Bc3,
+                list(lag = 5, mumax = 0.01, LOG10N0 = 3, LOG10Nmax = 6))
+bar4.nls <- nls(baranyi, BcList$Bc4,
+                list(lag = 1, mumax = 0.5, LOG10N0 = 2, LOG10Nmax = 8))
+bar5.nls <- nls(baranyi, BcList$Bc5,
+                list(lag = 1, mumax = 0.5, LOG10N0 = 3, LOG10Nmax = 8))
+
+```
+
+OK. That is a bit worrying. We were able to solve equations only for two data sets. One solution we can try is to use `minipack.lm` which uses different approach which often works better than standard `nls` function. We will also allow more iterations of algorithm, which is second common solution.
+
+```{r}
+bar1.nlsLM <- nlsLM(baranyi, BcList$Bc1,
+                    list(lag = 200, mumax = 0.03, LOG10N0 = 3, LOG10Nmax = 6.5),
+                    control = nls.lm.control(maxiter = 500))
+summary(bar1.nlsLM)
+BaranyiBc1 <- summary(bar1.nlsLM)$parameters
+```
+
+Lets substitute variables in equation (later I'll show you haw to do it automaticaly):
+
+`LOG10N ~ LOG10Nmax + log10((-1 + exp(mumax * lag) + exp(mumax * t))/(exp(mumax * t) - 1 + exp(mumax * lag) * 10^(LOG10Nmax - LOG10N0`
+
+with calculated ones and see how predicted curve fits our data (Fig. \@ref(fig:pred-bar1)).
+
+```{r}
+xBarBc1 <- 1:800
+predBarBc1 <- 6.880 +
+  log10((-1 + exp(0.3537 * 462.2242) +
+           exp(0.3515 * xBarBc1))/
+          (exp(0.3515 * xBarBc1) - 1 + 
+             exp(0.3515 * 462.2242) * 10^(6.880 - 3.406)))
+```
+
+```{r pred-bar1, fig.cap = 'Predicted growth from Baranyi equation for Bc1 dataset', fig.height = 3.5}
+plot(BcList$Bc1$t, BcList$Bc1$LOG10N)
+lines(predBarBc1~xBarBc1)
+```
+
+This does not look like a good fit. Yet another solution to this problem is to use package `segmented`. It's not the most elegant solution to the problem, but hey, our data is not the best one as well.
+
+```{r error = TRUE}
+segmented1.lm <- lm(LOG10N~1, data = BcList$Bc1) %>%
+  segmented(seg.Z = ~t,
+            psi = c(200, 400),
+            control = seg.control(it.max = 500, n.boot = 300))
+Segmented1 <- list(confint.segmented(segmented1.lm),slope(segmented1.lm))
+```
+
+> ** NOTE: You should rather use formula: lm(LOG10N~t, data = BcList$Bc1), however for unknown reasons when using `bookdown` build functions fails to calculate linear model. So, till I find a solution to this problem we'll stick to simplified one.
+
+Now we make some quick plot (Fig. \@ref(fig:pred-segm1)) to check how does the prediction fits data.
+
+```{r pred-segm1, fig.cap = 'Predicted growth from segmented regression for Bc1 dataset', fig.height = 3.5}
+plot(segmented1.lm)
+points(BcList$Bc1$LOG10N~BcList$Bc1$t)
+```
+
+As I stated before, the *lag* and *stationary* phase segments are not nice, however slope of the *growth* phase seems to fit slightly better than the one calculated with `nlsML()` and `baranyi`. Also we need to remember that the more data points exist in set, and the better they are spread among independent variable range, the easier it gets to make statistical procedures, and the results will be more robust.
+
+We can also try to fit non linear regression for `buchanan` with `nlsML()` and `nls2` (the latter with brute force). Unfortunately, `nls` methods are quite sensitive on data and initial values, thus sometimes it takes a while to find something that makes sens or does not throw error now as `{r} cat('singular gradient matrix at initial parameter estimates')`.
+
+```{r}
+## Levenberg-Marquardt algorithm
+buch1.nlsLM <- nlsLM(buchanan, BcList$Bc1,
+                    list(lag = 200, mumax = 0.03, LOG10N0 = 3, LOG10Nmax = 6.5),
+                    control = nls.lm.control(maxiter = 500))
+## Gauss-Newton algorithm with brute-force
+buch1.nlsBF <- nls2(buchanan, data = BcList$Bc1,
+                    start = list(lag = 280, mumax = 0.03, LOG10N0 = 3.5, LOG10Nmax = 7),
+                    control = nls.control(maxiter = 1000, tol = 1e-01, minFactor = 1/100), algorithm = 'brute-force')
+BuchananBFBc1<- summary(buch1.nlsLM)$parameters
+BuchananBc1<- summary(buch1.nlsBF)$parameters
+```
+
+And quick plot (Fig. \@ref(fig:nls-buch1bf1)) for visual inspection:
+
+```{r nls-buch1bf1, fig.cap = 'Comparission of fiting Buchanan equation with Levenberg-Marquardt and brute-force Gauss-Newton', fig.height = 3.5}
+par(mfrow = c(1,2))
+plot(BcList$Bc1$t, BcList$Bc1$LOG10N)
+lines(predict(buch1.nlsLM)~BcList$Bc1$t)
+
+plot(BcList$Bc1$t, BcList$Bc1$LOG10N)
+lines(predict(buch1.nlsBF)~BcList$Bc1$t)
+par(mfrow = c(1,1))
+```
+
+Lets compare our parameters estimates:
+```{r error = TRUE}
+Segmented1
+BaranyiBc1
+BuchananBc1
+BuchananBFBc1
+```
+
+As you can see, all the methods differ in their estimates (for Baranyi it $\mu_{max}$ is exressed as natural logarithm, so we can use equation $log_{10}(x) = \frac{ln(x)}{ln(10)}$ to obtain value `r 0.3515197/log(10)`). Some of them work better some work worse. Sometimes they produce false convergence, sometimes they highly rely even on small changes in initial values and sometimes they just do not work with our data set. Other thing one should consider is very wise proverb:
+
+> *Garbage in, garbage out.*
+
+Meaning, that even with best methods, our data set might just not be sufficient to produce reliable output. Unfortunately in many cases we need to deal somehow with this kind of data. And we should always check if our output makes sense.
+
+But lets try to find a solution to other Bc2 and Bc3 data sets. We'll simplify things and start estimation of parameters with Buchanan and Baranyi models using `nlsLM`
+
+```{r error = TRUE}
+buch2.nlsLM <- nlsLM(buchanan, BcList$Bc2,
+                    list(lag = 100, mumax = 0.03, LOG10N0 = 3, LOG10Nmax = 6.5),
+                    control = nls.lm.control(maxiter = 500))
+buch3.nlsLM <- nlsLM(buchanan, BcList$Bc3,
+                    list(lag = 100, mumax = 0.03, LOG10N0 = 3, LOG10Nmax = 6.5),
+                    control = nls.lm.control(maxiter = 500))
+bar2.nlsLM <- nlsLM(baranyi, BcList$Bc2,
+                list(lag = 10, mumax = 0.2, LOG10N0 = 3, LOG10Nmax = 6.5),
+                control = nls.lm.control(maxiter = 500))
+bar3.nlsLM <- nlsLM(baranyi, BcList$Bc3,
+                list(lag = 10, mumax = 0.03, LOG10N0 = 3, LOG10Nmax = 6.5),
+                control = nls.lm.control(maxiter = 500))
+```
+
+Hurray! No errors... for now at least. Lets inspect visually how our models fit to data (Fig. \@ref(fig:BB23-models)).
+
+```{r BB23-models, fig.cap = 'Predicted values vs. data points', fig.height = 4.7, message = FALSE}
+newTime <- data.frame(t = 1:270)
+predBuch2 <- predict(buch2.nlsLM, newdata = newTime)
+predBuch3 <- predict(buch3.nlsLM, newdata = newTime)
+predBar2 <- predict(bar2.nlsLM, newdata = newTime)
+predBar3 <- predict(bar3.nlsLM, newdata = newTime)
+
+#4 plots in one picture 2 x 2
+par(mfrow = c(2,2))
+plot(predBuch2 ~ newTime$t, type = 'l', col = 'red',
+     main = 'Buchanan', sub = 'dataset Bc2', cex.main = 0.75, cex.sub = 0.6,
+     xlab = 'time', ylab = 'Log10N', cex.lab = 0.6)
+  points(BcList$Bc2$t, BcList$Bc2$LOG10N, col = 'blue')
+  
+plot(predBuch3 ~ newTime$t, type = 'l', col = 'red',
+     main = 'Buchanan', sub = 'dataset Bc3', cex.main = 0.75, cex.sub = 0.6,
+     xlab = 'time', ylab = 'Log10N', cex.lab = 0.6)
+  points(BcList$Bc3$t, BcList$Bc3$LOG10N, col = 'blue')
+
+plot(predBar2 ~ newTime$t, type = 'l', col = 'red',
+     main = 'Baranyi', sub = 'dataset Bc2', cex.main = 0.75, cex.sub = 0.6,
+     xlab = 'time', ylab = 'Log10N', cex.lab = 0.6)
+  points(BcList$Bc2$t, BcList$Bc2$LOG10N, col = 'blue')
+
+plot(predBar3 ~ newTime$t, type = 'l', col = 'red',
+     main = 'Baranyi', sub = 'dataset Bc3', cex.main = 0.75, cex.sub = 0.6,
+     xlab = 'time', ylab = 'Log10N', cex.lab = 0.6)
+  points(BcList$Bc3$t, BcList$Bc3$LOG10N, col = 'blue')
+```
+
+Fit seems to be quite reasonable. Finally lets check the parameters of models:
+
+```{r}
+summary(buch2.nlsLM)$parameters
+summary(buch3.nlsLM)$parameters
+summary(bar2.nlsLM)$parameters
+summary(bar3.nlsLM)$parameters
+```
+
+
+## Copy-paste data set
+
+***
+\begin{center}
+\begingroup\Large
+The \textit{Bacillus cereus} data
+\endgroup
+\end{center}
+***
+
+```{r eval = F, echo = T}
+BcDF <- data.frame(Time = c(0.00, 17.00, 43.00, 66.50, 139.50, 187.00, 283.00,
+                            478.00, 526.00, 550.00, 605.50, 887.00,
+                            0.00, 7.00, 17.00, 24.00, 25.00, 31.00, 42.00,
+                            48.00, 54.00, 71.00, 75.00, 78.00, 92.00, 95.00,
+                            149.00, 166.00, 170.50, 187.50, 199.00, 216.00,
+                            0.00, 17.62, 23.82, 40.43, 46.18, 71.17, 92.03,
+                            115.17, 120.10, 137.05, 140.40, 143.08, 159.85,
+                            165.25, 185.68, 191.27, 209.27, 210.95, 214.55,
+                            237.90,
+                            0.00, 16.22, 19.02, 20.93, 23.40, 40.98, 45.23,
+                            47.98, 66.07, 69.35, 71.68, 89.60, 161.32, 166.12,
+                            187.20, 190.45, 209.13,
+                            0.00, 1.13, 2.05, 2.93, 4.08, 4.98, 6.02, 6.90,
+                            8.02, 9.02, 10.08, 10.95, 12.08, 12.98, 14.13,
+                            15.38, 16.22, 19.75),
+                   LogC = c(3.25, 3.54, 3.53, 3.40, 3.34, 3.38, 3.40, 5.78,
+                            7.00, 6.70, 7.34, 6.48, 3.25, 2.95, 3.23, 3.20,
+                            3.18, 3.18, 3.15, 3.53, 2.78, 3.28, 5.04, 4.85,
+                            5.41, 5.60, 7.15, 7.52, 7.41, 7.63, 7.36, 7.59,
+                            4.33, 3.48, 3.45, 2.76, 2.92, 2.65, 3.39, 4.56,
+                            5.15, 6.18, 6.34, 6.80, 7.30, 7.35, 7.43, 7.24,
+                            6.54, 7.28, 7.27, 7.17, 2.54, 2.30, 2.24, 2.40,
+                            2.54, 5.15, 5.73, 6.42, 7.72, 7.94, 7.73, 7.95,
+                            8.02, 7.88, 7.99, 7.95, 7.32, 3.67, 3.51, 3.55,
+                            3.70, 3.98, 4.46, 4.77, 4.92, 5.28, 6.24, 6.44,
+                            6.92, 7.17, 7.18, 7.36, 7.48, 7.68, 7.98),
+                   Temp = c(rep(16, times = 12), rep(22, times = 20),
+                            rep(15, times = 20), rep(20, times = 17),
+                            rep(30, times = 18)),
+                   resID = c(rep('Bc1', times = 12), rep('Bc2', times = 20),
+                             rep('Bc3', times = 20), rep('Bc4', times = 17),
+                             rep('Bc5', times = 18)))
+
+```
