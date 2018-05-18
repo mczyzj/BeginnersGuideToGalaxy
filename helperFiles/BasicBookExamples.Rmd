@@ -1,0 +1,343 @@
+---
+title: "Examples from Beginners Guide to R Galaxy"
+author: "Michal Czyz"
+date: "May 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Chapter 2
+
+Vectors
+```{r echo = T, eval = T}
+characterVector <- c('a', 'b', 'c')
+class(characterVector)
+integerVector <- c(1L, 2L, 3L)
+class(integerVector)
+numericVector <- c(2.5, 3.5, 4.5)
+class(numericVector)
+logicalVector <- c(TRUE, FALSE)
+class(logicalVector)
+```
+
+Matrix & Data Frame
+```{r echo = T, eval = T}
+matrixVariable <- matrix(c(1:10), nrow = 2)
+matrixVariable
+class(matrixVariable)
+dfVariable <- data.frame(x1 = 1:5, x2 = 6:10)
+dfVariable
+class(dfVariable)
+```
+
+Lists
+```{r echo = T, eval = T, tidy = T}
+listVariable <- list(x1 = c('a', 'b'), x2 = 1:4, x3 = matrix(c(1:6), nrow = 2))
+listVariable
+class(listVariable)
+class(listVariable$x1)
+class(listVariable$x2)
+class(listVariable$x3)
+```
+
+Maths basics
+```{r eval = T, echo = T}
+5 + 2
+11 - 3
+(4+7)/9*2
+14 %/% 3 + 1
+8^(1/3) + 10%%6
+```
+
+Trigonometric functions
+```{r eval = T, echo = T}
+someArc <- 90*pi/180
+sin(someArc)
+atanValue <- atan(0.89)
+atanValue*180/pi
+```
+
+Logical operations
+```{r eval = T, echo = T}
+5 >= 1
+10%%2 == 0
+!FALSE
+5L | 11.1 <= 6
+```
+
+Using functions
+```{r echo = T, eval = T}
+tTestResult <- t.test(numericVector, integerVector)
+print(tTestResult)
+```
+
+Addressing vector
+```{r echo = T, eval = T}
+addressVec <- seq(from = 1, to = 20, by = 2)
+addressVec
+addressVec[5]
+addressVec[-5]
+```
+
+Wrong and correct addressing of vector
+```{r echo = T, eval =T, error = T}
+addressVec[1,5]
+addressVec[-1,-5,-6]
+addressVec[c(1,5)]
+addressVec[-c(1,5,6)]
+```
+
+Conditional assignment to vector
+```{r echo = T, eval =T, error = T}
+addressVec[which(addressVec >= 6)] <- 'o..O'
+addressVec
+```
+
+Data frame addressing
+```{r echo = T, eval =T, error = T}
+addressDF <- data.frame(C1 = seq(1,10), C2 = seq(11,20), C3 = seq(21,30))
+addressDF[5, 2]
+addressDF[6, ]
+addressDF[c(6, 7), 1:3]
+addressDF$C2[5]
+addressDF$C3[c(6:9)]
+```
+
+List addressing
+```{r echo = T, eval =T, error = T}
+addressList <- list(x1 = c('a', 'b'), x2 = 1:4, x3 = matrix(c(1:6), nrow = 2))
+addressList[[2]]
+addressList$x2[3]
+addressList[[3]]
+addressList[[3]][, 3]
+```
+
+`if... else` statements
+
+```{r}
+#Simple
+coinToss <- sample(c(0,1), 3, replace = T)
+coinToss
+ifelse(coinToss > 0, 'Win!', 'Looser!')
+
+#Complex
+coinToss <- sample(c(0,1), 3, replace = T)
+sumOfCoins <- sum(coinToss)# we can have four states here 0,1,2,3
+sumOfCoins
+
+if (sumOfCoins == 0) {
+  'Looser'
+} else if (sumOfCoins == 1) {
+  'Barely alive'
+} else if (sumOfCoins >= 2) {
+  'Big Winner!!!'
+}
+
+#Or because the functions realting to particular conditions are simple, you
+#can make nested ifelse
+ifelse(sum(sumOfCoins) == 0, 'Looser',
+       ifelse(sum(sumOfCoins) == 1, 'Barely alive', 'Big Winner!!!'))
+```
+
+`for` and `while` loops
+```{r}
+exampleDF <- data.frame(norm = rnorm(100, 5, 1.5),
+                        chisq = rchisq(100, 3),
+                        pois = rpois(100, 3.33))
+distroMeans <- vector('list', length(exampleDF)) #prealocate space
+
+for (i in seq_along(exampleDF)) {
+  distroMeans[[i]] <- summary(exampleDF[[i]])
+}
+
+distroMeans
+```
+
+```{r popPlot, fig.cap = 'Population dynamics', fig.height = 3.5}
+#define initial parameters
+N_0   <- 100
+rf    <- 1.34
+sf    <- 0.75
+gf    <- rf*sf
+n_gen <- 1:101
+#we could repeat this inside loop, however we know the number of iterations
+#thus calculating noise vector outside loop is better for performance
+noise <- sample(-3:2, 100, replace = T)
+t <- 1
+geners <- vector('integer', length = length(n_gen))
+geners[1] <- N_0
+while (t < 101) {
+  geners[c(t + 1)] <- floor((geners[t] * gf + noise[t]))
+  t <- t + 1
+}
+
+plot(n_gen, geners, type = 'l',
+     main = 'Population dynamics',
+     xlab = 'generation', ylab = 'number of animals',
+     col = 'blue', lty = 3)
+```
+
+Shortcut to loops AKA `apply` functions family
+```{r}
+testApply  <- list(x = 1:10, b = rep(c(4,5), times = 5), c = rpois(5, 25))
+testLapply <- lapply(testApply, mean)
+testSapply <- sapply(testApply, mean)
+
+#Here we combine previous results with another lapply,
+#and use function with multiple arguments.
+lapply(testSapply, rpois, n = 15)
+head(sapply(testSapply, rpois, n = 15))
+
+testApplyFun <- 1:5
+lapply(testApplyFun, function(x) x + 0.5)
+sapply(testApplyFun, function(x) x + 0.5)
+```
+
+```{r lapplyPopPlot, fig.cap = 'Population dynamics with different starting point', fig.height = 3.5}
+popDyn <- function(N_0, rf = 1.34, sf = 0.75, n_gen) {
+  gf    <- rf*sf
+  noise <- sample(-3:2, 100, replace = T)
+  t <- 1
+  geners <- vector('integer', length = n_gen)
+  geners[1] <- N_0
+  while (t < 101) {
+  geners[c(t + 1)] <- floor((geners[t] * gf + noise[t]))
+  t <- t + 1
+  }
+  return(geners)
+}
+
+N_0   <- c(50, 100, 150, 200, 250)
+popSizes <- lapply(N_0, popDyn, n_gen = 101)
+
+n_gen = 101
+plot(1:n_gen, popSizes[[5]], type = 'l',
+     main = 'Population dynamics',
+     xlab = 'generation', ylab = 'number of animals',
+     col = 'blue', lty = 3, ylim = c(-10, max(popSizes[[5]])))
+lines(1:n_gen, popSizes[[4]], col = 'green')
+lines(1:n_gen, popSizes[[3]], col = 'red')
+lines(1:n_gen, popSizes[[2]], col = 'yellow')
+lines(1:n_gen, popSizes[[1]], col = 'black')
+```
+
+Dice rolling as example of vectorization
+```{r echo = T, eval =T, error = T}
+niceDice <- seq(1,6)
+rollDiceOne <- sample(niceDice, 1000, replace = T)
+rollDiceTwo <- sample(niceDice, 1000, replace = T)
+sumDiceRolls <- rollDiceOne + rollDiceTwo
+
+#wrong sequence of events
+cashDiceRolls <- sumDiceRolls
+cashDiceRolls[which(cashDiceRolls %% 2 == 1 & cashDiceRolls <= 5)] <- 30
+cashDiceRolls[which(cashDiceRolls %% 2 == 1 & cashDiceRolls > 5)] <- 50
+cashDiceRolls[which(cashDiceRolls %% 2 == 0)] <- -70
+sum(cashDiceRolls)
+
+#correct sequence of events
+cashDiceRolls <- sumDiceRolls
+cashDiceRolls[which(cashDiceRolls %% 2 == 0)] <- 70
+cashDiceRolls[which(cashDiceRolls %% 2 == 1 & cashDiceRolls > 5)] <- 50
+cashDiceRolls[which(cashDiceRolls %% 2 == 1 & cashDiceRolls <= 5)] <- 30
+cashDiceRolls[which(cashDiceRolls  == 70)] <- -70
+sum(cashDiceRolls)
+```
+
+```{r echo = FALSE, cassino-plot, fig.cap = 'How to lose cash in casino', out.width='60%', fig.align= 'center'}
+plot(seq(1,1000),cumsum(cashDiceRolls), type = 'l')
+```
+
+Distributions
+
+Simple Beta example
+```{r echo = T, eval =T, error = T}
+rbeta(25, 10, 3)
+```
+
+```{r echo = FALSE, betaDensity-plot, fig.cap = 'Example of beta distribution', out.width='60%', fig.align= 'center'}
+plot(seq(0, 1, length = 300), dbeta(seq(0, 1, length = 300), 8, 3), type = 'l')
+```
+
+Tidverse
+
+```{r echo = TRUE, eval = TRUE}
+wideTable <- data.frame(male = 1:10, female = 3:12)
+wideTable
+```
+
+Converting wide to long table (and back)
+```{r echo = TRUE, eval = TRUE, message = FALSE}
+library('tidyr')
+library('dplyr')
+longTable <- gather(wideTable, key = sex, value = number)
+longTable[7:12, ]
+```
+
+```{r echo = TRUE, eval = TRUE}
+wideTable2 <- data.frame(male = 1:10,
+                         female = 3:12, 
+                         type = rep(c('bacteria', 'virus'), times = 5),
+                         group = rep(c('a', 'b'), each = 5))
+wideTable2
+gather(wideTable2, sex, number, -c(3, 4))[7:13, ]
+```
+
+```{r echo = TRUE, eval = TRUE}
+wideTable3 <- data.frame(male = rep(1:10, each = 2),
+                         female = rep(3:12, times = 2), 
+                         type = rep(c('bacteria','virus'), times = 10),
+                         group = rep(c('a','b'), each = 10),
+                         day = 1:10)
+wideTable3[7:13, ]
+gather(wideTable3, sex, number, 1:2) %>%
+  spread(group, number) %>% .[7:13, ]
+```
+
+Separating column
+```{r echo = TRUE, eval = TRUE}
+wideTable4 <- data.frame(type = rep(c('bacteria.a', 'virus.a'), times = 5))
+wideTable4
+wideTable4 %>% separate(type, c('organism', 'type'), sep = '\\.')
+```
+
+Selecting and renaming column
+```{r echo = TRUE, eval = TRUE}
+head(select(wideTable3, starts_with('gr')), 3)
+head(select(wideTable3, -starts_with('gr')), 3)
+head(select(wideTable3, contains('ale')), 3)
+head(rename(wideTable3, Male = male), 3)
+```
+
+Filtering rows
+```{r echo = TRUE, eval = TRUE}
+filter(wideTable3, group == 'a')
+filter(wideTable3, type != 'bacteria')
+filter(wideTable3, near(female, 5))
+```
+
+Mutating and transmuting (creating new values in (new)columns)
+```{r echo = TRUE, eval = TRUE}
+select(wideTable3, male) %>%
+  mutate(cumulativeMaleSum = cumsum(male)) %>%
+  head(5)
+
+select(wideTable3, male, female) %>%
+  mutate(cumulativeMaleSum = cumsum(male),
+         femaleLog = log(female),
+         cumSumFemaleLog = cumsum(femaleLog)) %>%
+  head(5)
+```
+
+Grouping and summarizing
+```{r echo = TRUE, eval = TRUE}
+wideTable3 %>% 
+  group_by(type) %>% 
+  summarise(meanF = mean(female),
+            meanM = mean(male),
+            numberOfDays = (range(day)[2]-range(day)[1]),
+            numberOfCases = n())
+```
