@@ -1,0 +1,60 @@
+---
+title: "Functions example from Beginners Guide to R Galaxy"
+author: "Michal Czyz"
+date: "May 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Function
+
+```{r}
+simpleCalculator <- function(x, y, mathType = 'all') {
+  if (mathType == 'divide' & y == 0) {
+    return('You cannot divide by 0, please change y value.')
+  } else if (mathType == 'root' & y == 0) {
+    return('Root denominator is 0, cannot perform operation, please change y value.')
+  } else if (mathType == 'all' & y == 0) {
+    return('Y value needs to be different from 0 to make division and nth root.')
+  }
+  addF <- function(x, y) {
+  return(x+y)
+  }
+  subF <- function(x, y) {
+  return(x-y)
+  }
+  divF <- function(x, y) {
+  return(x/y)
+  }
+  mulF <- function(x, y) {
+  return(x*y)
+  }
+  powF <- function(x, y) {
+  return(x^y)
+  }
+  ntrF <- function(x, y) {
+  return(x^(1/y))
+  }
+  switch(mathType,
+         add = addF(x, y),
+         substract = subF(x, y),
+         multiple = mulF(x, y),
+         divide = divF(x, y),
+         power = powF(x, y),
+         root = ntrF(x, y),
+         all = cat('The result of mathematical opereators on two numbers:',
+                      paste(x, 'and', y), 'are:', '\naddition:', addF(x, y),
+                      '\nsubstraction:', subF(x, y), '\nmultiplication:', mulF(x, y),
+                      '\ndvision:', divF(x, y), '\nWhat is more the', y,
+                      'th power of', x, 'is', powF(x, y), 'and', x, y,
+                      'th root is', ntrF(x, y)))
+
+}
+simpleCalculator(25,0)
+simpleCalculator(25,0, 'root')
+simpleCalculator(25,0, 'divide')
+simpleCalculator(25,5)
+```
