@@ -128,7 +128,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-04-28}
+  \date{2018-05-18}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -339,8 +339,8 @@ In this book, we will use following conventions:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 1.2070236 0.2328131 1.1311709 1.4189133 1.2193364 1.0709074 1.2161778
-##  [8] 1.3727643 0.8065509 0.6012342
+##  [1] 0.9288354 1.1868341 0.9736244 1.4021389 0.7655456 1.4934288 1.7738235
+##  [8] 1.6612140 1.7946885 0.4778589
 \end{verbatim}
 
 \begin{itemize}
@@ -1328,7 +1328,7 @@ this place is going to make some simple things you can consider using
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 1 1
+## [1] 0 1 0
 \end{verbatim}
 
 \begin{Shaded}
@@ -1338,7 +1338,7 @@ this place is going to make some simple things you can consider using
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Win!" "Win!" "Win!"
+## [1] "Looser!" "Win!"    "Looser!"
 \end{verbatim}
 
 But what if your script can have more than two states when you start
@@ -1354,7 +1354,7 @@ structure. A simple example is below:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1
+## [1] 2
 \end{verbatim}
 
 \begin{Shaded}
@@ -1370,7 +1370,7 @@ structure. A simple example is below:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Barely alive"
+## [1] "Big Winner!!!"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1383,7 +1383,7 @@ structure. A simple example is below:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Barely alive"
+## [1] "Big Winner!!!"
 \end{verbatim}
 
 \subsection{\texorpdfstring{\texttt{for} and \texttt{while}
@@ -1440,15 +1440,15 @@ examples:
 \begin{verbatim}
 ## [[1]]
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   1.369   4.168   5.163   5.016   5.934   9.251 
+##   1.594   4.011   4.849   4.981   5.957  10.057 
 ## 
 ## [[2]]
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-##  0.06683  1.41942  2.55623  3.38705  4.91848 15.39488 
+##  0.05314  1.00781  2.15244  2.95046  4.09945 11.08640 
 ## 
 ## [[3]]
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00    2.00    3.00    3.22    4.00    8.00
+##    0.00    2.00    3.00    3.29    4.00   12.00
 \end{verbatim}
 
 Above example is very simple, and actually can be made without loop. Try
@@ -1542,13 +1542,13 @@ SomeFunction, A = 10)`.
 
 \begin{verbatim}
 ## $x
-##  [1]  5  4  5  5  2  4  5  6  4  2  3  3 10  5  4
+##  [1]  4  5  6  5  4  4  5  6  7  6 11  7  4 10  5
 ## 
 ## $b
-##  [1]  4  5 10  4  6  1  3  4  4  3  7  6  3  5  6
+##  [1] 5 6 5 7 1 7 1 0 2 6 4 4 4 9 4
 ## 
 ## $c
-##  [1] 32 30 31 28 27 27 22 20 20 33 18 30 26 27 23
+##  [1] 23 30 24 31 24 30 34 28 30 37 21 23 30 21 29
 \end{verbatim}
 
 \begin{Shaded}
@@ -1558,13 +1558,13 @@ SomeFunction, A = 10)`.
 \end{Shaded}
 
 \begin{verbatim}
-##       x b  c
-## [1,]  4 8 28
-## [2,]  7 4 15
-## [3,]  2 6 17
-## [4,]  4 4 25
-## [5,] 10 6 26
-## [6,]  7 5 34
+##      x b  c
+## [1,] 6 6 20
+## [2,] 5 3 34
+## [3,] 8 2 26
+## [4,] 5 7 28
+## [5,] 7 3 26
+## [6,] 1 5 32
 \end{verbatim}
 
 It is also possible to use so called anonymous functions (simplifying --
@@ -1754,7 +1754,7 @@ absolute value, and after all change it to negative one.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -11900
+## [1] -16920
 \end{verbatim}
 
 Now, that's not very nice\ldots{} We lost a lot of cash\ldots{} But we
@@ -1803,10 +1803,10 @@ distribution}, with parameters \texttt{10} and \texttt{3}:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0.7759927 0.7562455 0.8347460 0.7973032 0.6406459 0.7331960 0.9008447
-##  [8] 0.7302486 0.9039791 0.7724847 0.9335580 0.8189024 0.6804088 0.7402334
-## [15] 0.6330118 0.7700679 0.8694151 0.5024869 0.7962756 0.7276797 0.6687331
-## [22] 0.7571119 0.7947000 0.9254476 0.8096294
+##  [1] 0.7986224 0.7445944 0.6305413 0.8489741 0.9267320 0.8199201 0.6346696
+##  [8] 0.6471016 0.7695083 0.7931333 0.7415597 0.7087800 0.6565048 0.6605388
+## [15] 0.7972370 0.8208387 0.8262428 0.6884806 0.6755203 0.6744089 0.6449869
+## [22] 0.8355298 0.6800542 0.9447348 0.6337499
 \end{verbatim}
 
 Or we can make this nice plot (Fig. \ref{fig:betaDensity-plot}) for
@@ -2264,8 +2264,8 @@ and number of cases for groups derived from \texttt{type}.
 ## # A tibble: 2 x 5
 ##   type     meanF meanM numberOfDays numberOfCases
 ##   <fct>    <dbl> <dbl>        <int>         <int>
-## 1 bacteria    7.  5.50            8            10
-## 2 virus       8.  5.50            8            10
+## 1 bacteria     7   5.5            8            10
+## 2 virus        8   5.5            8            10
 \end{verbatim}
 
 Easy.
@@ -3540,16 +3540,16 @@ Lets compare our parameters estimates:
 ## [[1]]
 ## [[1]]$t
 ##           Est. CI(95%).l CI(95%).u
-## psi1.t 306.912   167.322   446.502
-## psi2.t 584.996   535.809   634.183
+## psi1.t 296.138   143.988   448.289
+## psi2.t 581.507   531.232   631.782
 ## 
 ## 
 ## [[2]]
 ## [[2]]$t
 ##              Est.   St.Err. t value  CI(95%).l   CI(95%).u
 ## slope1  0.0000000        NA      NA         NA          NA
-## slope2  0.0145350 0.0040078  3.6268  0.0050585  0.02401200
-## slope3 -0.0032201 0.0010439 -3.0847 -0.0056886 -0.00075171
+## slope2  0.0139720 0.0040006  3.4926  0.0045125  0.02343200
+## slope3 -0.0029774 0.0010420 -2.8573 -0.0054413 -0.00051338
 \end{verbatim}
 
 \begin{Shaded}
@@ -3817,7 +3817,7 @@ specifying content into your project and use relational links. Also,
 using projects makes easy to maintain clean global environment, which
 beginners often tend to underestimate and than they run into troubles.
 
-\section{Use RMarkodow}\label{use-rmarkodow}
+\section{Use RMarkdown}\label{use-rmarkdown}
 
 To make your work more reproducible, and also to make nice looking
 output (in html or PDFs) it is a good idea to work in RMarkdown files

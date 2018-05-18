@@ -25,7 +25,7 @@
 <meta name="author" content="Michal J. Czyz">
 
 
-<meta name="date" content="2018-04-28">
+<meta name="date" content="2018-05-18">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -182,7 +182,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="9" data-path="finalind.html"><a href="finalind.html"><i class="fa fa-check"></i><b>9</b> Final indications</a><ul>
 <li class="chapter" data-level="9.1" data-path="finalind.html"><a href="finalind.html#use-projects"><i class="fa fa-check"></i><b>9.1</b> Use Projects</a></li>
-<li class="chapter" data-level="9.2" data-path="finalind.html"><a href="finalind.html#use-rmarkodow"><i class="fa fa-check"></i><b>9.2</b> Use RMarkodow</a></li>
+<li class="chapter" data-level="9.2" data-path="finalind.html"><a href="finalind.html#use-rmarkdown"><i class="fa fa-check"></i><b>9.2</b> Use RMarkdown</a></li>
 <li class="chapter" data-level="9.3" data-path="finalind.html"><a href="finalind.html#use-.rds-files"><i class="fa fa-check"></i><b>9.3</b> Use .rds files</a></li>
 <li class="chapter" data-level="9.4" data-path="finalind.html"><a href="finalind.html#nice-resources-you-should-read"><i class="fa fa-check"></i><b>9.4</b> Nice resources you SHOULD read</a></li>
 <li class="chapter" data-level="9.5" data-path="finalind.html"><a href="finalind.html#solving-problems"><i class="fa fa-check"></i><b>9.5</b> Solving problems</a></li>
@@ -312,14 +312,14 @@ addressList[[<span class="dv">2</span>]]</code></pre></div>
 <p>As you see, writing conditionals in their basic form is quite easy. If our script can be in just on of two different states while it start evaluating conditions both of above examples will be suitable. In practice it happens quite often that we need to plan different actions because of dichotomy in the results of previous actions. If our code in this place is going to make some simple things you can consider using <code>ifelse()</code> shortcut. It works like below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coinToss &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">3</span>, <span class="dt">replace =</span> T)
 coinToss</code></pre></div>
-<pre><code>## [1] 1 0 1</code></pre>
+<pre><code>## [1] 1 0 0</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(coinToss <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&#39;Win!&#39;</span>, <span class="st">&#39;Looser!&#39;</span>)</code></pre></div>
-<pre><code>## [1] &quot;Win!&quot;    &quot;Looser!&quot; &quot;Win!&quot;</code></pre>
+<pre><code>## [1] &quot;Win!&quot;    &quot;Looser!&quot; &quot;Looser!&quot;</code></pre>
 <p>But what if your script can have more than two states when you start evaluating conditions? You will need to use <code>else if()</code> structure. A simple example is below:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coinToss &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dv">3</span>, <span class="dt">replace =</span> T)
 sumOfCoins &lt;-<span class="st"> </span><span class="kw">sum</span>(coinToss)<span class="co"># we can have four states here 0,1,2,3</span>
 sumOfCoins</code></pre></div>
-<pre><code>## [1] 2</code></pre>
+<pre><code>## [1] 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (sumOfCoins <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) {
   <span class="st">&#39;Looser&#39;</span>
 } <span class="cf">else</span> <span class="cf">if</span> (sumOfCoins <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) {
@@ -351,15 +351,15 @@ distroMeans &lt;-<span class="st"> </span><span class="kw">vector</span>(<span c
 distroMeans</code></pre></div>
 <pre><code>## [[1]]
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   2.377   4.258   5.046   5.100   5.992   9.067 
+## -0.1116  3.9851  5.2616  5.0542  6.2602  8.5640 
 ## 
 ## [[2]]
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-##  0.04051  1.44598  2.77040  3.23386  4.36291 12.54768 
+##  0.08804  1.44303  2.41714  2.94153  3.74905 10.37091 
 ## 
 ## [[3]]
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    0.00    2.00    3.00    3.15    4.00    9.00</code></pre>
+##    0.00    2.00    3.00    3.35    5.00    8.00</code></pre>
 <p>Above example is very simple, and actually can be made without loop. Try to call from your console following command <code>summary(exampleDF)</code>. This is called vectorization which will be explained few paragraphs below.</p>
 <p>But lets get back to loops and write something that might be useful (yet very simple). Assume that you are investigating animals reproduction. You have a herd that counts 60 animals. The reproduction factor is <code>1.34</code>, and survival factor is ‘0.75’. So the overall growth factor can be calculated as <em>reproduction factor</em> * <em>survival factor</em>. In each generation there is some noise in reproduction, i.e. from -3 to 2 animals are born with equal probability. This means, that number of animals in each generation directly depends of the outcome of previous generation. We want to make a chart (Fig. <a href="somwehere-between-basic-and-useful.html#fig:popPlot">4.1</a>) to visualize population dynamics in <code>100</code> generation, thus we decide to use <code>while (time &lt; 101)</code> loop.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#define initial parameters</span>
@@ -402,21 +402,21 @@ testSapply &lt;-<span class="st"> </span><span class="kw">sapply</span>(testAppl
 <span class="co">#and use function with multiple arguments.</span>
 <span class="kw">lapply</span>(testSapply, rpois, <span class="dt">n =</span> <span class="dv">15</span>)</code></pre></div>
 <pre><code>## $x
-##  [1] 7 6 6 9 6 9 6 3 4 6 4 6 4 5 7
+##  [1] 8 3 3 7 7 8 5 6 4 7 5 6 3 3 8
 ## 
 ## $b
-##  [1] 5 0 3 4 6 4 3 2 3 3 1 6 2 7 5
+##  [1]  4  2  3  6  9 11  5  7  5  5  3  2  4  5  7
 ## 
 ## $c
-##  [1] 29 23 17 22 16 24 18 31 14 22 26 21 17 24 19</code></pre>
+##  [1] 20 26 19 22 26 27 23 25 19 20 27 28 17 21 24</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(<span class="kw">sapply</span>(testSapply, rpois, <span class="dt">n =</span> <span class="dv">15</span>))</code></pre></div>
-<pre><code>##      x b  c
-## [1,] 2 4 18
-## [2,] 3 5 29
-## [3,] 1 4 23
-## [4,] 7 5 24
-## [5,] 8 9 23
-## [6,] 8 7 19</code></pre>
+<pre><code>##       x b  c
+## [1,]  3 6 27
+## [2,] 10 5 20
+## [3,]  6 4 29
+## [4,]  9 8 25
+## [5,]  8 6 24
+## [6,]  6 6 24</code></pre>
 <p>It is also possible to use so called anonymous functions (simplifying – function that does not have name and exists temporally) as an argument.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">testApplyFun &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span>
 <span class="kw">lapply</span>(testApplyFun, <span class="cf">function</span>(x) x <span class="op">+</span><span class="st"> </span><span class="fl">0.5</span>)</code></pre></div>
@@ -500,7 +500,7 @@ cashDiceRolls[<span class="kw">which</span>(cashDiceRolls <span class="op">%%</s
 cashDiceRolls[<span class="kw">which</span>(cashDiceRolls <span class="op">%%</span><span class="st"> </span><span class="dv">2</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>cashDiceRolls <span class="op">&lt;=</span><span class="st"> </span><span class="dv">5</span>)] &lt;-<span class="st"> </span><span class="dv">30</span>
 cashDiceRolls[<span class="kw">which</span>(cashDiceRolls  <span class="op">==</span><span class="st"> </span><span class="dv">70</span>)] &lt;-<span class="st"> </span><span class="op">-</span><span class="dv">70</span>
 <span class="kw">sum</span>(cashDiceRolls)</code></pre></div>
-<pre><code>## [1] -11420</code></pre>
+<pre><code>## [1] -16860</code></pre>
 <p>Now, that’s not very nice… We lost a lot of cash… But we can also track how our luck changed. Maybe we were above <code>0</code> for a while, before things got South? Or maybe we were doomed since the beginning? Lets make a plot (Fig. <a href="somwehere-between-basic-and-useful.html#fig:betaDensity-plot">4.4</a>) to evaluate our progress.</p>
 <div class="figure" style="text-align: center"><span id="fig:cassino-plot"></span>
 <img src="BeginnersGuideToGalaxy_files/figure-html/cassino-plot-1.png" alt="How to lose cash in casino" width="60%" />
@@ -511,10 +511,10 @@ Figure 4.3: How to lose cash in casino
 <p>I think that your love to <strong>R</strong> is being deeper since I showed you how it can save a lot of your money!</p>
 <p>In nowadays stochastic analyses are more, and more popular. With <strong>R</strong> it is quite easy to generate random numbers, sample and do all the <em>mumbo jumbo</em> on data. There are few functions that cover <em>classical</em> distributions: normal, Poisson, binomial, uniform (and few others), that are actually build in base <strong>R</strong> distribution (full list you will find <a href="https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Distributions.html">here</a>). Some more sophisticated stuff is usually covered by some packages you will need to download by yourself. You will easily find them by querying Google like this <a href="https://www.google.com/search?client=ubuntu&amp;channel=fs&amp;q=Pearson+distribution+in+R&amp;ie=utf-8&amp;oe=utf-8&amp;gfe_rd=cr&amp;dcr=0&amp;ei=KTI5Ws_7LfPBXrSBr7gO">Pearson distribution in R</a>. By using this technique it is also possible to find other useful packages for dealing with distributions (try to search for package that allows you to sample from trimmed distribution). All the distribution packages follow the same schema when naming functions. They use letters: <code>d</code>, <code>p</code>, <code>q</code> and <code>r</code> followed by abbreviation of distribution name to generate: density, distribution function, quantile function and random numbers – respectively. For instance, lets generate ten random numbers from <em>beta distribution</em>, with parameters <code>10</code> and <code>3</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rbeta</span>(<span class="dv">25</span>, <span class="dv">10</span>, <span class="dv">3</span>)</code></pre></div>
-<pre><code>##  [1] 0.8764435 0.8308007 0.9404436 0.6180505 0.8624009 0.8270402 0.8046021
-##  [8] 0.8031754 0.7950222 0.8189645 0.6537235 0.8130554 0.8123019 0.9116293
-## [15] 0.8664574 0.6577881 0.6556032 0.8686467 0.8137878 0.7891532 0.8499868
-## [22] 0.6977568 0.6266762 0.7061934 0.7554190</code></pre>
+<pre><code>##  [1] 0.8195625 0.9039811 0.8777994 0.5106561 0.8487335 0.7060130 0.7150464
+##  [8] 0.7475768 0.8737594 0.8252388 0.8107863 0.7781902 0.8778478 0.8060989
+## [15] 0.7864304 0.8549175 0.6340222 0.7594826 0.7272305 0.5667967 0.8485162
+## [22] 0.7250771 0.6599166 0.8550244 0.7972772</code></pre>
 <p>Or we can make this nice plot (Fig. <a href="somwehere-between-basic-and-useful.html#fig:betaDensity-plot">4.4</a>) for density of <em>beta distribution</em> with parameters <code>8</code> and <code>3</code>:</p>
 <div class="figure" style="text-align: center"><span id="fig:betaDensity-plot"></span>
 <img src="BeginnersGuideToGalaxy_files/figure-html/betaDensity-plot-1.png" alt="Example of beta distribution" width="60%" />
@@ -728,8 +728,8 @@ wideTable4</code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   type     meanF meanM numberOfDays numberOfCases
 ##   &lt;fct&gt;    &lt;dbl&gt; &lt;dbl&gt;        &lt;int&gt;         &lt;int&gt;
-## 1 bacteria    7.  5.50            8            10
-## 2 virus       8.  5.50            8            10</code></pre>
+## 1 bacteria     7   5.5            8            10
+## 2 virus        8   5.5            8            10</code></pre>
 <p>Easy.</p>
 </div>
 </div>
