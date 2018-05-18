@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A Beginners Guide to R’s Galaxy</title>
+  <meta name="description" content="Quick introduction to astonishing R’s Galaxy">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A Beginners Guide to R’s Galaxy" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Beginners Guide to R’s Galaxy" />
+  
+  <meta name="twitter:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+<meta name="author" content="Michal J. Czyz">
+
+
+<meta name="date" content="2018-05-18">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="finalindications.html">
+<link rel="next" href="simple-workflow.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Beginners Guide to Galaxy</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> In the beginning there was only darknes…</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#audience"><i class="fa fa-check"></i><b>2.1</b> Audience</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-this-book-is-not-about"><i class="fa fa-check"></i><b>2.2</b> What this book is not about?</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#few-tips-to-make-life-easier"><i class="fa fa-check"></i><b>2.4</b> Few tips to make life easier</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#installing-packages"><i class="fa fa-check"></i><b>2.5</b> Installing packages</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#conventions"><i class="fa fa-check"></i><b>2.6</b> Conventions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="basics.html"><a href="basics.html#help"><i class="fa fa-check"></i><b>3.1.1</b> Help</a></li>
+<li class="chapter" data-level="3.1.2" data-path="basics.html"><a href="basics.html#internet-is-a-great-source-of-information"><i class="fa fa-check"></i><b>3.1.2</b> Internet is a great source of information</a></li>
+<li class="chapter" data-level="3.1.3" data-path="basics.html"><a href="basics.html#more-on-internet-sources"><i class="fa fa-check"></i><b>3.1.3</b> More on internet sources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#syntax"><i class="fa fa-check"></i><b>3.2</b> Syntax</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#common-operators"><i class="fa fa-check"></i><b>3.2.1</b> Common operators</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics.html"><a href="basics.html#variables"><i class="fa fa-check"></i><b>3.2.2</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#math-operations"><i class="fa fa-check"></i><b>3.3</b> Math operations</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#logics"><i class="fa fa-check"></i><b>3.4</b> Logics</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>3.5</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html"><i class="fa fa-check"></i><b>4</b> Somwehere between basic and useful</a><ul>
+<li class="chapter" data-level="4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#addressing"><i class="fa fa-check"></i><b>4.1</b> Addressing</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#vectors"><i class="fa fa-check"></i><b>4.1.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.1.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#data-frames-and-matrices"><i class="fa fa-check"></i><b>4.1.2</b> Data frames (and matrices)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#lists"><i class="fa fa-check"></i><b>4.1.3</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#control-flow"><i class="fa fa-check"></i><b>4.2</b> Control flow</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#if...else-and-ifelse-statments"><i class="fa fa-check"></i><b>4.2.1</b> <code>if...else</code> and <code>ifelse</code> statments</a></li>
+<li class="chapter" data-level="4.2.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#for-and-while-loops"><i class="fa fa-check"></i><b>4.2.2</b> <code>for</code> and <code>while</code> loops</a></li>
+<li class="chapter" data-level="4.2.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#apply-function-family"><i class="fa fa-check"></i><b>4.2.3</b> <code>apply</code> function family</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#operation-on-vectors"><i class="fa fa-check"></i><b>4.3</b> Operation on Vectors</a></li>
+<li class="chapter" data-level="4.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#randomization-and-distribution"><i class="fa fa-check"></i><b>4.4</b> Randomization and distribution</a></li>
+<li class="chapter" data-level="4.5" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#tidyverse-idea-and-dplyr-library"><i class="fa fa-check"></i><b>4.5</b> <code>tidyverse</code> idea and <code>dplyr</code> library</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#wide-vs.long-tables"><i class="fa fa-check"></i><b>4.5.1</b> Wide vs. long tables</a></li>
+<li class="chapter" data-level="4.5.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#world-of-dplyr"><i class="fa fa-check"></i><b>4.5.2</b> World of <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#select-columns-and-filter-rows"><i class="fa fa-check"></i><b>4.5.3</b> <code>select</code> columns and <code>filter</code> rows</a></li>
+<li class="chapter" data-level="4.5.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.5.4</b> <code>mutate</code> and <code>transmute</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.5.5</b> <code>group_by</code> and <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#is-there-anything-more-in-dplyr-library"><i class="fa fa-check"></i><b>4.6</b> Is there anything more in <code>dplyr</code> library?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html"><i class="fa fa-check"></i><b>5</b> Lets do some math!</a><ul>
+<li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#models"><i class="fa fa-check"></i><b>5.1</b> Models</a></li>
+<li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#packages"><i class="fa fa-check"></i><b>5.2</b> Packages</a></li>
+<li class="chapter" data-level="5.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-mechanistic-model-and-noise"><i class="fa fa-check"></i><b>5.3</b> Simple mechanistic model and noise</a></li>
+<li class="chapter" data-level="5.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.4</b> Solving differential equations</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#the-simple-epidemiological"><i class="fa fa-check"></i><b>5.4.1</b> The simple epidemiological</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#ploting-seri-model"><i class="fa fa-check"></i><b>5.4.2</b> Ploting SERI model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="finalindications.html"><a href="finalindications.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="finalindications.html"><a href="finalindications.html#simple-math-functions."><i class="fa fa-check"></i><b>6.1</b> Simple math functions.</a></li>
+<li class="chapter" data-level="6.2" data-path="finalindications.html"><a href="finalindications.html#building-your-own-calculator"><i class="fa fa-check"></i><b>6.2</b> Building your own calculator</a></li>
+<li class="chapter" data-level="6.3" data-path="finalindications.html"><a href="finalindications.html#it-is-not-over-yet-calculator-shouldnt-divide-be-0"><i class="fa fa-check"></i><b>6.3</b> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graphs.html"><a href="graphs.html"><i class="fa fa-check"></i><b>7</b> Graphics</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphs.html"><a href="graphs.html#base-plots"><i class="fa fa-check"></i><b>7.1</b> Base plots</a></li>
+<li class="chapter" data-level="7.2" data-path="graphs.html"><a href="graphs.html#how-to-make-plot"><i class="fa fa-check"></i><b>7.2</b> How to make plot?</a></li>
+<li class="chapter" data-level="7.3" data-path="graphs.html"><a href="graphs.html#can-we-actually-do-something"><i class="fa fa-check"></i><b>7.3</b> Can we actually do something?</a></li>
+<li class="chapter" data-level="7.4" data-path="graphs.html"><a href="graphs.html#ggplot2---graphics-taken-into-other-dimension"><i class="fa fa-check"></i><b>7.4</b> <code>ggplot2</code> - Graphics taken into other dimension</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="graphs.html"><a href="graphs.html#basic-plot-in-ggplot2"><i class="fa fa-check"></i><b>7.4.1</b> Basic plot in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="graphs.html"><a href="graphs.html#density-plots"><i class="fa fa-check"></i><b>7.4.2</b> Density plots</a></li>
+<li class="chapter" data-level="7.4.3" data-path="graphs.html"><a href="graphs.html#box-plot-and-bar-plot"><i class="fa fa-check"></i><b>7.4.3</b> Box-plot and bar-plot</a></li>
+<li class="chapter" data-level="7.4.4" data-path="graphs.html"><a href="graphs.html#regression"><i class="fa fa-check"></i><b>7.4.4</b> Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="simple-workflow.html"><a href="simple-workflow.html"><i class="fa fa-check"></i><b>8</b> Simple workflow</a><ul>
+<li class="chapter" data-level="8.1" data-path="simple-workflow.html"><a href="simple-workflow.html#data"><i class="fa fa-check"></i><b>8.1</b> Data</a></li>
+<li class="chapter" data-level="8.2" data-path="simple-workflow.html"><a href="simple-workflow.html#exploaratory-visualisation-and-setup"><i class="fa fa-check"></i><b>8.2</b> Exploaratory visualisation and setup</a></li>
+<li class="chapter" data-level="8.3" data-path="simple-workflow.html"><a href="simple-workflow.html#growth-models"><i class="fa fa-check"></i><b>8.3</b> Growth models</a></li>
+<li class="chapter" data-level="8.4" data-path="simple-workflow.html"><a href="simple-workflow.html#going-further"><i class="fa fa-check"></i><b>8.4</b> Going further</a></li>
+<li class="chapter" data-level="8.5" data-path="simple-workflow.html"><a href="simple-workflow.html#copy-paste-data-set"><i class="fa fa-check"></i><b>8.5</b> Copy-paste data set</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="finalind.html"><a href="finalind.html"><i class="fa fa-check"></i><b>9</b> Final indications</a><ul>
+<li class="chapter" data-level="9.1" data-path="finalind.html"><a href="finalind.html#use-projects"><i class="fa fa-check"></i><b>9.1</b> Use Projects</a></li>
+<li class="chapter" data-level="9.2" data-path="finalind.html"><a href="finalind.html#use-rmarkdown"><i class="fa fa-check"></i><b>9.2</b> Use RMarkdown</a></li>
+<li class="chapter" data-level="9.3" data-path="finalind.html"><a href="finalind.html#use-.rds-files"><i class="fa fa-check"></i><b>9.3</b> Use .rds files</a></li>
+<li class="chapter" data-level="9.4" data-path="finalind.html"><a href="finalind.html#nice-resources-you-should-read"><i class="fa fa-check"></i><b>9.4</b> Nice resources you SHOULD read</a></li>
+<li class="chapter" data-level="9.5" data-path="finalind.html"><a href="finalind.html#solving-problems"><i class="fa fa-check"></i><b>9.5</b> Solving problems</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Beginners Guide to R’s Galaxy</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="graphs" class="section level1">
+<h1><span class="header-section-number">Chapter 7</span> Graphics</h1>
+<p>What would be our work value without visualization? Not much. <strong>R</strong> provides use with some tools to make plots, charts and other visual stuff. However base version has very limited graphic design by default and making it pretty needs a lot of time and code. Nowadays, however, in <code>tidyverse</code> there is a very powerful library with dozens of extensions - <code>ggplot2</code>. <em>GG</em> stands for <em>Gramar of Graphics</em> and in practice it means that we build our visualization layer after layer. The vast spectrum of <code>ggplot</code> functions and its extensions is out of the scope of this book. Here we will focus on the basic and most useful things as well as how to find not so common functionalities.</p>
+<div id="base-plots" class="section level2">
+<h2><span class="header-section-number">7.1</span> Base plots</h2>
+<p>Before we get to <code>ggplot2</code>, we should begin with base graphic functions. It is true that the do not look as pretty as plots from dedicated libraries, but they are extremely useful in quick checking of our workflow. Not to mention, that many packages are still operating with old fashioned base graphics.</p>
+</div>
+<div id="how-to-make-plot" class="section level2">
+<h2><span class="header-section-number">7.2</span> How to make plot?</h2>
+<p>In previous chapters we made some plots, but we did not cover the details. Most important thing is to acknowledge that we can make plots with <code>hist()</code>, <code>plot()</code>, <code>barplot()</code> and <code>boxplot()</code> functions (to mention only the most common). There are of course other types of plots you might need, however those three are the <em>classic</em> ones. If you are looking for more examples of base plots, you should visit help page of <code>graphics</code> package. To change the look of your plot, just provide proper arguments to this function, like <code>col</code> for color of line/points or, <code>xlab</code> and <code>ylab</code> to change names of axis labels. Unfortunately a list of arguments that you can control and adjust is long. The good news is that all of them have their default value, so you need to change only the ones you want, without thinking about rest. Full list of parameter you can change you will find after executing: <code>?par</code> command. As this help page contains many different kinds of parameters you should scroll to find <em>Graphical Parameters</em> chapter.</p>
+</div>
+<div id="can-we-actually-do-something" class="section level2">
+<h2><span class="header-section-number">7.3</span> Can we actually do something?</h2>
+<p>Yes we can. But as I said earlier scope of this book is not graphics. Thus I will cover here only the basic things you should know, or at least know where to find them. Bellow, I will present only code and its output (Fig. <a href="graphs.html#fig:base-plots">7.1</a>). After what you read, you should be perfectly fine with figuring out what is going on. You can also copy - paste the code in your script or console, edit it and learn how it works by doing. Even the best book is just a book, and nothing will substitute the knowledge you gain by experiencing.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graphicDummy &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="dv">2</span>), <span class="dt">y =</span> <span class="kw">rpois</span>(<span class="dv">100</span>, <span class="fl">1.2</span>))
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>))
+<span class="kw">plot</span>(graphicDummy<span class="op">$</span>x<span class="op">~</span>graphicDummy<span class="op">$</span>y)
+<span class="kw">plot</span>(graphicDummy<span class="op">$</span>x<span class="op">~</span><span class="kw">as.factor</span>(graphicDummy<span class="op">$</span>y))
+<span class="kw">boxplot</span>(graphicDummy<span class="op">$</span>x<span class="op">~</span>graphicDummy<span class="op">$</span>y, <span class="dt">main =</span> <span class="st">&#39;Boxplot&#39;</span>)
+<span class="kw">barplot</span>(graphicDummy<span class="op">$</span>x, <span class="dt">main =</span> <span class="st">&#39;Barplot&#39;</span>)
+<span class="kw">hist</span>(graphicDummy<span class="op">$</span>x, <span class="dt">main =</span> <span class="st">&#39;Histogram x&#39;</span>)
+<span class="kw">hist</span>(graphicDummy<span class="op">$</span>y, <span class="dt">main =</span> <span class="st">&#39;Histogram y&#39;</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(graphicDummy<span class="op">$</span>x), <span class="dt">main =</span> <span class="st">&#39;Density x&#39;</span>)
+<span class="kw">plot</span>(<span class="kw">density</span>(graphicDummy<span class="op">$</span>y), <span class="dt">main =</span> <span class="st">&#39;Density y&#39;</span>)</code></pre></div>
+<div class="figure"><span id="fig:base-plots"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/base-plots-1.png" alt="Base plots and histograms" width="672" />
+<p class="caption">
+Figure 7.1: Base plots and histograms
+</p>
+</div>
+</div>
+<div id="ggplot2---graphics-taken-into-other-dimension" class="section level2">
+<h2><span class="header-section-number">7.4</span> <code>ggplot2</code> - Graphics taken into other dimension</h2>
+<p>This package use different approach to make plots and charts (however it is not limited to only those). The philosophy it follows is called Grammar of Graphics <span class="citation">(Wilkinson <a href="#ref-wilkinson2005">2005</a>; Wickham <a href="#ref-layered-grammar">2010</a>)</span>. Within this workframe, we build whole plot (chart, etc.) by adding layer after layer of visual options. <em>With great power comes great responsibility</em> – <code>ggplot2</code> as well as it’s extensions are highly customisable, thus if you want to use non-default settings it may take some time before you figure out how to do it. Here we will briefly cover the most basic stuff, but there is very good book that goes deeper into manipulation of visual effects, with lots of examples – R Graphics Cookbook <span class="citation">(Chang <a href="#ref-chang2013">2013</a>)</span> which is also available <a href="http://www.cookbook-r.com/Graphs/">on line</a>.</p>
+<div id="basic-plot-in-ggplot2" class="section level3">
+<h3><span class="header-section-number">7.4.1</span> Basic plot in <code>ggplot2</code></h3>
+<p>Making basic scatterplot (Fig. <a href="graphs.html#fig:ggplot-plain">7.2</a>) requires defining 2 layers:</p>
+<ol style="list-style-type: decimal">
+<li>Data</li>
+<li>Type of plot/chart</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plotTable &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">time =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,
+                        <span class="dt">depVal =</span> <span class="kw">c</span>((<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)<span class="op">*</span><span class="dv">2</span>)<span class="op">+</span><span class="dv">2</span>,
+                        <span class="dt">typeDep =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;first&#39;</span>, <span class="st">&#39;second&#39;</span>), <span class="dt">times =</span> <span class="dv">5</span>))
+basePlot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(plotTable, <span class="kw">aes</span>(<span class="dt">x =</span> time, <span class="dt">y =</span> depVal)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> typeDep, <span class="dt">alpha =</span> <span class="fl">0.8</span>, <span class="dt">shape =</span> typeDep, <span class="dt">size =</span> <span class="fl">3.5</span>),
+             <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)
+basePlot</code></pre></div>
+<div class="figure"><span id="fig:ggplot-plain"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-plain-1.png" alt="Basic scatterplot" width="672" />
+<p class="caption">
+Figure 7.2: Basic scatterplot
+</p>
+</div>
+<p>In the function call (1<sup>st</sup> layer), we define data set (<code>plotTable</code>) and aesthetics (<code>x</code> and <code>y</code> values). In following layer, we define 3 aesthetics – <code>colour</code>, <code>alpha</code>, <code>shape</code> of points and their <code>size</code>. We also tell <code>ggplot</code> to not to make legend. Unfortunately, when you first start working with <code>ggplot</code> (and even when you have some experience), you will often run into small problems that will need some adjustments in your code. Hopefully, this package is so broadly used that you will easily find a lot of solution of your problems on <em>Stack Overflow</em>, as well as many extensions with predefined functions to make sophisticated graphics.</p>
+<p>Lets take a little deeper look into layers and aesthetics. Default look of plot is little bit boring, and usually unsuitable for publications. In code below we will use another layer – <code>theme</code> – to define plot background, plot name and axis names (Fig. <a href="graphs.html#fig:ggplot-fancy">7.3</a>). Of course, this still is unsuitable for publication, however it looks more fancy and can be used in presentation, poster or on blog.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basePlot <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Basic dot plot&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Dependent variable&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.title.x     =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="fl">0.7</span>), <span class="dt">colour =</span> <span class="st">&#39;red&#39;</span>),
+        <span class="dt">axis.title.y     =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="fl">1.1</span>)), 
+        <span class="dt">plot.background  =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&#39;yellow&#39;</span>),
+        <span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&#39;pink&#39;</span>),
+        <span class="dt">panel.grid       =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">title            =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="kw">rel</span>(<span class="fl">1.3</span>),
+                                        <span class="dt">colour =</span> <span class="st">&#39;gray50&#39;</span>,
+                                        <span class="dt">face =</span> <span class="st">&#39;bold&#39;</span>))</code></pre></div>
+<div class="figure"><span id="fig:ggplot-fancy"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-fancy-1.png" alt="Scatterplot with additional aesthetics" width="672" />
+<p class="caption">
+Figure 7.3: Scatterplot with additional aesthetics
+</p>
+</div>
+<p><em>Beautiful!</em></p>
+<p>However we can use simple trick to make our plot in format that is actually supported by scientific journals (Fig. <a href="graphs.html#fig:ggplot-journal">7.4</a>), i.e. white background, no gridlines etc.:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basePlot <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Basic dot plot&#39;</span>, <span class="dt">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Dependent variable&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid =</span> <span class="kw">element_blank</span>())</code></pre></div>
+<div class="figure"><span id="fig:ggplot-journal"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-journal-1.png" alt="Scatterplot formated for journals" width="672" />
+<p class="caption">
+Figure 7.4: Scatterplot formated for journals
+</p>
+</div>
+</div>
+<div id="density-plots" class="section level3">
+<h3><span class="header-section-number">7.4.2</span> Density plots</h3>
+<p>But what if we want to actually plot something useful? Lets say that we want to graphically compare distributions of two data sets. We can do it by histograms (boring) or by plotting density functions. First we should generate some data. Assume that you are tossing coin, but you have this strange gut feeling that something is not right. In 500 trials you had 218 tails and 282 heads. Fig. <a href="graphs.html#fig:ggplot-density">7.5</a> shows simple density plot made with <code>ggplot</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coinDensity &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">coin =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dt">times =</span> <span class="dv">282</span>), <span class="kw">rep</span>(<span class="dv">0</span>, <span class="dt">times =</span> <span class="dv">218</span>)))
+<span class="kw">ggplot</span>(coinDensity, <span class="kw">aes</span>(<span class="dt">x =</span> coin)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>()</code></pre></div>
+<div class="figure"><span id="fig:ggplot-density"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-density-1.png" alt="Simple density plot for coin tossing" width="672" />
+<p class="caption">
+Figure 7.5: Simple density plot for coin tossing
+</p>
+</div>
+<p>And we want to check if it is really different from binomial distribution (Fig. <a href="graphs.html#fig:ggplot-densityBinom">7.6</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tCoinDensity &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">coin =</span> <span class="kw">rbinom</span>(<span class="dv">500</span>, <span class="dv">1</span>, <span class="fl">0.5</span>))
+<span class="kw">ggplot</span>(tCoinDensity, <span class="kw">aes</span>(<span class="dt">x =</span> coin)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>()</code></pre></div>
+<div class="figure"><span id="fig:ggplot-densityBinom"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-densityBinom-1.png" alt="Density plot for binomial distribution" width="672" />
+<p class="caption">
+Figure 7.6: Density plot for binomial distribution
+</p>
+</div>
+<p>Now we have two plots which is not the best way to visually check two distributions. It would be much better if we plot them one by one, preferably with different colors and opacity (like in Fig. <a href="graphs.html#fig:ggplot-densityCombined">7.7</a>). Below it’s short code snippet how to do it in <strong>R</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coinTest &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(coinDensity, tCoinDensity) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">bind_cols</span>(<span class="dt">distribution =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;empirical&#39;</span>, <span class="st">&#39;theoretical&#39;</span>), <span class="dt">each =</span> <span class="dv">500</span>))
+<span class="kw">ggplot</span>(coinTest, <span class="kw">aes</span>(<span class="dt">x =</span> coin, <span class="dt">fill =</span> distribution)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>, <span class="dt">colour =</span> <span class="st">&#39;yellow&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;violet&#39;</span>))</code></pre></div>
+<div class="figure"><span id="fig:ggplot-densityCombined"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-densityCombined-1.png" alt="Combined density plots" width="672" />
+<p class="caption">
+Figure 7.7: Combined density plots
+</p>
+</div>
+<p>Indeed, the coin is slightly biased towards heads.</p>
+</div>
+<div id="box-plot-and-bar-plot" class="section level3">
+<h3><span class="header-section-number">7.4.3</span> Box-plot and bar-plot</h3>
+<p>When dealing with comparison of two or more groups we usually check their distribution by visually inspecting so called <em>box plots</em> or <em>box-whiskers plots</em>. This plot shows interquartile range (IQR) as box, median as a line inside box, 1.5 IQR as <em>whiskers</em> and all of the data points that are more than 1<sup>st</sup> quartile - 1.5 IQR or 3<sup>rd</sup> quartile + 1.5 IRQ as separated dots called <em>outliers</em>. There are few different approaches to define <em>outlieres</em> and <em>whiskers</em> in box plots, nonetheless above is most common. It is very straightforward to make box-plots (Fig. <a href="graphs.html#fig:ggplot-boxplot">7.8</a>) with <code>ggplot2</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boxGroups &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">group =</span> <span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&#39;normal&#39;</span>, <span class="st">&#39;chisq&#39;</span>, <span class="st">&#39;pois&#39;</span>), <span class="dt">each =</span> <span class="dv">100</span>),
+                        <span class="dt">values =</span> <span class="kw">c</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">3</span>, <span class="fl">0.65</span>), <span class="kw">rchisq</span>(<span class="dv">100</span>, <span class="dv">3</span>), <span class="kw">rpois</span>(<span class="dv">100</span>, <span class="dv">3</span>)))
+<span class="kw">ggplot</span>(boxGroups, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> values)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="figure"><span id="fig:ggplot-boxplot"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-boxplot-1.png" alt="Box-plot of three groups" width="672" />
+<p class="caption">
+Figure 7.8: Box-plot of three groups
+</p>
+</div>
+<p>Bar-plots are mainly used to show categorical variables as rectangles with height (length) that is proportional to highest value that each categorical variable represents. <code>ggplot</code> syntax sometimes is tricky. Unfortunately, that is the case when dealing with bar plots. Consider below example and try to figure out what happened on Fig. <a href="graphs.html#fig:ggplot-barplotCounts">7.9</a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">barGroups &lt;-<span class="st"> </span>boxGroups
+<span class="kw">ggplot</span>(barGroups, <span class="kw">aes</span>(<span class="dt">x =</span> group)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;count&#39;</span>)</code></pre></div>
+<div class="figure"><span id="fig:ggplot-barplotCounts"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-barplotCounts-1.png" alt="Mysterious bar-plot" width="672" />
+<p class="caption">
+Figure 7.9: Mysterious bar-plot
+</p>
+</div>
+<p>Instead of having bars that length represents highest value for each group, we created bar plot where length of bar is proportional to number of records in all group, i.e. 100. Depending on what value we are interested, we can take different approaches to solve this problem. First, instead of using <code>geom_bar</code> layer we can use <code>geom_col</code>. It will allow us to represent sum of values in particular group (Fig. <a href="graphs.html#fig:ggplot-barplotSums">7.10</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">brGroups &lt;-<span class="st"> </span>boxGroups
+<span class="kw">ggplot</span>(brGroups, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> values)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>()</code></pre></div>
+<div class="figure"><span id="fig:ggplot-barplotSums"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-barplotSums-1.png" alt="Sums by group bar-plot" width="672" />
+<p class="caption">
+Figure 7.10: Sums by group bar-plot
+</p>
+</div>
+<p>In the second approach, we first need to transform our data, so for each group and we calculate a value that will be represented as length of bar. This method gives us a lot of flexibility. We can calculate number of cases, mean, standard deviation, maximum value, while changing only one command and update plot to show different measures. Below you find code how to plot maximum values for each group on bar-plot (Fig. <a href="graphs.html#fig:ggplot-barplotMax">7.11</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">barGroups &lt;-<span class="st"> </span>boxGroups <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(group) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">grVal =</span> <span class="kw">max</span>(values))
+<span class="kw">ggplot</span>(barGroups, <span class="kw">aes</span>(<span class="dt">x =</span> group, <span class="dt">y =</span> grVal)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>)</code></pre></div>
+<div class="figure"><span id="fig:ggplot-barplotMax"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-barplotMax-1.png" alt="Maximum value by group bar-plot" width="672" />
+<p class="caption">
+Figure 7.11: Maximum value by group bar-plot
+</p>
+</div>
+</div>
+<div id="regression" class="section level3">
+<h3><span class="header-section-number">7.4.4</span> Regression</h3>
+<p>Last common visualization is regression plot. With layer by layer approach we can control all the elements of the plot. Below code shows how you can visualize both dots and lines for regression, change title and labels and set some non standard appearance of plot (Fig. <a href="graphs.html#fig:ggplot-regPlot">7.12</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regVar &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">sample</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">100</span>, <span class="dt">replace =</span> T))
+regRes &lt;-<span class="st"> </span>((regVar <span class="op">*</span><span class="st"> </span><span class="fl">2.6</span>) <span class="op">+</span><span class="st"> </span><span class="fl">0.8</span>) <span class="op">+</span><span class="st"> </span><span class="kw">order</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>, <span class="dv">10</span>, <span class="fl">4.25</span>))
+regDF &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> regVar, <span class="dt">y =</span> regRes)
+<span class="kw">ggplot</span>(regDF, <span class="kw">aes</span>(x, y)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">fill =</span> <span class="st">&#39;yellow&#39;</span>, <span class="dt">colour =</span> <span class="st">&#39;#ff0099&#39;</span>, <span class="dt">shape =</span> <span class="dv">21</span>, <span class="dt">stroke =</span> <span class="fl">1.15</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="dt">stat=</span><span class="st">&#39;smooth&#39;</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>, 
+              <span class="dt">fill =</span> <span class="st">&#39;#990011&#39;</span>, <span class="dt">colour =</span> <span class="st">&#39;yellow&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.4</span>,
+              <span class="dt">linetype =</span> <span class="dv">3</span>, <span class="dt">size =</span> <span class="fl">0.2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">stat=</span><span class="st">&#39;smooth&#39;</span>, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,
+            <span class="dt">colour =</span> <span class="st">&#39;green&#39;</span>, <span class="dt">alpha =</span> <span class="dv">1</span>,
+            <span class="dt">linetype =</span> <span class="dv">4</span>, <span class="dt">size =</span> <span class="fl">1.15</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="ot">NA</span>),
+        <span class="dt">axis.line =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="fl">1.15</span>, <span class="dt">colour =</span> <span class="st">&#39;grey&#39;</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;Values of X&#39;</span>,
+       <span class="dt">y =</span> <span class="st">&#39;y = 2.6 * x + 0.8&#39;</span>,
+       <span class="dt">title =</span> <span class="st">&#39;Example of regression plot&#39;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="dt">label =</span> <span class="st">&#39;y==2.6*x+0.8+epsilon&#39;</span>, <span class="dt">parse =</span> T,
+           <span class="dt">x =</span> <span class="fl">3.5</span>, <span class="dt">y =</span> <span class="dv">135</span>, <span class="dt">colour =</span> <span class="st">&#39;blue&#39;</span>)</code></pre></div>
+<div class="figure"><span id="fig:ggplot-regPlot"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/ggplot-regPlot-1.png" alt="Formated Regression plot with 95% CI" width="672" />
+<p class="caption">
+Figure 7.12: Formated Regression plot with 95% CI
+</p>
+</div>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-wilkinson2005">
+<p>Wilkinson, Leland. 2005. <em>The Grammar of Graphics (Statistics and Computing)</em>. Secaucus, NJ, USA: Springer-Verlag New York, Inc.</p>
+</div>
+<div id="ref-layered-grammar">
+<p>Wickham, Hadley. 2010. “A Layered Grammar of Graphics.” <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. doi:<a href="https://doi.org/10.1198/jcgs.2009.07098">10.1198/jcgs.2009.07098</a>.</p>
+</div>
+<div id="ref-chang2013">
+<p>Chang, Winston. 2013. <em>R Graphics Cookbook</em>. O’Reilly Media, Inc.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="finalindications.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-workflow.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["BeginnersGuideToGalaxy.pdf", "BeginnersGuideToGalaxy.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

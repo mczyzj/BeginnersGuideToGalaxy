@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A Beginners Guide to R’s Galaxy</title>
+  <meta name="description" content="Quick introduction to astonishing R’s Galaxy">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A Beginners Guide to R’s Galaxy" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Beginners Guide to R’s Galaxy" />
+  
+  <meta name="twitter:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+<meta name="author" content="Michal J. Czyz">
+
+
+<meta name="date" content="2018-05-18">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="graphs.html">
+<link rel="next" href="finalind.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Beginners Guide to Galaxy</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> In the beginning there was only darknes…</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#audience"><i class="fa fa-check"></i><b>2.1</b> Audience</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-this-book-is-not-about"><i class="fa fa-check"></i><b>2.2</b> What this book is not about?</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#few-tips-to-make-life-easier"><i class="fa fa-check"></i><b>2.4</b> Few tips to make life easier</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#installing-packages"><i class="fa fa-check"></i><b>2.5</b> Installing packages</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#conventions"><i class="fa fa-check"></i><b>2.6</b> Conventions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="basics.html"><a href="basics.html#help"><i class="fa fa-check"></i><b>3.1.1</b> Help</a></li>
+<li class="chapter" data-level="3.1.2" data-path="basics.html"><a href="basics.html#internet-is-a-great-source-of-information"><i class="fa fa-check"></i><b>3.1.2</b> Internet is a great source of information</a></li>
+<li class="chapter" data-level="3.1.3" data-path="basics.html"><a href="basics.html#more-on-internet-sources"><i class="fa fa-check"></i><b>3.1.3</b> More on internet sources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#syntax"><i class="fa fa-check"></i><b>3.2</b> Syntax</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#common-operators"><i class="fa fa-check"></i><b>3.2.1</b> Common operators</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics.html"><a href="basics.html#variables"><i class="fa fa-check"></i><b>3.2.2</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#math-operations"><i class="fa fa-check"></i><b>3.3</b> Math operations</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#logics"><i class="fa fa-check"></i><b>3.4</b> Logics</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>3.5</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html"><i class="fa fa-check"></i><b>4</b> Somwehere between basic and useful</a><ul>
+<li class="chapter" data-level="4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#addressing"><i class="fa fa-check"></i><b>4.1</b> Addressing</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#vectors"><i class="fa fa-check"></i><b>4.1.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.1.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#data-frames-and-matrices"><i class="fa fa-check"></i><b>4.1.2</b> Data frames (and matrices)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#lists"><i class="fa fa-check"></i><b>4.1.3</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#control-flow"><i class="fa fa-check"></i><b>4.2</b> Control flow</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#if...else-and-ifelse-statments"><i class="fa fa-check"></i><b>4.2.1</b> <code>if...else</code> and <code>ifelse</code> statments</a></li>
+<li class="chapter" data-level="4.2.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#for-and-while-loops"><i class="fa fa-check"></i><b>4.2.2</b> <code>for</code> and <code>while</code> loops</a></li>
+<li class="chapter" data-level="4.2.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#apply-function-family"><i class="fa fa-check"></i><b>4.2.3</b> <code>apply</code> function family</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#operation-on-vectors"><i class="fa fa-check"></i><b>4.3</b> Operation on Vectors</a></li>
+<li class="chapter" data-level="4.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#randomization-and-distribution"><i class="fa fa-check"></i><b>4.4</b> Randomization and distribution</a></li>
+<li class="chapter" data-level="4.5" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#tidyverse-idea-and-dplyr-library"><i class="fa fa-check"></i><b>4.5</b> <code>tidyverse</code> idea and <code>dplyr</code> library</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#wide-vs.long-tables"><i class="fa fa-check"></i><b>4.5.1</b> Wide vs. long tables</a></li>
+<li class="chapter" data-level="4.5.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#world-of-dplyr"><i class="fa fa-check"></i><b>4.5.2</b> World of <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#select-columns-and-filter-rows"><i class="fa fa-check"></i><b>4.5.3</b> <code>select</code> columns and <code>filter</code> rows</a></li>
+<li class="chapter" data-level="4.5.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.5.4</b> <code>mutate</code> and <code>transmute</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.5.5</b> <code>group_by</code> and <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#is-there-anything-more-in-dplyr-library"><i class="fa fa-check"></i><b>4.6</b> Is there anything more in <code>dplyr</code> library?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html"><i class="fa fa-check"></i><b>5</b> Lets do some math!</a><ul>
+<li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#models"><i class="fa fa-check"></i><b>5.1</b> Models</a></li>
+<li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#packages"><i class="fa fa-check"></i><b>5.2</b> Packages</a></li>
+<li class="chapter" data-level="5.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-mechanistic-model-and-noise"><i class="fa fa-check"></i><b>5.3</b> Simple mechanistic model and noise</a></li>
+<li class="chapter" data-level="5.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.4</b> Solving differential equations</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#the-simple-epidemiological"><i class="fa fa-check"></i><b>5.4.1</b> The simple epidemiological</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#ploting-seri-model"><i class="fa fa-check"></i><b>5.4.2</b> Ploting SERI model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="finalindications.html"><a href="finalindications.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="finalindications.html"><a href="finalindications.html#simple-math-functions."><i class="fa fa-check"></i><b>6.1</b> Simple math functions.</a></li>
+<li class="chapter" data-level="6.2" data-path="finalindications.html"><a href="finalindications.html#building-your-own-calculator"><i class="fa fa-check"></i><b>6.2</b> Building your own calculator</a></li>
+<li class="chapter" data-level="6.3" data-path="finalindications.html"><a href="finalindications.html#it-is-not-over-yet-calculator-shouldnt-divide-be-0"><i class="fa fa-check"></i><b>6.3</b> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graphs.html"><a href="graphs.html"><i class="fa fa-check"></i><b>7</b> Graphics</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphs.html"><a href="graphs.html#base-plots"><i class="fa fa-check"></i><b>7.1</b> Base plots</a></li>
+<li class="chapter" data-level="7.2" data-path="graphs.html"><a href="graphs.html#how-to-make-plot"><i class="fa fa-check"></i><b>7.2</b> How to make plot?</a></li>
+<li class="chapter" data-level="7.3" data-path="graphs.html"><a href="graphs.html#can-we-actually-do-something"><i class="fa fa-check"></i><b>7.3</b> Can we actually do something?</a></li>
+<li class="chapter" data-level="7.4" data-path="graphs.html"><a href="graphs.html#ggplot2---graphics-taken-into-other-dimension"><i class="fa fa-check"></i><b>7.4</b> <code>ggplot2</code> - Graphics taken into other dimension</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="graphs.html"><a href="graphs.html#basic-plot-in-ggplot2"><i class="fa fa-check"></i><b>7.4.1</b> Basic plot in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="graphs.html"><a href="graphs.html#density-plots"><i class="fa fa-check"></i><b>7.4.2</b> Density plots</a></li>
+<li class="chapter" data-level="7.4.3" data-path="graphs.html"><a href="graphs.html#box-plot-and-bar-plot"><i class="fa fa-check"></i><b>7.4.3</b> Box-plot and bar-plot</a></li>
+<li class="chapter" data-level="7.4.4" data-path="graphs.html"><a href="graphs.html#regression"><i class="fa fa-check"></i><b>7.4.4</b> Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="simple-workflow.html"><a href="simple-workflow.html"><i class="fa fa-check"></i><b>8</b> Simple workflow</a><ul>
+<li class="chapter" data-level="8.1" data-path="simple-workflow.html"><a href="simple-workflow.html#data"><i class="fa fa-check"></i><b>8.1</b> Data</a></li>
+<li class="chapter" data-level="8.2" data-path="simple-workflow.html"><a href="simple-workflow.html#exploaratory-visualisation-and-setup"><i class="fa fa-check"></i><b>8.2</b> Exploaratory visualisation and setup</a></li>
+<li class="chapter" data-level="8.3" data-path="simple-workflow.html"><a href="simple-workflow.html#growth-models"><i class="fa fa-check"></i><b>8.3</b> Growth models</a></li>
+<li class="chapter" data-level="8.4" data-path="simple-workflow.html"><a href="simple-workflow.html#going-further"><i class="fa fa-check"></i><b>8.4</b> Going further</a></li>
+<li class="chapter" data-level="8.5" data-path="simple-workflow.html"><a href="simple-workflow.html#copy-paste-data-set"><i class="fa fa-check"></i><b>8.5</b> Copy-paste data set</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="finalind.html"><a href="finalind.html"><i class="fa fa-check"></i><b>9</b> Final indications</a><ul>
+<li class="chapter" data-level="9.1" data-path="finalind.html"><a href="finalind.html#use-projects"><i class="fa fa-check"></i><b>9.1</b> Use Projects</a></li>
+<li class="chapter" data-level="9.2" data-path="finalind.html"><a href="finalind.html#use-rmarkdown"><i class="fa fa-check"></i><b>9.2</b> Use RMarkdown</a></li>
+<li class="chapter" data-level="9.3" data-path="finalind.html"><a href="finalind.html#use-.rds-files"><i class="fa fa-check"></i><b>9.3</b> Use .rds files</a></li>
+<li class="chapter" data-level="9.4" data-path="finalind.html"><a href="finalind.html#nice-resources-you-should-read"><i class="fa fa-check"></i><b>9.4</b> Nice resources you SHOULD read</a></li>
+<li class="chapter" data-level="9.5" data-path="finalind.html"><a href="finalind.html#solving-problems"><i class="fa fa-check"></i><b>9.5</b> Solving problems</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Beginners Guide to R’s Galaxy</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="simple-workflow" class="section level1">
+<h1><span class="header-section-number">Chapter 8</span> Simple workflow</h1>
+<div id="data" class="section level2">
+<h2><span class="header-section-number">8.1</span> Data</h2>
+<p>We manage to go through whole introduction to <em>R’s Galaxy</em>. But that’s not the end. For a final word I would like to go with you with once again through some of the stuff you will need more or less in your everyday job. We will use <strong>R</strong> to see, how we can predict some values in basic microbiology.</p>
+<p>First we need a data set. I downloaded data from deposited in <a href="https://www.combase.cc/index.php/en/">ComBase</a> for <em>Bacillus cereus</em> in broth with conditions as follows: pH = 6.1, water activity (aw) = 0.974, sodium chloride in environment = 4.5%, temperatures = 15, 16, 20, 22, 30 degrees Celsius. This data comes from Food Standards Agency, UK, and is hardcoded (so you can copy-paste) in the end of this chapter.</p>
+</div>
+<div id="exploaratory-visualisation-and-setup" class="section level2">
+<h2><span class="header-section-number">8.2</span> Exploaratory visualisation and setup</h2>
+<p>We will start with visually inspecting this data set.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(BcDF, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> LogC)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> resID)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Temp)</code></pre></div>
+<div class="figure"><span id="fig:Bc-plot"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/Bc-plot-1.png" alt="Growths in temperature range" width="672" />
+<p class="caption">
+Figure 8.1: Growths in temperature range
+</p>
+</div>
+<p>Unfortunately, one plot on Fig. <a href="simple-workflow.html#fig:Bc-plot">8.1</a> (30 degrees Celsius) is bit compressed, so lets isolate it and look closer on the points (Fig. <a href="simple-workflow.html#fig:Bc30deg-plot">8.2</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BcDFsub39 &lt;-<span class="st"> </span><span class="kw">subset</span>(BcDF, Temp <span class="op">==</span><span class="st"> </span><span class="dv">30</span>)
+<span class="kw">ggplot</span>(BcDFsub39, <span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> LogC)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()</code></pre></div>
+<div class="figure"><span id="fig:Bc30deg-plot"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/Bc30deg-plot-1.png" alt="Growth in 30 deg. C" width="672" />
+<p class="caption">
+Figure 8.2: Growth in 30 deg. C
+</p>
+</div>
+<p>It seems that there is at least short lag phase in each of the growth temperatures. We will use <code>nlsMicrobio</code> package, which contains some models, that we will use to estimate <span class="math inline">\(\mu_{max}\)</span>. First we will split, whole <em>data frame</em> into <em>list</em> of <em>data frames</em> – one for each temperature. Than we will use our good friend <code>lapply()</code> to change names of columns in all data sets so it fits needs of our function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BcList &lt;-<span class="st"> </span><span class="kw">split</span>(BcDF, <span class="dt">f=</span> BcDF<span class="op">$</span>resID)
+BcList &lt;-<span class="st"> </span><span class="kw">lapply</span>(BcList, setNames, <span class="dt">nm =</span> <span class="kw">c</span>(<span class="st">&#39;t&#39;</span>,  <span class="st">&#39;LOG10N&#39;</span>, <span class="st">&#39;Temp&#39;</span>, <span class="st">&#39;resID&#39;</span>))</code></pre></div>
+<p>From plots above (i.e., Fig. <a href="simple-workflow.html#fig:Bc-plot">8.1</a> and Fig. <a href="simple-workflow.html#fig:Bc30deg-plot">8.2</a>) we make an assumption that all of those growth curves have shorter or longer lag phase.</p>
+</div>
+<div id="growth-models" class="section level2">
+<h2><span class="header-section-number">8.3</span> Growth models</h2>
+<p>It would be nice to use trilinear (Buchanan) and Baranyi model to estimate <span class="math inline">\(\mu_{max}\)</span>. However writing it by hand is error prone, we can use predefined models from <code>nlsMicrobio</code> package (and that is why we need precise names of columns). Lets see how models look:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">baranyi</code></pre></div>
+<pre><code>## LOG10N ~ LOG10Nmax + log10((-1 + exp(mumax * lag) + exp(mumax * 
+##     t))/(exp(mumax * t) - 1 + exp(mumax * lag) * 10^(LOG10Nmax - 
+##     LOG10N0)))
+## &lt;environment: namespace:nlsMicrobio&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">buchanan</code></pre></div>
+<pre><code>## LOG10N ~ LOG10N0 + (t &gt;= lag) * (t &lt;= (lag + (LOG10Nmax - LOG10N0) * 
+##     log(10)/mumax)) * mumax * (t - lag)/log(10) + (t &gt;= lag) * 
+##     (t &gt; (lag + (LOG10Nmax - LOG10N0) * log(10)/mumax)) * (LOG10Nmax - 
+##     LOG10N0)
+## &lt;environment: namespace:nlsMicrobio&gt;</code></pre>
+<p>To estimate <em>trilinear</em> model we could also use <code>segmented</code> package, however than we would use different approach to solve the problem – we would estimate <em>breakpoints</em> or <em>knots</em> and than fit linear regression for each segment. The problem with this approach is that because of data in <em>lag</em> and <em>stationary</em> phase, with this method we would obtain slope values <span class="math inline">\(\neq 0\)</span> for those phases.</p>
+<p>Unfortunately, when using <em>non-linear</em> regression algorithms we sometimes run into trouble and cannot really estimate values we are interested in. Sometimes we need to make small changes in initial values that we parse as function arguments. In other times, <strong>R</strong> is unable to make estimations due to data structure. The main problem is that there is no <em>one size fits all</em> solution, and often finding best way to solve a problem is an iterative process of manually finding best starting parameters or using multiple functions to find the working one. Below we attempt to find <span class="math inline">\(\mu_{max}\)</span> with <em>Baranyi</em> and <em>Buchanan</em> approach.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bar1.nls &lt;-<span class="st"> </span><span class="kw">nls</span>(baranyi, BcList<span class="op">$</span>Bc1,
+                <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">200</span>, <span class="dt">mumax =</span> <span class="fl">0.03</span>, <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="fl">6.5</span>),
+                <span class="dt">control =</span> <span class="kw">nls.control</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>))</code></pre></div>
+<pre><code>## Error in nls(baranyi, BcList$Bc1, list(lag = 200, mumax = 0.03, LOG10N0 = 3, : step factor 0.000488281 reduced below &#39;minFactor&#39; of 0.000976562</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bar2.nls &lt;-<span class="st"> </span><span class="kw">nls</span>(baranyi, BcList<span class="op">$</span>Bc2,
+                <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">2</span>, <span class="dt">mumax =</span> <span class="fl">0.5</span>, <span class="dt">LOG10N0 =</span> <span class="dv">2</span>, <span class="dt">LOG10Nmax =</span> <span class="dv">8</span>))</code></pre></div>
+<pre><code>## Warning in numericDeriv(form[[3L]], names(ind), env): NaNs produced</code></pre>
+<pre><code>## Error in numericDeriv(form[[3L]], names(ind), env): Missing value or an infinity produced when evaluating the model</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bar3.nls &lt;-<span class="st"> </span><span class="kw">nls</span>(baranyi, BcList<span class="op">$</span>Bc3,
+                <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">5</span>, <span class="dt">mumax =</span> <span class="fl">0.01</span>, <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="dv">6</span>))</code></pre></div>
+<pre><code>## Error in numericDeriv(form[[3L]], names(ind), env): Missing value or an infinity produced when evaluating the model</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bar4.nls &lt;-<span class="st"> </span><span class="kw">nls</span>(baranyi, BcList<span class="op">$</span>Bc4,
+                <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">1</span>, <span class="dt">mumax =</span> <span class="fl">0.5</span>, <span class="dt">LOG10N0 =</span> <span class="dv">2</span>, <span class="dt">LOG10Nmax =</span> <span class="dv">8</span>))
+bar5.nls &lt;-<span class="st"> </span><span class="kw">nls</span>(baranyi, BcList<span class="op">$</span>Bc5,
+                <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">1</span>, <span class="dt">mumax =</span> <span class="fl">0.5</span>, <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="dv">8</span>))</code></pre></div>
+<p>OK. That is a bit worrying. We were able to solve equations only for two data sets. One solution we can try is to use <code>minipack.lm</code> which uses different approach which often works better than standard <code>nls</code> function. We will also allow more iterations of algorithm, which is second common solution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">bar1.nlsLM &lt;-<span class="st"> </span><span class="kw">nlsLM</span>(baranyi, BcList<span class="op">$</span>Bc1,
+                    <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">200</span>, <span class="dt">mumax =</span> <span class="fl">0.03</span>, <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="fl">6.5</span>),
+                    <span class="dt">control =</span> <span class="kw">nls.lm.control</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>))
+<span class="kw">summary</span>(bar1.nlsLM)</code></pre></div>
+<pre><code>## 
+## Formula: LOG10N ~ LOG10Nmax + log10((-1 + exp(mumax * lag) + exp(mumax * 
+##     t))/(exp(mumax * t) - 1 + exp(mumax * lag) * 10^(LOG10Nmax - 
+##     LOG10N0)))
+## 
+## Parameters:
+##            Estimate Std. Error t value Pr(&gt;|t|)    
+## lag       4.622e+02  1.121e+06    0.00        1    
+## mumax     3.515e-01  2.497e+04    0.00        1    
+## LOG10N0   3.406e+00  9.269e-02   36.74 3.30e-10 ***
+## LOG10Nmax 6.880e+00  1.416e-01   48.59 3.56e-11 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2452 on 8 degrees of freedom
+## 
+## Number of iterations to convergence: 41 
+## Achieved convergence tolerance: 1.49e-08</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BaranyiBc1 &lt;-<span class="st"> </span><span class="kw">summary</span>(bar1.nlsLM)<span class="op">$</span>parameters</code></pre></div>
+<p>Lets substitute variables in equation (later I’ll show you haw to do it automatically):</p>
+<p><code>LOG10N ~ LOG10Nmax + log10((-1 + exp(mumax * lag) + exp(mumax * t))/(exp(mumax * t) - 1 + exp(mumax * lag) * 10^(LOG10Nmax - LOG10N0</code></p>
+<p>with calculated ones and see how predicted curve fits our data (Fig. <a href="simple-workflow.html#fig:pred-bar1">8.3</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">xBarBc1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">800</span>
+predBarBc1 &lt;-<span class="st"> </span><span class="fl">6.880</span> <span class="op">+</span>
+<span class="st">  </span><span class="kw">log10</span>((<span class="op">-</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(<span class="fl">0.3537</span> <span class="op">*</span><span class="st"> </span><span class="fl">462.2242</span>) <span class="op">+</span>
+<span class="st">           </span><span class="kw">exp</span>(<span class="fl">0.3515</span> <span class="op">*</span><span class="st"> </span>xBarBc1))<span class="op">/</span>
+<span class="st">          </span>(<span class="kw">exp</span>(<span class="fl">0.3515</span> <span class="op">*</span><span class="st"> </span>xBarBc1) <span class="op">-</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>
+<span class="st">             </span><span class="kw">exp</span>(<span class="fl">0.3515</span> <span class="op">*</span><span class="st"> </span><span class="fl">462.2242</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span>(<span class="fl">6.880</span> <span class="op">-</span><span class="st"> </span><span class="fl">3.406</span>)))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(BcList<span class="op">$</span>Bc1<span class="op">$</span>t, BcList<span class="op">$</span>Bc1<span class="op">$</span>LOG10N)
+<span class="kw">lines</span>(predBarBc1<span class="op">~</span>xBarBc1)</code></pre></div>
+<div class="figure"><span id="fig:pred-bar1"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/pred-bar1-1.png" alt="Predicted growth from Baranyi equation for Bc1 dataset" width="672" />
+<p class="caption">
+Figure 8.3: Predicted growth from Baranyi equation for Bc1 dataset
+</p>
+</div>
+<p>This does not look like a good fit. Yet another solution to this problem is to use package <code>segmented</code>. It’s not the most elegant solution to the problem, but hey, our data is not the best one as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">segmented1.lm &lt;-<span class="st"> </span><span class="kw">lm</span>(LOG10N<span class="op">~</span><span class="dv">1</span>, <span class="dt">data =</span> BcList<span class="op">$</span>Bc1) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">segmented</span>(<span class="dt">seg.Z =</span> <span class="op">~</span>t,
+            <span class="dt">psi =</span> <span class="kw">c</span>(<span class="dv">200</span>, <span class="dv">400</span>),
+            <span class="dt">control =</span> <span class="kw">seg.control</span>(<span class="dt">it.max =</span> <span class="dv">500</span>, <span class="dt">n.boot =</span> <span class="dv">300</span>))
+Segmented1 &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">confint.segmented</span>(segmented1.lm),<span class="kw">slope</span>(segmented1.lm))</code></pre></div>
+<blockquote>
+<p>** NOTE: You should rather use formula: lm(LOG10N~t, data = BcList$Bc1), however for unknown reasons when using <code>bookdown</code> build functions fails to calculate linear model. So, till I find a solution to this problem we’ll stick to simplified one.</p>
+</blockquote>
+<p>Now we make some quick plot (Fig. <a href="simple-workflow.html#fig:pred-segm1">8.4</a>) to check how does the prediction fits data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(segmented1.lm)
+<span class="kw">points</span>(BcList<span class="op">$</span>Bc1<span class="op">$</span>LOG10N<span class="op">~</span>BcList<span class="op">$</span>Bc1<span class="op">$</span>t)</code></pre></div>
+<div class="figure"><span id="fig:pred-segm1"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/pred-segm1-1.png" alt="Predicted growth from segmented regression for Bc1 dataset" width="672" />
+<p class="caption">
+Figure 8.4: Predicted growth from segmented regression for Bc1 dataset
+</p>
+</div>
+<p>As I stated before, the <em>lag</em> and <em>stationary</em> phase segments are not nice, however slope of the <em>growth</em> phase seems to fit slightly better than the one calculated with <code>nlsML()</code> and <code>baranyi</code>. Also we need to remember that the more data points exist in set, and the better they are spread among independent variable range, the easier it gets to make statistical procedures, and the results will be more robust.</p>
+<p>We can also try to fit non linear regression for <code>buchanan</code> with <code>nlsML()</code> and <code>nls2</code> (the latter with brute force). Unfortunately, <code>nls</code> methods are quite sensitive on data and initial values, thus sometimes it takes a while to find something that makes sens or does not throw error now as <code>singular gradient matrix at initial parameter estimates</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Levenberg-Marquardt algorithm
+buch1.nlsLM &lt;-<span class="st"> </span><span class="kw">nlsLM</span>(buchanan, BcList<span class="op">$</span>Bc1,
+                     <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">200</span>, <span class="dt">mumax =</span> <span class="fl">0.03</span>,
+                          <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="fl">6.5</span>),
+                     <span class="dt">control =</span> <span class="kw">nls.lm.control</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>))
+## Gauss-Newton algorithm with brute-force
+buch1.nlsBF &lt;-<span class="st"> </span><span class="kw">nls2</span>(buchanan, <span class="dt">data =</span> BcList<span class="op">$</span>Bc1,
+                    <span class="dt">start =</span> <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">280</span>, <span class="dt">mumax =</span> <span class="fl">0.03</span>,
+                                 <span class="dt">LOG10N0 =</span> <span class="fl">3.5</span>, <span class="dt">LOG10Nmax =</span> <span class="dv">7</span>),
+                    <span class="dt">control =</span> <span class="kw">nls.control</span>(<span class="dt">maxiter =</span> <span class="dv">1000</span>,
+                                          <span class="dt">tol =</span> <span class="fl">1e-01</span>, <span class="dt">minFactor =</span> <span class="dv">1</span><span class="op">/</span><span class="dv">100</span>),
+                    <span class="dt">algorithm =</span> <span class="st">&#39;brute-force&#39;</span>)
+BuchananBFBc1&lt;-<span class="st"> </span><span class="kw">summary</span>(buch1.nlsLM)<span class="op">$</span>parameters
+BuchananBc1&lt;-<span class="st"> </span><span class="kw">summary</span>(buch1.nlsBF)<span class="op">$</span>parameters</code></pre></div>
+<p>And quick plot (Fig. <a href="simple-workflow.html#fig:nls-buch1bf1">8.5</a>) for visual inspection:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(BcList<span class="op">$</span>Bc1<span class="op">$</span>t, BcList<span class="op">$</span>Bc1<span class="op">$</span>LOG10N)
+<span class="kw">lines</span>(<span class="kw">predict</span>(buch1.nlsLM)<span class="op">~</span>BcList<span class="op">$</span>Bc1<span class="op">$</span>t)
+
+<span class="kw">plot</span>(BcList<span class="op">$</span>Bc1<span class="op">$</span>t, BcList<span class="op">$</span>Bc1<span class="op">$</span>LOG10N)
+<span class="kw">lines</span>(<span class="kw">predict</span>(buch1.nlsBF)<span class="op">~</span>BcList<span class="op">$</span>Bc1<span class="op">$</span>t)</code></pre></div>
+<div class="figure"><span id="fig:nls-buch1bf1"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/nls-buch1bf1-1.png" alt="Comparission of fiting Buchanan equation with Levenberg-Marquardt and brute-force Gauss-Newton" width="672" />
+<p class="caption">
+Figure 8.5: Comparission of fiting Buchanan equation with Levenberg-Marquardt and brute-force Gauss-Newton
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</code></pre></div>
+<p>Lets compare our parameters estimates:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Segmented1</code></pre></div>
+<pre><code>## [[1]]
+## [[1]]$t
+##           Est. CI(95%).l CI(95%).u
+## psi1.t 292.807   135.137   450.476
+## psi2.t 585.905   533.704   638.105
+## 
+## 
+## [[2]]
+## [[2]]$t
+##              Est.   St.Err. t value  CI(95%).l   CI(95%).u
+## slope1  0.0000000        NA      NA         NA          NA
+## slope2  0.0136970 0.0040054  3.4197  0.0042258  0.02316800
+## slope3 -0.0031243 0.0010433 -2.9947 -0.0055913 -0.00065739</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BaranyiBc1</code></pre></div>
+<pre><code>##              Estimate   Std. Error      t value     Pr(&gt;|t|)
+## lag       462.2241887 1.120639e+06 4.124648e-04 9.996810e-01
+## mumax       0.3515197 2.497031e+04 1.407751e-05 9.999891e-01
+## LOG10N0     3.4057143 9.269492e-02 3.674111e+01 3.301879e-10
+## LOG10Nmax   6.8800000 1.415938e-01 4.858969e+01 3.561034e-11</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BuchananBc1</code></pre></div>
+<pre><code>##           Estimate   Std. Error   t value     Pr(&gt;|t|)
+## lag         280.00 26.043862981 10.751093 4.930689e-06
+## mumax         0.03  0.003968372  7.559775 6.547676e-05
+## LOG10N0       3.50  0.128057657 27.331439 3.461481e-09
+## LOG10Nmax     7.00  0.181100875 38.652491 2.205201e-10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BuchananBFBc1</code></pre></div>
+<pre><code>##               Estimate  Std. Error   t value     Pr(&gt;|t|)
+## lag       354.25006466 55.09540195  6.429757 2.026158e-04
+## mumax       0.04610793  0.01690905  2.726819 2.597327e-02
+## LOG10N0     3.40424344  0.09420648 36.135981 3.768335e-10
+## LOG10Nmax   6.84343632  0.14390277 47.555974 4.227236e-11</code></pre>
+<p>As you can see, all the methods differ in their estimates (for Baranyi it <span class="math inline">\(\mu_{max}\)</span> is expressed as natural logarithm, so we can use equation <span class="math inline">\(log_{10}(x) = \frac{ln(x)}{ln(10)}\)</span> to obtain value 0.1526631). Some of them work better some work worse. Sometimes they produce false convergence, sometimes they highly rely even on small changes in initial values and sometimes they just do not work with our data set. Other thing one should consider is very wise proverb:</p>
+<blockquote>
+<p><em>Garbage in, garbage out.</em></p>
+</blockquote>
+<p>Meaning, that even with best methods, our data set might just not be sufficient to produce reliable output. Unfortunately in many cases we need to deal somehow with this kind of data. And we should always check if our output makes sense.</p>
+<p>But lets try to find a solution to other Bc2 and Bc3 data sets. We’ll simplify things and start estimation of parameters with Buchanan and Baranyi models using <code>nlsLM</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">buch2.nlsLM &lt;-<span class="st"> </span><span class="kw">nlsLM</span>(buchanan, BcList<span class="op">$</span>Bc2,
+                    <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">100</span>, <span class="dt">mumax =</span> <span class="fl">0.03</span>, <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="fl">6.5</span>),
+                    <span class="dt">control =</span> <span class="kw">nls.lm.control</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>))
+buch3.nlsLM &lt;-<span class="st"> </span><span class="kw">nlsLM</span>(buchanan, BcList<span class="op">$</span>Bc3,
+                    <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">100</span>, <span class="dt">mumax =</span> <span class="fl">0.03</span>, <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="fl">6.5</span>),
+                    <span class="dt">control =</span> <span class="kw">nls.lm.control</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>))
+bar2.nlsLM &lt;-<span class="st"> </span><span class="kw">nlsLM</span>(baranyi, BcList<span class="op">$</span>Bc2,
+                <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">10</span>, <span class="dt">mumax =</span> <span class="fl">0.2</span>, <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="fl">6.5</span>),
+                <span class="dt">control =</span> <span class="kw">nls.lm.control</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>))
+bar3.nlsLM &lt;-<span class="st"> </span><span class="kw">nlsLM</span>(baranyi, BcList<span class="op">$</span>Bc3,
+                <span class="kw">list</span>(<span class="dt">lag =</span> <span class="dv">10</span>, <span class="dt">mumax =</span> <span class="fl">0.03</span>, <span class="dt">LOG10N0 =</span> <span class="dv">3</span>, <span class="dt">LOG10Nmax =</span> <span class="fl">6.5</span>),
+                <span class="dt">control =</span> <span class="kw">nls.lm.control</span>(<span class="dt">maxiter =</span> <span class="dv">500</span>))</code></pre></div>
+<p>Hurray! No errors… for now at least. Now, we can use our variable that contains estimated parameters to make prediction. We will need new <em>data frame</em> containing values for which we want to make prediction. Because, we want also to plot predicted lines (to check how they fit to our data sets), we can predict values along sequence of numbers from 1 to 270. So, lets inspect visually how our models fit to data (Fig. <a href="simple-workflow.html#fig:BB23-models">8.6</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">newTime &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">t =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">270</span>)
+predBuch2 &lt;-<span class="st"> </span><span class="kw">predict</span>(buch2.nlsLM, <span class="dt">newdata =</span> newTime)
+predBuch3 &lt;-<span class="st"> </span><span class="kw">predict</span>(buch3.nlsLM, <span class="dt">newdata =</span> newTime)
+predBar2 &lt;-<span class="st"> </span><span class="kw">predict</span>(bar2.nlsLM, <span class="dt">newdata =</span> newTime)
+predBar3 &lt;-<span class="st"> </span><span class="kw">predict</span>(bar3.nlsLM, <span class="dt">newdata =</span> newTime)
+
+<span class="co">#4 plots in one picture 2 x 2</span>
+<span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))
+<span class="kw">plot</span>(predBuch2 <span class="op">~</span><span class="st"> </span>newTime<span class="op">$</span>t, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>,
+     <span class="dt">main =</span> <span class="st">&#39;Buchanan&#39;</span>, <span class="dt">sub =</span> <span class="st">&#39;dataset Bc2&#39;</span>, <span class="dt">cex.main =</span> <span class="fl">0.75</span>, <span class="dt">cex.sub =</span> <span class="fl">0.6</span>,
+     <span class="dt">xlab =</span> <span class="st">&#39;time&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Log10N&#39;</span>, <span class="dt">cex.lab =</span> <span class="fl">0.6</span>)
+  <span class="kw">points</span>(BcList<span class="op">$</span>Bc2<span class="op">$</span>t, BcList<span class="op">$</span>Bc2<span class="op">$</span>LOG10N,
+         <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">pch =</span> <span class="dv">15</span>)
+  
+<span class="kw">plot</span>(predBuch3 <span class="op">~</span><span class="st"> </span>newTime<span class="op">$</span>t, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>,
+     <span class="dt">main =</span> <span class="st">&#39;Buchanan&#39;</span>, <span class="dt">sub =</span> <span class="st">&#39;dataset Bc3&#39;</span>, <span class="dt">cex.main =</span> <span class="fl">0.75</span>, <span class="dt">cex.sub =</span> <span class="fl">0.6</span>,
+     <span class="dt">xlab =</span> <span class="st">&#39;time&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Log10N&#39;</span>, <span class="dt">cex.lab =</span> <span class="fl">0.6</span>)
+  <span class="kw">points</span>(BcList<span class="op">$</span>Bc3<span class="op">$</span>t, BcList<span class="op">$</span>Bc3<span class="op">$</span>LOG10N,
+         <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">pch =</span> <span class="dv">15</span>)
+
+<span class="kw">plot</span>(predBar2 <span class="op">~</span><span class="st"> </span>newTime<span class="op">$</span>t, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>,
+     <span class="dt">main =</span> <span class="st">&#39;Baranyi&#39;</span>, <span class="dt">sub =</span> <span class="st">&#39;dataset Bc2&#39;</span>, <span class="dt">cex.main =</span> <span class="fl">0.75</span>, <span class="dt">cex.sub =</span> <span class="fl">0.6</span>,
+     <span class="dt">xlab =</span> <span class="st">&#39;time&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Log10N&#39;</span>, <span class="dt">cex.lab =</span> <span class="fl">0.6</span>)
+  <span class="kw">points</span>(BcList<span class="op">$</span>Bc2<span class="op">$</span>t, BcList<span class="op">$</span>Bc2<span class="op">$</span>LOG10N,
+         <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">pch =</span> <span class="dv">15</span>)
+
+<span class="kw">plot</span>(predBar3 <span class="op">~</span><span class="st"> </span>newTime<span class="op">$</span>t, <span class="dt">type =</span> <span class="st">&#39;l&#39;</span>, <span class="dt">col =</span> <span class="st">&#39;red&#39;</span>,
+     <span class="dt">main =</span> <span class="st">&#39;Baranyi&#39;</span>, <span class="dt">sub =</span> <span class="st">&#39;dataset Bc3&#39;</span>, <span class="dt">cex.main =</span> <span class="fl">0.75</span>, <span class="dt">cex.sub =</span> <span class="fl">0.6</span>,
+     <span class="dt">xlab =</span> <span class="st">&#39;time&#39;</span>, <span class="dt">ylab =</span> <span class="st">&#39;Log10N&#39;</span>, <span class="dt">cex.lab =</span> <span class="fl">0.6</span>)
+  <span class="kw">points</span>(BcList<span class="op">$</span>Bc3<span class="op">$</span>t, BcList<span class="op">$</span>Bc3<span class="op">$</span>LOG10N,
+         <span class="dt">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">pch =</span> <span class="dv">15</span>)</code></pre></div>
+<div class="figure"><span id="fig:BB23-models"></span>
+<img src="BeginnersGuideToGalaxy_files/figure-html/BB23-models-1.png" alt="Predicted values vs. data points" width="672" />
+<p class="caption">
+Figure 8.6: Predicted values vs. data points
+</p>
+</div>
+<p>Fit seems to be quite reasonable. Finally lets check the parameters of models:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(buch2.nlsLM)<span class="op">$</span>parameters</code></pre></div>
+<pre><code>##              Estimate Std. Error   t value     Pr(&gt;|t|)
+## lag       46.05276132 6.39164691  7.205148 2.096717e-06
+## mumax      0.09676246 0.01095127  8.835730 1.493145e-07
+## LOG10N0    3.16285715 0.14910019 21.212965 3.852824e-13
+## LOG10Nmax  7.50200000 0.17641773 42.524072 6.902309e-18</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(buch3.nlsLM)<span class="op">$</span>parameters</code></pre></div>
+<pre><code>##             Estimate Std. Error   t value     Pr(&gt;|t|)
+## lag       91.8457093 5.86309056 15.665067 3.979643e-11
+## mumax      0.1501464 0.02126317  7.061337 2.691088e-06
+## LOG10N0    3.2650000 0.16502452 19.784939 1.130406e-12
+## LOG10Nmax  7.1975000 0.14291542 50.361954 4.696585e-19</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(bar2.nlsLM)<span class="op">$</span>parameters</code></pre></div>
+<pre><code>##             Estimate Std. Error   t value     Pr(&gt;|t|)
+## lag       60.0785947 5.80981604 10.340877 1.719577e-08
+## mumax      0.1727468 0.03662681  4.716403 2.328926e-04
+## LOG10N0    3.1450278 0.12117868 25.953641 1.666670e-14
+## LOG10Nmax  7.4431721 0.13857817 53.710999 1.686156e-19</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(bar3.nlsLM)<span class="op">$</span>parameters</code></pre></div>
+<pre><code>##             Estimate Std. Error   t value     Pr(&gt;|t|)
+## lag       98.0820517  7.6186089 12.874011 7.381774e-10
+## mumax      0.1808689  0.0392226  4.611345 2.889377e-04
+## LOG10N0    3.2651346  0.1592311 20.505639 6.509231e-13
+## LOG10Nmax  7.2034057  0.1467807 49.075958 7.086484e-19</code></pre>
+</div>
+<div id="going-further" class="section level2">
+<h2><span class="header-section-number">8.4</span> Going further</h2>
+<p>Now you have all the necessary techniques, to go beyond the scope of this book. With more data sets you will be easily able to make prediction how <span class="math inline">\(\mu_{max}\)</span> changes along temperature gradient. From standard error it will be fairly easy to calculate standard deviation, and use it for estimation of your parameters distribution. Than you can use random sampling for stochastic simulations. With some effort and clever queries, you will find how to make beautiful plots using powerful <code>ggplot2</code> package and its extensions. Of course, in the beginning it will take some time, and probably frustration, but all in all you are now using one of the most powerful and differentiated IT tools. It’s only upon you how you will use the knowledge.</p>
+</div>
+<div id="copy-paste-data-set" class="section level2">
+<h2><span class="header-section-number">8.5</span> Copy-paste data set</h2>
+<hr />
+
+<hr />
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BcDF &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Time =</span> <span class="kw">c</span>(<span class="fl">0.00</span>, <span class="fl">17.00</span>, <span class="fl">43.00</span>, <span class="fl">66.50</span>, <span class="fl">139.50</span>, <span class="fl">187.00</span>, <span class="fl">283.00</span>,
+                            <span class="fl">478.00</span>, <span class="fl">526.00</span>, <span class="fl">550.00</span>, <span class="fl">605.50</span>, <span class="fl">887.00</span>,
+                            <span class="fl">0.00</span>, <span class="fl">7.00</span>, <span class="fl">17.00</span>, <span class="fl">24.00</span>, <span class="fl">25.00</span>, <span class="fl">31.00</span>, <span class="fl">42.00</span>,
+                            <span class="fl">48.00</span>, <span class="fl">54.00</span>, <span class="fl">71.00</span>, <span class="fl">75.00</span>, <span class="fl">78.00</span>, <span class="fl">92.00</span>, <span class="fl">95.00</span>,
+                            <span class="fl">149.00</span>, <span class="fl">166.00</span>, <span class="fl">170.50</span>, <span class="fl">187.50</span>, <span class="fl">199.00</span>, <span class="fl">216.00</span>,
+                            <span class="fl">0.00</span>, <span class="fl">17.62</span>, <span class="fl">23.82</span>, <span class="fl">40.43</span>, <span class="fl">46.18</span>, <span class="fl">71.17</span>, <span class="fl">92.03</span>,
+                            <span class="fl">115.17</span>, <span class="fl">120.10</span>, <span class="fl">137.05</span>, <span class="fl">140.40</span>, <span class="fl">143.08</span>, <span class="fl">159.85</span>,
+                            <span class="fl">165.25</span>, <span class="fl">185.68</span>, <span class="fl">191.27</span>, <span class="fl">209.27</span>, <span class="fl">210.95</span>, <span class="fl">214.55</span>,
+                            <span class="fl">237.90</span>,
+                            <span class="fl">0.00</span>, <span class="fl">16.22</span>, <span class="fl">19.02</span>, <span class="fl">20.93</span>, <span class="fl">23.40</span>, <span class="fl">40.98</span>, <span class="fl">45.23</span>,
+                            <span class="fl">47.98</span>, <span class="fl">66.07</span>, <span class="fl">69.35</span>, <span class="fl">71.68</span>, <span class="fl">89.60</span>, <span class="fl">161.32</span>, <span class="fl">166.12</span>,
+                            <span class="fl">187.20</span>, <span class="fl">190.45</span>, <span class="fl">209.13</span>,
+                            <span class="fl">0.00</span>, <span class="fl">1.13</span>, <span class="fl">2.05</span>, <span class="fl">2.93</span>, <span class="fl">4.08</span>, <span class="fl">4.98</span>, <span class="fl">6.02</span>, <span class="fl">6.90</span>,
+                            <span class="fl">8.02</span>, <span class="fl">9.02</span>, <span class="fl">10.08</span>, <span class="fl">10.95</span>, <span class="fl">12.08</span>, <span class="fl">12.98</span>, <span class="fl">14.13</span>,
+                            <span class="fl">15.38</span>, <span class="fl">16.22</span>, <span class="fl">19.75</span>),
+                   <span class="dt">LogC =</span> <span class="kw">c</span>(<span class="fl">3.25</span>, <span class="fl">3.54</span>, <span class="fl">3.53</span>, <span class="fl">3.40</span>, <span class="fl">3.34</span>, <span class="fl">3.38</span>, <span class="fl">3.40</span>, <span class="fl">5.78</span>,
+                            <span class="fl">7.00</span>, <span class="fl">6.70</span>, <span class="fl">7.34</span>, <span class="fl">6.48</span>, <span class="fl">3.25</span>, <span class="fl">2.95</span>, <span class="fl">3.23</span>, <span class="fl">3.20</span>,
+                            <span class="fl">3.18</span>, <span class="fl">3.18</span>, <span class="fl">3.15</span>, <span class="fl">3.53</span>, <span class="fl">2.78</span>, <span class="fl">3.28</span>, <span class="fl">5.04</span>, <span class="fl">4.85</span>,
+                            <span class="fl">5.41</span>, <span class="fl">5.60</span>, <span class="fl">7.15</span>, <span class="fl">7.52</span>, <span class="fl">7.41</span>, <span class="fl">7.63</span>, <span class="fl">7.36</span>, <span class="fl">7.59</span>,
+                            <span class="fl">4.33</span>, <span class="fl">3.48</span>, <span class="fl">3.45</span>, <span class="fl">2.76</span>, <span class="fl">2.92</span>, <span class="fl">2.65</span>, <span class="fl">3.39</span>, <span class="fl">4.56</span>,
+                            <span class="fl">5.15</span>, <span class="fl">6.18</span>, <span class="fl">6.34</span>, <span class="fl">6.80</span>, <span class="fl">7.30</span>, <span class="fl">7.35</span>, <span class="fl">7.43</span>, <span class="fl">7.24</span>,
+                            <span class="fl">6.54</span>, <span class="fl">7.28</span>, <span class="fl">7.27</span>, <span class="fl">7.17</span>, <span class="fl">2.54</span>, <span class="fl">2.30</span>, <span class="fl">2.24</span>, <span class="fl">2.40</span>,
+                            <span class="fl">2.54</span>, <span class="fl">5.15</span>, <span class="fl">5.73</span>, <span class="fl">6.42</span>, <span class="fl">7.72</span>, <span class="fl">7.94</span>, <span class="fl">7.73</span>, <span class="fl">7.95</span>,
+                            <span class="fl">8.02</span>, <span class="fl">7.88</span>, <span class="fl">7.99</span>, <span class="fl">7.95</span>, <span class="fl">7.32</span>, <span class="fl">3.67</span>, <span class="fl">3.51</span>, <span class="fl">3.55</span>,
+                            <span class="fl">3.70</span>, <span class="fl">3.98</span>, <span class="fl">4.46</span>, <span class="fl">4.77</span>, <span class="fl">4.92</span>, <span class="fl">5.28</span>, <span class="fl">6.24</span>, <span class="fl">6.44</span>,
+                            <span class="fl">6.92</span>, <span class="fl">7.17</span>, <span class="fl">7.18</span>, <span class="fl">7.36</span>, <span class="fl">7.48</span>, <span class="fl">7.68</span>, <span class="fl">7.98</span>),
+                   <span class="dt">Temp =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">16</span>, <span class="dt">times =</span> <span class="dv">12</span>), <span class="kw">rep</span>(<span class="dv">22</span>, <span class="dt">times =</span> <span class="dv">20</span>),
+                            <span class="kw">rep</span>(<span class="dv">15</span>, <span class="dt">times =</span> <span class="dv">20</span>), <span class="kw">rep</span>(<span class="dv">20</span>, <span class="dt">times =</span> <span class="dv">17</span>),
+                            <span class="kw">rep</span>(<span class="dv">30</span>, <span class="dt">times =</span> <span class="dv">18</span>)),
+                   <span class="dt">resID =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&#39;Bc1&#39;</span>, <span class="dt">times =</span> <span class="dv">12</span>), <span class="kw">rep</span>(<span class="st">&#39;Bc2&#39;</span>, <span class="dt">times =</span> <span class="dv">20</span>),
+                             <span class="kw">rep</span>(<span class="st">&#39;Bc3&#39;</span>, <span class="dt">times =</span> <span class="dv">20</span>), <span class="kw">rep</span>(<span class="st">&#39;Bc4&#39;</span>, <span class="dt">times =</span> <span class="dv">17</span>),
+                             <span class="kw">rep</span>(<span class="st">&#39;Bc5&#39;</span>, <span class="dt">times =</span> <span class="dv">18</span>)))</code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="graphs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="finalind.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["BeginnersGuideToGalaxy.pdf", "BeginnersGuideToGalaxy.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

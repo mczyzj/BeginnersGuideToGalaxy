@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A Beginners Guide to R’s Galaxy</title>
+  <meta name="description" content="Quick introduction to astonishing R’s Galaxy">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A Beginners Guide to R’s Galaxy" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Beginners Guide to R’s Galaxy" />
+  
+  <meta name="twitter:description" content="Quick introduction to astonishing R’s Galaxy" />
+  
+
+<meta name="author" content="Michal J. Czyz">
+
+
+<meta name="date" content="2018-05-18">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="simple-workflow.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Beginners Guide to Galaxy</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> In the beginning there was only darknes…</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="intro.html"><a href="intro.html#audience"><i class="fa fa-check"></i><b>2.1</b> Audience</a></li>
+<li class="chapter" data-level="2.2" data-path="intro.html"><a href="intro.html#what-this-book-is-not-about"><i class="fa fa-check"></i><b>2.2</b> What this book is not about?</a></li>
+<li class="chapter" data-level="2.3" data-path="intro.html"><a href="intro.html#rstudio"><i class="fa fa-check"></i><b>2.3</b> RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="intro.html"><a href="intro.html#few-tips-to-make-life-easier"><i class="fa fa-check"></i><b>2.4</b> Few tips to make life easier</a></li>
+<li class="chapter" data-level="2.5" data-path="intro.html"><a href="intro.html#installing-packages"><i class="fa fa-check"></i><b>2.5</b> Installing packages</a></li>
+<li class="chapter" data-level="2.6" data-path="intro.html"><a href="intro.html#conventions"><i class="fa fa-check"></i><b>2.6</b> Conventions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="basics.html"><a href="basics.html"><i class="fa fa-check"></i><b>3</b> Basics</a><ul>
+<li class="chapter" data-level="3.1" data-path="basics.html"><a href="basics.html#getting-started"><i class="fa fa-check"></i><b>3.1</b> Getting started</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="basics.html"><a href="basics.html#help"><i class="fa fa-check"></i><b>3.1.1</b> Help</a></li>
+<li class="chapter" data-level="3.1.2" data-path="basics.html"><a href="basics.html#internet-is-a-great-source-of-information"><i class="fa fa-check"></i><b>3.1.2</b> Internet is a great source of information</a></li>
+<li class="chapter" data-level="3.1.3" data-path="basics.html"><a href="basics.html#more-on-internet-sources"><i class="fa fa-check"></i><b>3.1.3</b> More on internet sources</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics.html"><a href="basics.html#syntax"><i class="fa fa-check"></i><b>3.2</b> Syntax</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="basics.html"><a href="basics.html#common-operators"><i class="fa fa-check"></i><b>3.2.1</b> Common operators</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics.html"><a href="basics.html#variables"><i class="fa fa-check"></i><b>3.2.2</b> Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics.html"><a href="basics.html#math-operations"><i class="fa fa-check"></i><b>3.3</b> Math operations</a></li>
+<li class="chapter" data-level="3.4" data-path="basics.html"><a href="basics.html#logics"><i class="fa fa-check"></i><b>3.4</b> Logics</a></li>
+<li class="chapter" data-level="3.5" data-path="basics.html"><a href="basics.html#functions"><i class="fa fa-check"></i><b>3.5</b> Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html"><i class="fa fa-check"></i><b>4</b> Somwehere between basic and useful</a><ul>
+<li class="chapter" data-level="4.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#addressing"><i class="fa fa-check"></i><b>4.1</b> Addressing</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#vectors"><i class="fa fa-check"></i><b>4.1.1</b> Vectors</a></li>
+<li class="chapter" data-level="4.1.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#data-frames-and-matrices"><i class="fa fa-check"></i><b>4.1.2</b> Data frames (and matrices)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#lists"><i class="fa fa-check"></i><b>4.1.3</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#control-flow"><i class="fa fa-check"></i><b>4.2</b> Control flow</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#if...else-and-ifelse-statments"><i class="fa fa-check"></i><b>4.2.1</b> <code>if...else</code> and <code>ifelse</code> statments</a></li>
+<li class="chapter" data-level="4.2.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#for-and-while-loops"><i class="fa fa-check"></i><b>4.2.2</b> <code>for</code> and <code>while</code> loops</a></li>
+<li class="chapter" data-level="4.2.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#apply-function-family"><i class="fa fa-check"></i><b>4.2.3</b> <code>apply</code> function family</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#operation-on-vectors"><i class="fa fa-check"></i><b>4.3</b> Operation on Vectors</a></li>
+<li class="chapter" data-level="4.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#randomization-and-distribution"><i class="fa fa-check"></i><b>4.4</b> Randomization and distribution</a></li>
+<li class="chapter" data-level="4.5" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#tidyverse-idea-and-dplyr-library"><i class="fa fa-check"></i><b>4.5</b> <code>tidyverse</code> idea and <code>dplyr</code> library</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#wide-vs.long-tables"><i class="fa fa-check"></i><b>4.5.1</b> Wide vs. long tables</a></li>
+<li class="chapter" data-level="4.5.2" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#world-of-dplyr"><i class="fa fa-check"></i><b>4.5.2</b> World of <code>dplyr</code></a></li>
+<li class="chapter" data-level="4.5.3" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#select-columns-and-filter-rows"><i class="fa fa-check"></i><b>4.5.3</b> <code>select</code> columns and <code>filter</code> rows</a></li>
+<li class="chapter" data-level="4.5.4" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#mutate-and-transmute"><i class="fa fa-check"></i><b>4.5.4</b> <code>mutate</code> and <code>transmute</code></a></li>
+<li class="chapter" data-level="4.5.5" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#group_by-and-summarise"><i class="fa fa-check"></i><b>4.5.5</b> <code>group_by</code> and <code>summarise</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="somwehere-between-basic-and-useful.html"><a href="somwehere-between-basic-and-useful.html#is-there-anything-more-in-dplyr-library"><i class="fa fa-check"></i><b>4.6</b> Is there anything more in <code>dplyr</code> library?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html"><i class="fa fa-check"></i><b>5</b> Lets do some math!</a><ul>
+<li class="chapter" data-level="5.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#models"><i class="fa fa-check"></i><b>5.1</b> Models</a></li>
+<li class="chapter" data-level="5.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#packages"><i class="fa fa-check"></i><b>5.2</b> Packages</a></li>
+<li class="chapter" data-level="5.3" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#simple-mechanistic-model-and-noise"><i class="fa fa-check"></i><b>5.3</b> Simple mechanistic model and noise</a></li>
+<li class="chapter" data-level="5.4" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#solving-differential-equations"><i class="fa fa-check"></i><b>5.4</b> Solving differential equations</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#the-simple-epidemiological"><i class="fa fa-check"></i><b>5.4.1</b> The simple epidemiological</a></li>
+<li class="chapter" data-level="5.4.2" data-path="lets-do-some-math.html"><a href="lets-do-some-math.html#ploting-seri-model"><i class="fa fa-check"></i><b>5.4.2</b> Ploting SERI model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="finalindications.html"><a href="finalindications.html"><i class="fa fa-check"></i><b>6</b> Functions</a><ul>
+<li class="chapter" data-level="6.1" data-path="finalindications.html"><a href="finalindications.html#simple-math-functions."><i class="fa fa-check"></i><b>6.1</b> Simple math functions.</a></li>
+<li class="chapter" data-level="6.2" data-path="finalindications.html"><a href="finalindications.html#building-your-own-calculator"><i class="fa fa-check"></i><b>6.2</b> Building your own calculator</a></li>
+<li class="chapter" data-level="6.3" data-path="finalindications.html"><a href="finalindications.html#it-is-not-over-yet-calculator-shouldnt-divide-be-0"><i class="fa fa-check"></i><b>6.3</b> It is not over yet… <em>Calculator shouldn’t divide be 0</em>!</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="graphs.html"><a href="graphs.html"><i class="fa fa-check"></i><b>7</b> Graphics</a><ul>
+<li class="chapter" data-level="7.1" data-path="graphs.html"><a href="graphs.html#base-plots"><i class="fa fa-check"></i><b>7.1</b> Base plots</a></li>
+<li class="chapter" data-level="7.2" data-path="graphs.html"><a href="graphs.html#how-to-make-plot"><i class="fa fa-check"></i><b>7.2</b> How to make plot?</a></li>
+<li class="chapter" data-level="7.3" data-path="graphs.html"><a href="graphs.html#can-we-actually-do-something"><i class="fa fa-check"></i><b>7.3</b> Can we actually do something?</a></li>
+<li class="chapter" data-level="7.4" data-path="graphs.html"><a href="graphs.html#ggplot2---graphics-taken-into-other-dimension"><i class="fa fa-check"></i><b>7.4</b> <code>ggplot2</code> - Graphics taken into other dimension</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="graphs.html"><a href="graphs.html#basic-plot-in-ggplot2"><i class="fa fa-check"></i><b>7.4.1</b> Basic plot in <code>ggplot2</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="graphs.html"><a href="graphs.html#density-plots"><i class="fa fa-check"></i><b>7.4.2</b> Density plots</a></li>
+<li class="chapter" data-level="7.4.3" data-path="graphs.html"><a href="graphs.html#box-plot-and-bar-plot"><i class="fa fa-check"></i><b>7.4.3</b> Box-plot and bar-plot</a></li>
+<li class="chapter" data-level="7.4.4" data-path="graphs.html"><a href="graphs.html#regression"><i class="fa fa-check"></i><b>7.4.4</b> Regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="simple-workflow.html"><a href="simple-workflow.html"><i class="fa fa-check"></i><b>8</b> Simple workflow</a><ul>
+<li class="chapter" data-level="8.1" data-path="simple-workflow.html"><a href="simple-workflow.html#data"><i class="fa fa-check"></i><b>8.1</b> Data</a></li>
+<li class="chapter" data-level="8.2" data-path="simple-workflow.html"><a href="simple-workflow.html#exploaratory-visualisation-and-setup"><i class="fa fa-check"></i><b>8.2</b> Exploaratory visualisation and setup</a></li>
+<li class="chapter" data-level="8.3" data-path="simple-workflow.html"><a href="simple-workflow.html#growth-models"><i class="fa fa-check"></i><b>8.3</b> Growth models</a></li>
+<li class="chapter" data-level="8.4" data-path="simple-workflow.html"><a href="simple-workflow.html#going-further"><i class="fa fa-check"></i><b>8.4</b> Going further</a></li>
+<li class="chapter" data-level="8.5" data-path="simple-workflow.html"><a href="simple-workflow.html#copy-paste-data-set"><i class="fa fa-check"></i><b>8.5</b> Copy-paste data set</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="finalind.html"><a href="finalind.html"><i class="fa fa-check"></i><b>9</b> Final indications</a><ul>
+<li class="chapter" data-level="9.1" data-path="finalind.html"><a href="finalind.html#use-projects"><i class="fa fa-check"></i><b>9.1</b> Use Projects</a></li>
+<li class="chapter" data-level="9.2" data-path="finalind.html"><a href="finalind.html#use-rmarkdown"><i class="fa fa-check"></i><b>9.2</b> Use RMarkdown</a></li>
+<li class="chapter" data-level="9.3" data-path="finalind.html"><a href="finalind.html#use-.rds-files"><i class="fa fa-check"></i><b>9.3</b> Use .rds files</a></li>
+<li class="chapter" data-level="9.4" data-path="finalind.html"><a href="finalind.html#nice-resources-you-should-read"><i class="fa fa-check"></i><b>9.4</b> Nice resources you SHOULD read</a></li>
+<li class="chapter" data-level="9.5" data-path="finalind.html"><a href="finalind.html#solving-problems"><i class="fa fa-check"></i><b>9.5</b> Solving problems</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Beginners Guide to R’s Galaxy</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="finalind" class="section level1">
+<h1><span class="header-section-number">Chapter 9</span> Final indications</h1>
+<div id="use-projects" class="section level2">
+<h2><span class="header-section-number">9.1</span> Use Projects</h2>
+<p>To organize your work, not only in <strong>RStudio</strong>, but also on hard drive you should use projects. It is extremely easy in this IDE. Just click button – <em>Create new project</em> – choose <em>New Directory</em> and type of project you need. <strong>RStudio</strong> will take care of everything for you. Later you can easily add files of sub-folders with specifying content into your project and use relational links. Also, using projects makes easy to maintain clean global environment, which beginners often tend to underestimate and than they run into troubles.</p>
+</div>
+<div id="use-rmarkdown" class="section level2">
+<h2><span class="header-section-number">9.2</span> Use RMarkdown</h2>
+<p>To make your work more reproducible, and also to make nice looking output (in html or PDFs) it is a good idea to work in RMarkdown files instead of RScripts. The syntax of <strong>RMarkdown</strong> is nearly identical to original <strong>Markdown</strong>, but allows you to execute and store <strong>RCode</strong>. You can find <a href="http://rmarkdown.rstudio.com/articles_intro.html">RMarkdown introduction here</a>. There is also nice <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">cheat sheet</a> which contains all commands you will need. As there is strong pressure to make research and science more open and reproducible, it is strongly advised that you work with proper tools to do it like <strong>RMarkdown</strong> or <strong>Project Jupyter</strong>. If you want to learn more, there is very nice <a href="https://www.britishecologicalsociety.org/wp-content/uploads/2017/12/guide-to-reproducible-code.pdf">guide by British Ecological Society</a> you should read.</p>
+<p>Also, you need to know that to make output in PDFs format, you will first need to install <strong>LaTeX</strong> distribution. There are tons of tutorials how to do it on different operating system. The thing is that even you don’t use <strong>LaTeX</strong> directly, <strong>R</strong> uses it <em>under the hood</em> to (oversimplifying) to convert <strong>RMarkdown</strong> to PDFs. For <strong>Linux</strong> users, one piece of advice is to install <em>full</em> distribution instead of <em>base</em>, it take more time and disk space, but will save you frustration of installing additional packages later.</p>
+</div>
+<div id="use-.rds-files" class="section level2">
+<h2><span class="header-section-number">9.3</span> Use .rds files</h2>
+<p>Usually we work with plain text files like csv or tsv in <strong>R</strong>. However, there is also a highly valuable format of files called rds, that makes work even more pleasant. It not only preserves all classes of variables, but also takes less space than plain text file, due to compression algorithms. Also when using <code>saveRDS()</code> you don’t need to define hundreds of parameters, just name of object you want to save and its file name. The downside is that it is format to use directly with <strong>R</strong> and won’t work with other programs.</p>
+</div>
+<div id="nice-resources-you-should-read" class="section level2">
+<h2><span class="header-section-number">9.4</span> Nice resources you SHOULD read</h2>
+<p>There is few hundred of books relating more or less to work in <strong>R</strong>. There is also a huge number of blogs, web pages and other on-line resources that helps with work in <strong>R</strong>. Here you will find some of them that I find very useful in everyday work with R and statistics.</p>
+<hr />
+
+<hr />
+<ul>
+<li><a href="https://annamarbut.blogspot.de/2018/02/basic-transformations-and-explorations.html">Basic Transformations and Explorations in the Tidyverse</a></li>
+<li><a href="http://www.cookbook-r.com/Graphs/">R Graphic CookBook free on-line version</a></li>
+<li><a href="https://adv-r.hadley.nz/">Advanced R free on-line version</a></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">Collection of R cheat sheets</a></li>
+<li><a href="https://rweekly.org">R Weekly – Collection of best news from data science world</a></li>
+</ul>
+<hr />
+
+<hr />
+<ul>
+<li><a href="https://reconlearn.netlify.com">RECONlearn – free resources on epidemiology</a></li>
+<li><a href="https://matloff.wordpress.com/">Norm Matloff’s blog discussing issues with statistics and data science</a></li>
+<li><a href="https://rosettacode.org/wiki/Rosetta_Code">Rosetta Code – a repository for code to solve large number of problems with tens of different programming languages</a></li>
+</ul>
+</div>
+<div id="solving-problems" class="section level2">
+<h2><span class="header-section-number">9.5</span> Solving problems</h2>
+<p>As you saw, <strong>R</strong> can be used for many different purposes, like statistics or modeling, whiteout any programming knowledge. However, the more you will work with it, the sooner you will find how programming skills, can help you will daily work. Of course some problems in the beginning will be to complicated to solve quickly, but spending time on finding solution will save you lots of time in future. Also, if you follow few simple rules, you will work faster and be less frustrated. This rules make simple workflow:</p>
+<ul>
+<li>take some time to analyze the problem</li>
+<li>divide your problem into small pieces</li>
+<li>start with solving piece that you know (or are very close to) solve with least effort</li>
+<li>don’t be afraid to ask or look into web for solutions</li>
+<li>take all the small pieces and put them together</li>
+</ul>
+<p>Remember – it is better to do something than do nothing. Even if you are stuck with something, you will still benefit from solutions for smaller pieces of your problem, that you managed to find. In the beginning try to think about robustness and speed of your code, but do not seek for best optimized code at all cost. Sometimes it’s just not worth spending half an hour to make your code faster by 1 second. The more you will read, the more ideas about how to write best code you will get.</p>
+
+<div id="refs" class="references">
+<div>
+<p>Baty, Florent, and Marie-Laure Delignette-Muller. 2014. <em>NlsMicrobio: Nonlinear Regression in Predictive Microbiology</em>. <a href="https://CRAN.R-project.org/package=nlsMicrobio" class="uri">https://CRAN.R-project.org/package=nlsMicrobio</a>.</p>
+</div>
+<div>
+<p>Chang, Winston. 2013. <em>R Graphics Cookbook</em>. O’Reilly Media, Inc.</p>
+</div>
+<div>
+<p>Delignette-Muller, Marie-Laure, Christophe Dutang, and Aurélie Siberchicot. 2017. <em>Fitdistrplus: Help to Fit of a Parametric Distribution to Non-Censored or Censored Data</em>. <a href="https://CRAN.R-project.org/package=fitdistrplus" class="uri">https://CRAN.R-project.org/package=fitdistrplus</a>.</p>
+</div>
+<div>
+<p>Elzhov, Timur V., Katharine M. Mullen, Andrej-Nikolai Spiess, and Ben Bolker. 2016. <em>Minpack.lm: R Interface to the Levenberg-Marquardt Nonlinear Least-Squares Algorithm Found in Minpack, Plus Support for Bounds</em>. <a href="https://CRAN.R-project.org/package=minpack.lm" class="uri">https://CRAN.R-project.org/package=minpack.lm</a>.</p>
+</div>
+<div>
+<p>Grothendieck, G. 2013. <em>Nls2: Non-Linear Regression with Brute Force</em>. <a href="https://CRAN.R-project.org/package=nls2" class="uri">https://CRAN.R-project.org/package=nls2</a>.</p>
+</div>
+<div>
+<p>Muggeo, Vito M. R. 2017. <em>Segmented: Regression Models with Break-Points / Change-Points Estimation</em>. <a href="https://CRAN.R-project.org/package=segmented" class="uri">https://CRAN.R-project.org/package=segmented</a>.</p>
+</div>
+<div>
+<p>Pouillot, Regis. 2017. <em>Mc2d: Tools for Two-Dimensional Monte-Carlo Simulations</em>. <a href="https://CRAN.R-project.org/package=mc2d" class="uri">https://CRAN.R-project.org/package=mc2d</a>.</p>
+</div>
+<div>
+<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>RStudio Team. 2016. <em>RStudio: Integrated Development Environment for R</em>. Boston, MA: RStudio, Inc. <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+</div>
+<div>
+<p>Soetaert, Karline, Thomas Petzoldt, and R. Woodrow Setzer. 2018. <em>DeSolve: Solvers for Initial Value Problems of Differential Equations (’Ode’, ’Dae’, ’Dde’)</em>. <a href="https://CRAN.R-project.org/package=deSolve" class="uri">https://CRAN.R-project.org/package=deSolve</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2010. “A Layered Grammar of Graphics.” <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. doi:<a href="https://doi.org/10.1198/jcgs.2009.07098">10.1198/jcgs.2009.07098</a>.</p>
+</div>
+<div>
+<p>———. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10): 1–23.</p>
+</div>
+<div>
+<p>———. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2018. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div>
+<p>Wilkinson, Leland. 2005. <em>The Grammar of Graphics (Statistics and Computing)</em>. Secaucus, NJ, USA: Springer-Verlag New York, Inc.</p>
+</div>
+<div>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>.</p>
+</div>
+<div>
+<p>———. 2018. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown" class="uri">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simple-workflow.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": ["BeginnersGuideToGalaxy.pdf", "BeginnersGuideToGalaxy.epub"],
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
