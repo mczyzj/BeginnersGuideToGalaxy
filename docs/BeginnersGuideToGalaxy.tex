@@ -303,6 +303,8 @@ needed to perform exercises from this book. The packages are:
   \textbf{segmented} \citep{R-segmented}
 \item
   \textbf{tidyverse} \citep{R-tidyverse, R-dplyr, R-ggplot2, R-tidyr}
+\item
+  \textbf{viridis} \citep{R-viridis}
 \end{itemize}
 
 Now every time you need functions from specific package in library you
@@ -339,8 +341,8 @@ In this book, we will use following conventions:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0.8257529 0.6401675 1.3201834 0.7601092 0.4396170 1.0540841 2.0847553
-##  [8] 0.7191813 1.7005184 0.7897009
+##  [1]  0.8682960  1.2838811 -0.1291941  1.3563535  1.7087360  0.7889665
+##  [7]  0.4959972  0.8205620  1.1894263  0.9090381
 \end{verbatim}
 
 \begin{itemize}
@@ -1354,7 +1356,7 @@ structure. A simple example is below:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 2
+## [1] 1
 \end{verbatim}
 
 \begin{Shaded}
@@ -1370,7 +1372,7 @@ structure. A simple example is below:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Big Winner!!!"
+## [1] "Barely alive"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1383,7 +1385,7 @@ structure. A simple example is below:
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Big Winner!!!"
+## [1] "Barely alive"
 \end{verbatim}
 
 \subsection{\texorpdfstring{\texttt{for} and \texttt{while}
@@ -1440,15 +1442,15 @@ examples:
 \begin{verbatim}
 ## [[1]]
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   1.872   4.111   4.879   4.895   5.704   9.446 
+##   2.027   3.986   5.062   5.064   6.129   8.774 
 ## 
 ## [[2]]
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-##  0.09085  1.39705  2.92881  3.73933  4.88785 18.35526 
+##  0.08703  0.91779  1.96167  2.75308  3.57436 16.24115 
 ## 
 ## [[3]]
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1.00    2.00    3.00    3.58    5.00    9.00
+##     0.0     2.0     3.0     3.1     4.0     9.0
 \end{verbatim}
 
 Above example is very simple, and actually can be made without loop. Try
@@ -1542,13 +1544,13 @@ SomeFunction, A = 10)`.
 
 \begin{verbatim}
 ## $x
-##  [1]  6  5  6  6  3  7 11  4  6  5  5  5  8 11  4
+##  [1] 5 3 8 4 8 3 6 4 3 6 7 7 6 8 8
 ## 
 ## $b
-##  [1] 3 2 3 4 4 2 6 8 3 6 5 5 1 8 7
+##  [1] 3 3 4 7 4 5 6 5 8 3 5 4 3 3 6
 ## 
 ## $c
-##  [1] 26  8 19 11 16 13 20 25 24 18 26 15 17 32 16
+##  [1] 23 27 30 22 25 22 31 27 26 23 25 25 23 24 29
 \end{verbatim}
 
 \begin{Shaded}
@@ -1558,13 +1560,13 @@ SomeFunction, A = 10)`.
 \end{Shaded}
 
 \begin{verbatim}
-##      x  b  c
-## [1,] 4  5 22
-## [2,] 3  4 19
-## [3,] 5  5 25
-## [4,] 9  6 20
-## [5,] 7 13 22
-## [6,] 2  3 22
+##      x b  c
+## [1,] 4 4 26
+## [2,] 6 3 28
+## [3,] 3 6 33
+## [4,] 3 3 23
+## [5,] 2 8 19
+## [6,] 1 3 19
 \end{verbatim}
 
 It is also possible to use so called anonymous functions (simplifying --
@@ -1754,7 +1756,7 @@ absolute value, and after all change it to negative one.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -11100
+## [1] -13120
 \end{verbatim}
 
 Now, that's not very nice\ldots{} We lost a lot of cash\ldots{} But we
@@ -1803,10 +1805,10 @@ distribution}, with parameters \texttt{10} and \texttt{3}:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0.8547070 0.8122618 0.6164946 0.8623271 0.6777844 0.7579792 0.5546689
-##  [8] 0.8744340 0.8968335 0.7144802 0.8162999 0.8103174 0.6196171 0.8586883
-## [15] 0.6971744 0.6711580 0.8511065 0.8401373 0.7120165 0.7888818 0.7923781
-## [22] 0.7343329 0.6890614 0.5990322 0.6748351
+##  [1] 0.8169399 0.7720760 0.8063769 0.7053750 0.4985851 0.8159966 0.6166847
+##  [8] 0.8854269 0.8581015 0.6352784 0.5174108 0.6085128 0.8646544 0.6283422
+## [15] 0.6979278 0.9410160 0.7624610 0.9510308 0.9415356 0.7994978 0.6151503
+## [22] 0.6803292 0.7114720 0.7384559 0.6385704
 \end{verbatim}
 
 Or we can make this nice plot (Fig. \ref{fig:betaDensity-plot}) for
@@ -3540,16 +3542,16 @@ Lets compare our parameters estimates:
 ## [[1]]
 ## [[1]]$t
 ##           Est. CI(95%).l CI(95%).u
-## psi1.t 291.530   131.181   451.878
-## psi2.t 587.963   534.738   641.188
+## psi1.t 293.702   138.101   449.303
+## psi2.t 582.343   531.336   633.351
 ## 
 ## 
 ## [[2]]
 ## [[2]]$t
-##             Est.   St.Err. t value  CI(95%).l   CI(95%).u
-## slope1  0.000000        NA      NA         NA          NA
-## slope2  0.013585 0.0040180  3.3811  0.0040843  0.02308600
-## slope3 -0.003193 0.0010466 -3.0510 -0.0056677 -0.00071832
+##              Est.   St.Err. t value  CI(95%).l   CI(95%).u
+## slope1  0.0000000        NA      NA         NA          NA
+## slope2  0.0138180 0.0040033  3.4517  0.0043518  0.02328400
+## slope3 -0.0029901 0.0010427 -2.8676 -0.0054557 -0.00052442
 \end{verbatim}
 
 \begin{Shaded}

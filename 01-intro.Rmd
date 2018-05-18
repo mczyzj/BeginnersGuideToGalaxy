@@ -42,6 +42,7 @@ knitr::include_graphics('instalPacks.png')
 * **nlsMicrobio** [@R-nlsMicrobio]
 * **segmented** [@R-segmented]
 * **tidyverse** [@R-tidyverse; @R-dplyr; @R-ggplot2; @R-tidyr]
+* **viridis** [@R-viridis]
 
 Now every time you need functions from specific package in library you can just tick box next to package name, and RStudio will load it for you.
 

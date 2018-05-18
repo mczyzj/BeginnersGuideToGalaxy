@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="basics.html">
+<link rel="prev" href="finalind.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -208,331 +208,73 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Introduction</h1>
-<div id="audience" class="section level2">
-<h2><span class="header-section-number">2.1</span> Audience</h2>
-<p>I wrote this small book for all those who are new to programming, as well for those who are new to <strong>R</strong> language. I tried to cover all the necessary knowledge you need to be familiarize with to start basic work in <strong>R</strong> in a compact way. I also tried to avoid things that may overwhelm or confuse people who are new to programming (like code efficiency). However if you want to play more, with more complex coding you need to read a lot from other sources. You will find some advises what should you do next in last chapter (<a href="finalind.html#finalind">9</a>) of this book.</p>
-</div>
-<div id="what-this-book-is-not-about" class="section level2">
-<h2><span class="header-section-number">2.2</span> What this book is not about?</h2>
-<p>Mainly this book not on any advanced R. I do not cover here things like <em>function factories</em>, <em>creating packages</em> or <em>S3</em> classes. It also do not cover specific <strong>R</strong> application in detail, like <em>statistics</em>, <em>predictive modeling</em> or <em>text analyses</em>. Finally this book will not cover programming paradigms such as <em>Test Driven Development</em> or <em>Meta-programming</em>. There are plenty of well written resources that go really deep in those applications.</p>
-</div>
-<div id="rstudio" class="section level2">
-<h2><span class="header-section-number">2.3</span> RStudio</h2>
-<p>Before we jump into coding, you should first get familiar with <strong>RStudio</strong> <span class="citation">(RStudio Team <a href="#ref-rstudio2017">2016</a>)</span>. It is so called <em>Integrated Development Environment</em> (IDE), which has built-in functionalities to make work easier. This IDE is typically used with 4 different windows:</p>
-<ul>
-<li><em>Source</em> - where you can write scripts;</li>
-<li><em>Console</em> - where scripts are executed;</li>
-<li><em>‘Environmental’</em> - it’s adjustable window, usually containing <em>Environemnt</em>, <em>History</em> and Version Control panes;</li>
-<li><em>‘Files’</em> - also adjustable, usually you will find here <em>File</em>, <em>Packages</em>, <em>Help</em> and <em>Plots</em> panes.</li>
-</ul>
-</div>
-<div id="few-tips-to-make-life-easier" class="section level2">
-<h2><span class="header-section-number">2.4</span> Few tips to make life easier</h2>
-From menu choose <em>Tools &gt; Global options</em>. Now choose <em>Code</em> and <em>Editing</em> pane, tick box <em>Insert spaces for Tab</em> and assure that Tab width is set to 2. Next, in <em>Display</em> pane, check following tick-boxes:
-<div class="figure" style="text-align: center"><span id="fig:option-settings"></span>
-<img src="options.png" alt="Code display options" width="50%" />
-<p class="caption">
-Figure 2.1: Code display options
-</p>
-</div>
-<ul>
-<li><em>Highlight selected word</em></li>
-<li><em>Show line number</em></li>
-<li><em>Show margin</em> (and set margin column to 80)</li>
-<li><em>Show whitespace characters</em></li>
-<li><em>Highlite R function calls</em></li>
-</ul>
-<p>Generally speaking those options, do not influence how your code is performed, but will allow you to write cleaner and read easier. You can also change colors of your environment in <em>Appearance</em>.</p>
-</div>
-<div id="installing-packages" class="section level2">
-<h2><span class="header-section-number">2.5</span> Installing packages</h2>
-In your <em>‘Files’</em> window, you will find <em>Packages</em> pane, which contains <em>Install</em> button. You can use it now, to install packages needed to perform exercises from this book. The packages are:
-<div class="figure" style="text-align: center"><span id="fig:install-packs"></span>
-<img src="instalPacks.png" alt="Installation window" width="50%" />
-<p class="caption">
-Figure 2.2: Installation window
-</p>
-</div>
-<ul>
-<li><strong>deSolve</strong> <span class="citation">(Soetaert, Petzoldt, and Setzer <a href="#ref-R-deSolve">2018</a>)</span></li>
-<li><strong>fitdistrplus</strong> <span class="citation">(Delignette-Muller, Dutang, and Siberchicot <a href="#ref-R-fitdistrplus">2017</a>)</span></li>
-<li><strong>mc2d</strong> <span class="citation">(Pouillot <a href="#ref-R-mc2d">2017</a>)</span></li>
-<li><strong>minpack.lm</strong> <span class="citation">(Elzhov et al. <a href="#ref-R-minpack.lm">2016</a>)</span></li>
-<li><strong>nls2</strong> <span class="citation">(Grothendieck <a href="#ref-R-nls2">2013</a>)</span></li>
-<li><strong>nlsMicrobio</strong> <span class="citation">(Baty and Delignette-Muller <a href="#ref-R-nlsMicrobio">2014</a>)</span></li>
-<li><strong>segmented</strong> <span class="citation">(Muggeo <a href="#ref-R-segmented">2017</a>)</span></li>
-<li><strong>tidyverse</strong> <span class="citation">(Wickham <a href="#ref-R-tidyverse">2017</a>; Wickham et al. <a href="#ref-R-dplyr">2017</a>; Wickham and Chang <a href="#ref-R-ggplot2">2016</a>; Wickham and Henry <a href="#ref-R-tidyr">2018</a>)</span></li>
-<li><strong>viridis</strong> <span class="citation">(Garnier <a href="#ref-R-viridis">2018</a>)</span></li>
-</ul>
-<p>Now every time you need functions from specific package in library you can just tick box next to package name, and RStudio will load it for you.</p>
-</div>
-<div id="conventions" class="section level2">
-<h2><span class="header-section-number">2.6</span> Conventions</h2>
-<p>In this book, we will use following conventions:</p>
-<ul>
-<li>Names of programs and packages are in <strong>Bold</strong>.</li>
-<li>All other names e.g. names of panes menu items as well as things that needs to be stressed are in <em>italics</em>.</li>
-<li>Function names and variables are always written in inline code e.g. <code>t.test()</code> or <code>x</code>.</li>
-<li>File names are written in inline code e.g. <code>foo.txt</code>.</li>
-<li>Citations are in APA style, and ‘clickable’ e.g.click on the name and year of <strong>knitr</strong> package citation <span class="citation">(Xie <a href="#ref-xie2015">2015</a>)</span>.</li>
-<li>Code chunks are in blocks and result lines start with ##</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">1</span>, <span class="fl">0.5</span>)</code></pre></div>
-<pre><code>##  [1] 0.2411859 0.5033533 0.2724314 1.0939203 1.3713648 1.8875387 1.6610876
-##  [8] 0.5220318 0.5726309 1.4529517</code></pre>
-<ul>
-<li>There are no <code>&gt;</code> (<em>prompt</em>) signs in code chunks.</li>
-<li>Figures are floating - meaning, that they are not always immediately after they are mentioned in text.</li>
-<li>Tables are in <em>longtable</em> format (meaning they are not floating and might be multipage) e.g.</li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">kable</span>(
-  <span class="kw">head</span>(iris, <span class="dv">25</span>), <span class="dt">caption =</span> <span class="st">&#39;Example table&#39;</span>,
-  <span class="dt">booktabs =</span> <span class="ot">TRUE</span>, <span class="dt">longtable =</span> <span class="ot">TRUE</span>
-)</code></pre></div>
-<table>
-<caption><span id="tab:nice-tab">Table 2.1: </span>Example table</caption>
-<thead>
-<tr class="header">
-<th align="right">Sepal.Length</th>
-<th align="right">Sepal.Width</th>
-<th align="right">Petal.Length</th>
-<th align="right">Petal.Width</th>
-<th align="left">Species</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">5.1</td>
-<td align="right">3.5</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.9</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.7</td>
-<td align="right">3.2</td>
-<td align="right">1.3</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.6</td>
-<td align="right">3.1</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.0</td>
-<td align="right">3.6</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.4</td>
-<td align="right">3.9</td>
-<td align="right">1.7</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.6</td>
-<td align="right">3.4</td>
-<td align="right">1.4</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.0</td>
-<td align="right">3.4</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.4</td>
-<td align="right">2.9</td>
-<td align="right">1.4</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.9</td>
-<td align="right">3.1</td>
-<td align="right">1.5</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.4</td>
-<td align="right">3.7</td>
-<td align="right">1.5</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.8</td>
-<td align="right">3.4</td>
-<td align="right">1.6</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.8</td>
-<td align="right">3.0</td>
-<td align="right">1.4</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">4.3</td>
-<td align="right">3.0</td>
-<td align="right">1.1</td>
-<td align="right">0.1</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.8</td>
-<td align="right">4.0</td>
-<td align="right">1.2</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.7</td>
-<td align="right">4.4</td>
-<td align="right">1.5</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.4</td>
-<td align="right">3.9</td>
-<td align="right">1.3</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.1</td>
-<td align="right">3.5</td>
-<td align="right">1.4</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.7</td>
-<td align="right">3.8</td>
-<td align="right">1.7</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.1</td>
-<td align="right">3.8</td>
-<td align="right">1.5</td>
-<td align="right">0.3</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">5.4</td>
-<td align="right">3.4</td>
-<td align="right">1.7</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.1</td>
-<td align="right">3.7</td>
-<td align="right">1.5</td>
-<td align="right">0.4</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.6</td>
-<td align="right">3.6</td>
-<td align="right">1.0</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">5.1</td>
-<td align="right">3.3</td>
-<td align="right">1.7</td>
-<td align="right">0.5</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="odd">
-<td align="right">4.8</td>
-<td align="right">3.4</td>
-<td align="right">1.9</td>
-<td align="right">0.2</td>
-<td align="left">setosa</td>
-</tr>
-<tr class="even">
-<td align="right">* Tables and fi</td>
-<td align="right">gures and refe</td>
-<td align="right">rences are clic</td>
-<td align="right">kable e.g. see</td>
-<td align="left">Table <a href="intro.html#tab:nice-tab">2.1</a> or see Figure <a href="intro.html#fig:option-settings">2.1</a>.</td>
-</tr>
-</tbody>
-</table>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
 
-</div>
-</div>
-<h3>References</h3>
 <div id="refs" class="references">
-<div id="ref-rstudio2017">
-<p>RStudio Team. 2016. <em>RStudio: Integrated Development Environment for R</em>. Boston, MA: RStudio, Inc. <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
-</div>
-<div id="ref-R-deSolve">
-<p>Soetaert, Karline, Thomas Petzoldt, and R. Woodrow Setzer. 2018. <em>DeSolve: Solvers for Initial Value Problems of Differential Equations (’Ode’, ’Dae’, ’Dde’)</em>. <a href="https://CRAN.R-project.org/package=deSolve" class="uri">https://CRAN.R-project.org/package=deSolve</a>.</p>
-</div>
-<div id="ref-R-fitdistrplus">
-<p>Delignette-Muller, Marie-Laure, Christophe Dutang, and Aurélie Siberchicot. 2017. <em>Fitdistrplus: Help to Fit of a Parametric Distribution to Non-Censored or Censored Data</em>. <a href="https://CRAN.R-project.org/package=fitdistrplus" class="uri">https://CRAN.R-project.org/package=fitdistrplus</a>.</p>
-</div>
-<div id="ref-R-mc2d">
-<p>Pouillot, Regis. 2017. <em>Mc2d: Tools for Two-Dimensional Monte-Carlo Simulations</em>. <a href="https://CRAN.R-project.org/package=mc2d" class="uri">https://CRAN.R-project.org/package=mc2d</a>.</p>
-</div>
-<div id="ref-R-minpack.lm">
-<p>Elzhov, Timur V., Katharine M. Mullen, Andrej-Nikolai Spiess, and Ben Bolker. 2016. <em>Minpack.lm: R Interface to the Levenberg-Marquardt Nonlinear Least-Squares Algorithm Found in Minpack, Plus Support for Bounds</em>. <a href="https://CRAN.R-project.org/package=minpack.lm" class="uri">https://CRAN.R-project.org/package=minpack.lm</a>.</p>
-</div>
-<div id="ref-R-nls2">
-<p>Grothendieck, G. 2013. <em>Nls2: Non-Linear Regression with Brute Force</em>. <a href="https://CRAN.R-project.org/package=nls2" class="uri">https://CRAN.R-project.org/package=nls2</a>.</p>
-</div>
-<div id="ref-R-nlsMicrobio">
+<div>
 <p>Baty, Florent, and Marie-Laure Delignette-Muller. 2014. <em>NlsMicrobio: Nonlinear Regression in Predictive Microbiology</em>. <a href="https://CRAN.R-project.org/package=nlsMicrobio" class="uri">https://CRAN.R-project.org/package=nlsMicrobio</a>.</p>
 </div>
-<div id="ref-R-segmented">
-<p>Muggeo, Vito M. R. 2017. <em>Segmented: Regression Models with Break-Points / Change-Points Estimation</em>. <a href="https://CRAN.R-project.org/package=segmented" class="uri">https://CRAN.R-project.org/package=segmented</a>.</p>
+<div>
+<p>Chang, Winston. 2013. <em>R Graphics Cookbook</em>. O’Reilly Media, Inc.</p>
 </div>
-<div id="ref-R-tidyverse">
-<p>Wickham, Hadley. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+<div>
+<p>Delignette-Muller, Marie-Laure, Christophe Dutang, and Aurélie Siberchicot. 2017. <em>Fitdistrplus: Help to Fit of a Parametric Distribution to Non-Censored or Censored Data</em>. <a href="https://CRAN.R-project.org/package=fitdistrplus" class="uri">https://CRAN.R-project.org/package=fitdistrplus</a>.</p>
 </div>
-<div id="ref-R-dplyr">
-<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+<div>
+<p>Elzhov, Timur V., Katharine M. Mullen, Andrej-Nikolai Spiess, and Ben Bolker. 2016. <em>Minpack.lm: R Interface to the Levenberg-Marquardt Nonlinear Least-Squares Algorithm Found in Minpack, Plus Support for Bounds</em>. <a href="https://CRAN.R-project.org/package=minpack.lm" class="uri">https://CRAN.R-project.org/package=minpack.lm</a>.</p>
 </div>
-<div id="ref-R-ggplot2">
-<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
-</div>
-<div id="ref-R-tidyr">
-<p>Wickham, Hadley, and Lionel Henry. 2018. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
-</div>
-<div id="ref-R-viridis">
+<div>
 <p>Garnier, Simon. 2018. <em>Viridis: Default Color Maps from ’Matplotlib’</em>. <a href="https://CRAN.R-project.org/package=viridis" class="uri">https://CRAN.R-project.org/package=viridis</a>.</p>
 </div>
-<div id="ref-xie2015">
+<div>
+<p>Grothendieck, G. 2013. <em>Nls2: Non-Linear Regression with Brute Force</em>. <a href="https://CRAN.R-project.org/package=nls2" class="uri">https://CRAN.R-project.org/package=nls2</a>.</p>
+</div>
+<div>
+<p>Muggeo, Vito M. R. 2017. <em>Segmented: Regression Models with Break-Points / Change-Points Estimation</em>. <a href="https://CRAN.R-project.org/package=segmented" class="uri">https://CRAN.R-project.org/package=segmented</a>.</p>
+</div>
+<div>
+<p>Pouillot, Regis. 2017. <em>Mc2d: Tools for Two-Dimensional Monte-Carlo Simulations</em>. <a href="https://CRAN.R-project.org/package=mc2d" class="uri">https://CRAN.R-project.org/package=mc2d</a>.</p>
+</div>
+<div>
+<p>R Core Team. 2017. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a>.</p>
+</div>
+<div>
+<p>RStudio Team. 2016. <em>RStudio: Integrated Development Environment for R</em>. Boston, MA: RStudio, Inc. <a href="http://www.rstudio.com/" class="uri">http://www.rstudio.com/</a>.</p>
+</div>
+<div>
+<p>Soetaert, Karline, Thomas Petzoldt, and R. Woodrow Setzer. 2018. <em>DeSolve: Solvers for Initial Value Problems of Differential Equations (’Ode’, ’Dae’, ’Dde’)</em>. <a href="https://CRAN.R-project.org/package=deSolve" class="uri">https://CRAN.R-project.org/package=deSolve</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley. 2010. “A Layered Grammar of Graphics.” <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. doi:<a href="https://doi.org/10.1198/jcgs.2009.07098">10.1198/jcgs.2009.07098</a>.</p>
+</div>
+<div>
+<p>———. 2014. “Tidy Data.” <em>Journal of Statistical Software</em> 59 (10): 1–23.</p>
+</div>
+<div>
+<p>———. 2017. <em>Tidyverse: Easily Install and Load the ’Tidyverse’</em>. <a href="https://CRAN.R-project.org/package=tidyverse" class="uri">https://CRAN.R-project.org/package=tidyverse</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Winston Chang. 2016. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, and Lionel Henry. 2018. <em>Tidyr: Easily Tidy Data with ’Spread()’ and ’Gather()’ Functions</em>. <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a>.</p>
+</div>
+<div>
+<p>Wickham, Hadley, Romain Francois, Lionel Henry, and Kirill Müller. 2017. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a>.</p>
+</div>
+<div>
+<p>Wilkinson, Leland. 2005. <em>The Grammar of Graphics (Statistics and Computing)</em>. Secaucus, NJ, USA: Springer-Verlag New York, Inc.</p>
+</div>
+<div>
 <p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/" class="uri">http://yihui.name/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2016. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. Boca Raton, Florida: Chapman; Hall/CRC. <a href="https://github.com/rstudio/bookdown" class="uri">https://github.com/rstudio/bookdown</a>.</p>
+</div>
+<div>
+<p>———. 2018. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown" class="uri">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
 </div>
 </div>
             </section>
@@ -540,8 +282,8 @@ Figure 2.2: Installation window
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="finalind.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
