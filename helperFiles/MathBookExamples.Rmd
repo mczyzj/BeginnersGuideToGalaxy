@@ -1,0 +1,125 @@
+---
+title: "Math Examples for Beginners Guide to R Galaxy"
+author: "Michal Czyz"
+date: "May 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Chapter 4
+
+### Libraries
+```{r echo = FALSE, eval = TRUE, message = FALSE}
+library('deSolve')
+library('dplyr')
+library('ggplot2')
+library('mc2d')
+library('rriskDistributions')
+library('tidyr')
+```
+
+Simple mechanistic model with noise
+```{r MMfunction, fig.height = 4, fig.cap = 'Simple Michaelis-Menten function', fig.show = 'hold'}
+parA <- 2.15
+parB <- 0.08
+varX <- seq(0,1, length.out = 1000)
+mmFunction <- parA * varX/(parB + varX)
+plot(mmFunction~varX, type = 'l')
+```
+
+```{r message = FALSE}
+sParA <- rpert(1000, 1.8, 2.15, 2.5)
+parB <- 0.08
+mmSAFunction <- sParA * varX/(parB + varX)
+sParB <- rnorm(1000, 0.08, 0.023) 
+mmSABFunction <- sParA * varX/(sParB + varX)
+```
+
+```{r MMfunctionAB, fig.height = 4, fig.cap = 'Michaelis-Menten function with stochastic parameter A (left) or A and B (right)', fig.show = 'hold'}
+par(mfrow = c(1,2))
+plot(mmSAFunction~varX, type = 'l')
+plot(mmSABFunction~varX, type = 'l')
+par(mfrow = c(1,1))
+```
+
+```{r fig.height = 4, message = FALSE, fig.cap = 'Michaelis-Menten function fully stochastic', , fig.show = 'hold'}
+unifParams <- get.unif.par(p = c(0.25, 0.75), q = c(-0.13, 0.17), plot = F)
+fVariability <- runif(1000, min = unifParams[1], max = unifParams[2])
+mmFSFunction <- ((sParA * varX/(sParB + varX)) + fVariability)
+plot(mmFSFunction~varX, type = 'l')
+```
+
+```{r fig.height = 4, fig.cap = 'Michaelis-Menten function with different levels of stochasticity', fig.show = 'hold'}
+plot(varX, mmFunction, type = 'l',
+     col = 'black', ylim = c(0, 3),
+     main = 'Michaelis-Menten function', xlab = 'x', ylab = 'f(x) = a*x/(b+x)')
+lines(varX, mmSAFunction, col = 'blue')
+lines(varX, mmSABFunction, col = 'green', lty = 'dashed')
+lines(varX, mmFSFunction, col = 'red', lty = 'dotted')
+```
+
+SERI model
+```{r}
+parameters <- c(b     = 0.1,        # birth rate
+                d     = 0.1,        # death rate
+                beta  = 0.00025,    # transmission parameter
+                gamma = 0.6,        # 1/gamma = infectious period
+                a     = 0.1        # 1/a = latent period
+                )
+
+time <- 1:100
+
+# Initial conditions
+N = 15000    # population size
+E0 = 150     # initialy exposed
+I0 = 15      # initialy infected
+R0 = 20      # initialy recovered
+
+initial <- c(S = N - (E0 + I0 + R0), E = E0, I= I0, R = R0)
+
+# ODE Model
+fSEIR <- function(t, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    dS = b * (S + E + I + R) - beta * S * I - d * S
+    dE = beta * S * I - a * E - d * E
+    dI = a * E - gamma * I - d * I
+    dR = gamma * I - d * R
+    return(list(c(dS, dE, dI, dR)))
+  })
+}
+
+modelOutput <- deSolve::ode(y = initial, func = fSEIR, times = time, parms = parameters)
+head(modelOutput)
+```
+
+Ploting SERI model
+```{r}
+modelOutput <- as.data.frame(modelOutput)
+ggplot(modelOutput, aes(x = time)) +
+  geom_line(aes(y = S, colour = "S")) + 
+  geom_line(aes(y = E, colour = "E")) +
+  geom_line(aes(y = I, colour = "I")) + 
+  geom_line(aes(y = R, colour = "R"))
+```
+
+Tweaking the SERI plot
+```{r}
+modelOutput <- as.data.frame(modelOutput) %>%
+  gather(key = compartment, value = value, -time) %>%
+  left_join(data.frame(compartment = c("S", "E", "I", "R"),
+                       ordered = 1:4,
+                       stringsAsFactors = F), by = 'compartment')
+ggplot(modelOutput, aes(x = time, y = value,
+                        colour = reorder(compartment, ordered))) +
+  geom_line() +
+  viridis::scale_colour_viridis(discrete = T) +
+  theme_bw() +
+  theme(panel.grid.major.y = element_line(colour = "#dfdfdf")) +
+  labs(colour = 'Compartment',
+       x = 'Time',
+       y = 'Population size',
+       title = 'SERI epidemiological model')
+```

@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Chapter 2
+## Chapter 2 and 3
 
 Vectors
 ```{r echo = T, eval = T}
