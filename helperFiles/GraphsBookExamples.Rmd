@@ -1,0 +1,134 @@
+---
+title: "GraphicsBookExamples"
+author: "Michal Czyz"
+date: "May 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Graphics
+
+### Libraries
+```{r echo = FALSE, eval = TRUE, message = FALSE}
+library('ggplot2')
+library('dplyr')
+```
+
+Basic plots with base graphics
+```{r base-plots, fig.cap = 'Base plots and histograms', fig.height = 4.5}
+graphicDummy <- data.frame(x = rnorm(100, 10, 2), y = rpois(100, 1.2))
+par(mfrow = c(2,4))
+plot(graphicDummy$x~graphicDummy$y)
+plot(graphicDummy$x~as.factor(graphicDummy$y))
+boxplot(graphicDummy$x~graphicDummy$y, main = 'Boxplot')
+barplot(graphicDummy$x, main = 'Barplot')
+hist(graphicDummy$x, main = 'Histogram x')
+hist(graphicDummy$y, main = 'Histogram y')
+plot(density(graphicDummy$x), main = 'Density x')
+plot(density(graphicDummy$y), main = 'Density y')
+```
+
+Basic ggplot2 plot
+```{r ggplot-plain, fig.cap = 'Basic scatterplot', fig.height = 2.5}
+plotTable <- data.frame(time = 1:10,
+                        depVal = c((1:10)*2)+2,
+                        typeDep = rep(c('first', 'second'), times = 5))
+basePlot <- ggplot(plotTable, aes(x = time, y = depVal)) +
+  geom_point(aes(colour = typeDep, alpha = 0.8, shape = typeDep, size = 3.5),
+             show.legend = FALSE)
+basePlot
+```
+
+Fancy plot
+```{r ggplot-fancy, fig.cap = 'Scatterplot with additional aesthetics', fig.height = 2.5}
+basePlot +
+  labs(title = 'Basic dot plot', x = 'Time', y = 'Dependent variable') +
+  theme(axis.title.x     = element_text(size = rel(0.7), colour = 'red'),
+        axis.title.y     = element_text(size = rel(1.1)), 
+        plot.background  = element_rect(fill = 'yellow'),
+        panel.background = element_rect(fill = 'pink'),
+        panel.grid       = element_blank(),
+        title            = element_text(size = rel(1.3),
+                                        colour = 'gray50',
+                                        face = 'bold'))
+```
+
+Publication plot
+```{r ggplot-journal, fig.cap = 'Scatterplot formated for journals', fig.height = 2.5}
+basePlot +
+  labs(title = 'Basic dot plot', x = 'Time', y = 'Dependent variable') +
+  theme_bw() +
+  theme(panel.grid = element_blank())
+```
+
+Simple density plot
+```{r ggplot-density, fig.cap = 'Simple density plot for coin tossing', fig.height = 2.5}
+coinDensity <- data.frame(coin = c(rep(1, times = 282), rep(0, times = 218)))
+ggplot(coinDensity, aes(x = coin)) + geom_density()
+```
+
+```{r ggplot-densityBinom, fig.cap = 'Density plot for binomial distribution', fig.height = 2.5}
+tCoinDensity <- data.frame(coin = rbinom(500, 1, 0.5))
+ggplot(tCoinDensity, aes(x = coin)) + geom_density()
+```
+
+Overlapping density plots
+```{r ggplot-densityCombined, fig.cap = 'Combined density plots', fig.height = 2.5}
+coinTest <- bind_rows(coinDensity, tCoinDensity) %>%
+  bind_cols(distribution = rep(c('empirical', 'theoretical'), each = 500))
+ggplot(coinTest, aes(x = coin, fill = distribution)) + 
+  geom_density(alpha = 0.7, colour = 'yellow') +
+  scale_fill_manual(values = c('blue', 'violet'))
+```
+
+Boxplot with ggplot2
+```{r ggplot-boxplot, fig.cap = 'Box-plot of three groups', fig.height = 2.5}
+boxGroups <- data.frame(group = rep(c('normal', 'chisq', 'pois'), each = 100),
+                        values = c(rnorm(100, 3, 0.65), rchisq(100, 3), rpois(100, 3)))
+ggplot(boxGroups, aes(x = group, y = values)) +
+  geom_boxplot()
+```
+
+Different outputs of barplots in ggplot2 with same data set
+```{r ggplot-barplotCounts, fig.cap = 'Mysterious bar-plot', fig.height = 2.5}
+barGroups <- boxGroups
+ggplot(barGroups, aes(x = group)) +
+  geom_bar(stat = 'count')
+```
+
+```{r ggplot-barplotSums, fig.cap = 'Sums by group bar-plot', fig.height = 2.5}
+brGroups <- boxGroups
+ggplot(brGroups, aes(x = group, y = values)) +
+  geom_col()
+```
+
+```{r ggplot-barplotMax, fig.cap = 'Maximum value by group bar-plot', fig.height = 2.5}
+barGroups <- boxGroups %>% group_by(group) %>% summarise(grVal = max(values))
+ggplot(barGroups, aes(x = group, y = grVal)) +
+  geom_bar(stat = 'identity')
+```
+
+Regression plot
+```{r ggplot-regPlot, fig.cap = 'Formated Regression plot with 95% CI', fig.height = 2.5}
+regVar <- c(sample(1:20, 100, replace = T))
+regRes <- ((regVar * 2.6) + 0.8) + order(rnorm(100, 10, 4.25))
+regDF <- data.frame(x = regVar, y = regRes)
+ggplot(regDF, aes(x, y)) +
+  geom_point(fill = 'yellow', colour = '#ff0099', shape = 21, stroke = 1.15) +
+  geom_ribbon(stat='smooth', method = "lm", se = TRUE, 
+              fill = '#990011', colour = 'yellow', alpha = 0.4,
+              linetype = 3, size = 0.2) +
+  geom_line(stat='smooth', method = "lm",
+            colour = 'green', alpha = 1,
+            linetype = 4, size = 1.15) +
+  theme(panel.background = element_rect(fill = NA),
+        axis.line = element_line(size = 1.15, colour = 'grey')) +
+  labs(x = 'Values of X',
+       y = 'y = 2.6 * x + 0.8',
+       title = 'Example of regression plot') +
+  annotate('text', label = 'y==2.6*x+0.8+epsilon', parse = T,
+           x = 3.5, y = 135, colour = 'blue')
+```
