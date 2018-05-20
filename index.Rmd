@@ -13,7 +13,7 @@ highlight: "tango"
 description: "Quick introduction to astonishing R's Galaxy"
 ---
 
-# In the beginning there was only darknes...
+# In the beginning there was only darkness...
 **R** [@rcore2017] is one of the most common used languages in Data Science. It is so called fourth-generation programming language (4GL), meaning it is *user-friendly*, while still quite powerful. **R** is powered by huge open-source oriented community. Thanks to their work, during many years of development, enormous number of *packages* (also incorrectly called *libraries*) were established, making using **R** for common works related to Data Science easy even for Beginners.
 
 The purpose of this document is to familiarize with **R** people who have at least some basics in statistics or modelling and no knowledge on programming. Thus, examples you will find in this book are driven by making life easier for all of those who struggle with data in their work.
