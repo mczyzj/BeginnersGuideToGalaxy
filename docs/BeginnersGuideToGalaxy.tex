@@ -128,7 +128,7 @@
   \postauthor{\par}
   \predate{\centering\large\emph}
   \postdate{\par}
-  \date{2018-05-18}
+  \date{2018-05-20}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -166,7 +166,7 @@
 \tableofcontents
 }
 \chapter{In the beginning there was only
-darknes\ldots{}}\label{in-the-beginning-there-was-only-darknes}
+darkness\ldots{}}\label{in-the-beginning-there-was-only-darkness}
 
 \textbf{R} \citep{rcore2017} is one of the most common used languages in
 Data Science. It is so called fourth-generation programming language
@@ -200,7 +200,8 @@ work in \textbf{R} in a compact way. I also tried to avoid things that
 may overwhelm or confuse people who are new to programming (like code
 efficiency). However if you want to play more, with more complex coding
 you need to read a lot from other sources. You will find some advises
-what should you do next in last chapter (\ref{finalind}) of this book.
+what should you do next in last chapter (\ref{finalindications}) of this
+book.
 
 \section{What this book is not
 about?}\label{what-this-book-is-not-about}
@@ -341,8 +342,8 @@ In this book, we will use following conventions:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1]  0.8682960  1.2838811 -0.1291941  1.3563535  1.7087360  0.7889665
-##  [7]  0.4959972  0.8205620  1.1894263  0.9090381
+##  [1]  0.7529994848  1.6083048405  1.4781391221  1.6060918289 -0.0003856237
+##  [6]  0.9237234796  0.8197390698  1.4842764810  2.2249042609  1.2745745255
 \end{verbatim}
 
 \begin{itemize}
@@ -950,7 +951,7 @@ We used \texttt{t.test()} function, with two arguments:
 call, we \emph{ordered} \textbf{R} to print out the results of
 statistical test stored in variable \texttt{tTestResult} -- which is the
 argument of this function. I'll show you how to write your own function
-in chapter \ref{functions}.
+in chapter \ref{funcs}.
 
 \chapter{Somwehere between basic and
 useful}\label{somwehere-between-basic-and-useful}
@@ -1330,7 +1331,7 @@ this place is going to make some simple things you can consider using
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 1 1 1
+## [1] 1 0 1
 \end{verbatim}
 
 \begin{Shaded}
@@ -1340,7 +1341,7 @@ this place is going to make some simple things you can consider using
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "Win!" "Win!" "Win!"
+## [1] "Win!"    "Looser!" "Win!"
 \end{verbatim}
 
 But what if your script can have more than two states when you start
@@ -1442,15 +1443,15 @@ examples:
 \begin{verbatim}
 ## [[1]]
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   2.027   3.986   5.062   5.064   6.129   8.774 
+##   2.167   3.869   4.830   4.881   5.799   8.332 
 ## 
 ## [[2]]
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-##  0.08703  0.91779  1.96167  2.75308  3.57436 16.24115 
+##  0.04196  1.25691  2.66492  3.02580  3.66850 10.73801 
 ## 
 ## [[3]]
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##     0.0     2.0     3.0     3.1     4.0     9.0
+##    0.00    2.00    3.00    3.17    4.00    8.00
 \end{verbatim}
 
 Above example is very simple, and actually can be made without loop. Try
@@ -1544,13 +1545,13 @@ SomeFunction, A = 10)`.
 
 \begin{verbatim}
 ## $x
-##  [1] 5 3 8 4 8 3 6 4 3 6 7 7 6 8 8
+##  [1] 5 4 7 4 3 6 7 6 4 4 6 7 3 4 4
 ## 
 ## $b
-##  [1] 3 3 4 7 4 5 6 5 8 3 5 4 3 3 6
+##  [1] 7 5 9 3 3 5 6 4 8 4 5 7 5 3 5
 ## 
 ## $c
-##  [1] 23 27 30 22 25 22 31 27 26 23 25 25 23 24 29
+##  [1] 25 25 23 31 26 23 28 23 16 20 28 27 25 25 14
 \end{verbatim}
 
 \begin{Shaded}
@@ -1561,12 +1562,12 @@ SomeFunction, A = 10)`.
 
 \begin{verbatim}
 ##      x b  c
-## [1,] 4 4 26
-## [2,] 6 3 28
-## [3,] 3 6 33
-## [4,] 3 3 23
-## [5,] 2 8 19
-## [6,] 1 3 19
+## [1,] 4 4 21
+## [2,] 7 4 22
+## [3,] 5 5 27
+## [4,] 2 7 31
+## [5,] 8 3 25
+## [6,] 4 5 21
 \end{verbatim}
 
 It is also possible to use so called anonymous functions (simplifying --
@@ -1756,7 +1757,7 @@ absolute value, and after all change it to negative one.
 \end{Shaded}
 
 \begin{verbatim}
-## [1] -13120
+## [1] -12600
 \end{verbatim}
 
 Now, that's not very nice\ldots{} We lost a lot of cash\ldots{} But we
@@ -1805,10 +1806,10 @@ distribution}, with parameters \texttt{10} and \texttt{3}:
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] 0.8169399 0.7720760 0.8063769 0.7053750 0.4985851 0.8159966 0.6166847
-##  [8] 0.8854269 0.8581015 0.6352784 0.5174108 0.6085128 0.8646544 0.6283422
-## [15] 0.6979278 0.9410160 0.7624610 0.9510308 0.9415356 0.7994978 0.6151503
-## [22] 0.6803292 0.7114720 0.7384559 0.6385704
+##  [1] 0.8041593 0.7123056 0.6079530 0.8746070 0.7905902 0.5275162 0.7977441
+##  [8] 0.6616669 0.7673621 0.8973461 0.7010629 0.8008070 0.7975760 0.7908225
+## [15] 0.9017038 0.5847646 0.6853652 0.7991089 0.7610655 0.9682440 0.7403350
+## [22] 0.8403571 0.6618405 0.8864050 0.9446319
 \end{verbatim}
 
 Or we can make this nice plot (Fig. \ref{fig:betaDensity-plot}) for
@@ -2591,7 +2592,7 @@ manually. I also used color palette from *\texttt{viridis} package,
 which contains four nice looking color palettes, which are colorblind
 safe (at least in theory).
 
-\chapter{Functions}\label{finalindications}
+\chapter{Functions}\label{funcs}
 
 In short, function is a piece of code that takes some arguments, makes
 \emph{mumbo jumbo} and returns result. All the time, through this book
@@ -3542,16 +3543,16 @@ Lets compare our parameters estimates:
 ## [[1]]
 ## [[1]]$t
 ##           Est. CI(95%).l CI(95%).u
-## psi1.t 293.702   138.101   449.303
-## psi2.t 582.343   531.336   633.351
+## psi1.t 319.042   195.688   442.397
+## psi2.t 575.152   530.663   619.640
 ## 
 ## 
 ## [[2]]
 ## [[2]]$t
 ##              Est.   St.Err. t value  CI(95%).l   CI(95%).u
 ## slope1  0.0000000        NA      NA         NA          NA
-## slope2  0.0138180 0.0040033  3.4517  0.0043518  0.02328400
-## slope3 -0.0029901 0.0010427 -2.8676 -0.0054557 -0.00052442
+## slope2  0.0155640 0.0040165  3.8751  0.0060667  0.02506200
+## slope3 -0.0029145 0.0010462 -2.7859 -0.0053883 -0.00044074
 \end{verbatim}
 
 \begin{Shaded}
@@ -3806,7 +3807,7 @@ The \textit{Bacillus cereus} data
 \end{Highlighting}
 \end{Shaded}
 
-\chapter{Final indications}\label{finalind}
+\chapter{Final indications}\label{finalindications}
 
 \section{Use Projects}\label{use-projects}
 

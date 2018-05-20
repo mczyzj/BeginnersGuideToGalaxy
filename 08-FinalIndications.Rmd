@@ -1,4 +1,4 @@
-# Final indications {#finalind}
+# Final indications {#finalindications}
 
 ## Use Projects
 To organize your work, not only in **RStudio**, but also on hard drive you should use projects. It is extremely easy in this IDE. Just click button -- *Create new project* -- choose *New Directory* and type of project you need. **RStudio** will take care of everything for you. Later you can easily add files of sub-folders with specifying content into your project and use relational links. Also, using projects makes easy to maintain clean global environment, which beginners often tend to underestimate and than they run into troubles.

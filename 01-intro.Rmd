@@ -1,7 +1,7 @@
 # Introduction {#intro}
 
 ## Audience
-I wrote this small book for all those who are new to programming, as well for those who are new to **R** language. I tried to cover all the necessary knowledge you need to be familiarize with to start basic work in **R** in a compact way. I also tried to avoid things that may overwhelm or confuse people who are new to programming (like code efficiency). However if you want to play more, with more complex coding you need to read a lot from other sources. You will find some advises what should you do next in last chapter (\@ref(finalind)) of this book.
+I wrote this small book for all those who are new to programming, as well for those who are new to **R** language. I tried to cover all the necessary knowledge you need to be familiarize with to start basic work in **R** in a compact way. I also tried to avoid things that may overwhelm or confuse people who are new to programming (like code efficiency). However if you want to play more, with more complex coding you need to read a lot from other sources. You will find some advises what should you do next in last chapter (\@ref(finalindications)) of this book.
 
 ## What this book is not about?
 Mainly this book not on any advanced R. I do not cover here things like *function factories*, *creating packages* or *S3* classes. It also do not cover specific **R** application in detail, like *statistics*, *predictive modeling* or *text analyses*. Finally this book will not cover programming paradigms such as *Test Driven Development* or *Meta-programming*. There are plenty of well written resources that go really deep in those applications.
@@ -56,16 +56,20 @@ In this book, we will use following conventions:
 * File names are written in inline code e.g. `foo.txt`.
 * Citations are in APA style, and 'clickable' e.g.click on the name and year of **knitr**  package citation [@xie2015].
 * Code chunks are in blocks and result lines start with ##
+
 ```{r test-chunk, echo = TRUE}
 rnorm(10, 1, 0.5)
 ```
+
 * There are no `>` (*prompt*) signs in code chunks.
 * Figures are floating - meaning, that they are not always immediately after they are mentioned in text.
 * Tables are in *longtable* format (meaning they are not floating and might be multipage) e.g.
+
 ```{r nice-tab, tidy = FALSE}
 knitr::kable(
   head(iris, 25), caption = 'Example table',
   booktabs = TRUE, longtable = TRUE
 )
 ```
+
 * Tables and figures and references are clickable e.g. see Table \@ref(tab:nice-tab) or see Figure \@ref(fig:option-settings).
